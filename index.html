@@ -6,9 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Arjhun Sreedar</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+  <!-- Dark Mode Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <svg class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle class="sun" cx="12" cy="12" r="5"></circle>
+      <path class="sun" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+      <path class="moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: none;"></path>
+    </svg>
+  </button>
   <div id="dhead" class="container">
     <div class="row">
       <div id="dpic">
@@ -20,10 +29,10 @@
         <h1 class="pronunciation-tooltip" data-pronunciation="ur-june shree-dhar">Arjhun Sreedar</h1>
         <h2>I solve problems with code</h2>
         <div id="dico">
-          <a href="https://twitter.com/ArjhunSreedar"><img src="assets/twitter.png" class="iico" /></a>
-          <a href="https://github.com/kernelism"><img src="assets/github.png" class="iico" /></a>
-          <a href="https://medium.com/@MinatoNamikaze02"><img src="assets/medium.png" class="iico" /></a>
-          <a href="https://linkedin.com/in/arjhunsreedar"><img src="assets/linkedin.png" class="iico" /></a>
+          <a href="https://twitter.com/ArjhunSreedar"><i class="fab fa-twitter iico"></i></a>
+          <a href="https://github.com/kernelism"><i class="fab fa-github iico"></i></a>
+          <a href="https://medium.com/@MinatoNamikaze02"><i class="fab fa-medium iico"></i></a>
+          <a href="https://linkedin.com/in/arjhunsreedar"><i class="fab fa-linkedin iico"></i></a>
         </div>
       </div>
     </div>
@@ -256,7 +265,7 @@
           src="https://store-images.s-microsoft.com/image/apps.15970.14375561300249796.05fe8c27-ce9e-4144-8702-0e81e2f575b1.042364cb-b745-4796-a520-61291e2dd6b9"
           style="max-width: 64px;" /></div>
       <div class="pdesc"><a href="https://github.com/kernelism/reddit-scraper">Reddit Scraper</a> is a CLI tool that can
-        scrape reddit content quickly using a unique checkpointing mechanism.</div>
+        scrape reddit content quickly using a unique checkpointing mechanism and JSON trick.</div>
       <div class="pend"></div>
     </div>
 
@@ -274,11 +283,10 @@
     <div class="ctitle">extracurricular</div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558">The Rhythm of
-          Conversation: Content-Agnostic Community Classification Using Meta-Graph Representations of Conversational
-          Dynamics
+      <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558">Content-Agnostic Community Classification Using Meta-Graph Representations of Conversational
+          Dynamics - Preprint
         </a></div>
-      <div class="pub-venue">OSNEM 2025</div>
+      <div class="pub-venue">OSNEM 2025 (In peer-review)</div>
       <div class="pub-authors">Arjhun Sreedar, Pranav Deepak, Dayanand V</div>
     </div>
 
@@ -295,16 +303,16 @@
     </div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://codeforces.com/profile/kernelism">Competitive Programming</a></div>
-      <div class="pub-venue">Codeforces</div>
-      <div class="pub-authors">1220 rated (Novice)</div>
+      <div class="pub-title">Finalist</div>
+      <div class="pub-venue">Hack@Arch Blockchain Hackathon 2022</div>
+      <div class="pub-authors">One of the top 10 teams at the hackathon</div>
     </div>
 
-    <div class="pub">
+    <!-- <div class="pub">
       <div class="pub-title"><a href="https://github.com/mxtoai/mxtoai-backend">Open Source Contributor</a></div>
       <div class="pub-venue">MxFlow</div>
       <div class="pub-authors">Contributed to the MxFlow project, an AI tool for email based workflow automation.</div>
-    </div>
+    </div> -->
 
     <div class="pub">
       <div class="pub-title">Finalist</div>
@@ -416,9 +424,45 @@
 
   </script>
 
+  <!-- Dark Mode Toggle Functionality -->
+  <script type="text/javascript">
+    // Dark mode toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const sunElements = document.querySelectorAll('.sun');
+    const moonElement = document.querySelector('.moon');
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update toggle icon based on current theme
+    function updateToggleIcon(theme) {
+      if (theme === 'dark') {
+        sunElements.forEach(el => el.style.display = 'none');
+        moonElement.style.display = 'block';
+      } else {
+        sunElements.forEach(el => el.style.display = 'block');
+        moonElement.style.display = 'none';
+      }
+    }
+    
+    // Initialize icon state
+    updateToggleIcon(currentTheme);
+    
+    // Toggle theme
+    themeToggle.addEventListener('click', function() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateToggleIcon(newTheme);
+    });
+  </script>
+
   <footer
-    style="text-align: center; padding: 20px 0; color: #666; font-size: 0.9em; border-top: 1px solid #eee; margin-top: 40px;">
-    Base design adapted from <a href="https://karpathy.ai/" style="color: #666;">Andrej Karpathy's</a> portfolio.
+    style="text-align: center; padding: 20px 0; color: var(--text-muted); font-size: 0.9em; border-top: 1px solid var(--border-light); margin-top: 40px; transition: color 0.3s ease, border-color 0.3s ease;">
+    Base design adapted from <a href="https://karpathy.ai/" style="color: var(--text-muted); transition: color 0.3s ease;">Andrej Karpathy's</a> portfolio.
   </footer>
 </body>
 

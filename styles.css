@@ -24,25 +24,25 @@
 }
 
 [data-theme="dark"] {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --bg-tertiary: #333333;
-    --text-primary: #e0e0e0;
-    --text-secondary: #cccccc;
-    --text-muted: #999999;
-    --text-accent: #777777;
-    --border-light: #404040;
-    --border-medium: #555555;
-    --border-card: #404040;
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-tertiary: #242424;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --text-accent: #888888;
+    --border-light: #333333;
+    --border-medium: #444444;
+    --border-card: #333333;
     --shadow-light: rgba(0, 0, 0, 0.3);
     --shadow-medium: rgba(0, 0, 0, 0.4);
     --shadow-heavy: rgba(0, 0, 0, 0.5);
-    --accent-blue: #4fa8d8;
-    --accent-blue-dark: #3498db;
-    --accent-green: #2ecc71;
-    --accent-red: #e74c3c;
-    --accent-purple: #a569bd;
-    --gradient-bg-opacity: 0.08;
+    --accent-blue: #64b5f6;
+    --accent-blue-dark: #42a5f5;
+    --accent-green: #81c784;
+    --accent-red: #e57373;
+    --accent-purple: #ba68c8;
+    --gradient-bg-opacity: 0.06;
 }
 
 html {
@@ -271,17 +271,54 @@ h2 {
     }
 }
 
+/* Social Media Icons */
 .iico {
-    width: 44px;
-    height: 44px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    border-radius: 8px;
-    padding: 2px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .iico:hover {
-    transform: translateY(-2px);
-    opacity: 0.8;
+    transform: translateY(-3px);
+    color: var(--accent-blue);
+}
+
+/* Specific colors for different social media platforms */
+.fa-twitter:hover {
+    color: #1da1f2;
+}
+
+.fa-github:hover {
+    color: var(--text-primary);
+}
+
+.fa-medium:hover {
+    color: #00ab6c;
+}
+
+.fa-linkedin:hover {
+    color: #0077b5;
+}
+
+/* Email Links - Make them more visible in dark mode */
+a[href^="mailto:"] {
+    color: var(--accent-blue) !important;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+a[href^="mailto:"]:hover {
+    color: var(--accent-blue-dark) !important;
+    background-color: rgba(100, 181, 246, 0.1);
+    border-bottom-color: var(--accent-blue);
 }
 
 #demail {
@@ -295,7 +332,11 @@ h2 {
 
 /* Theme Toggle Button */
 .theme-toggle {
-    background: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--bg-secondary);
     border: 2px solid var(--border-medium);
     border-radius: 50%;
     width: 44px;
@@ -305,8 +346,8 @@ h2 {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    font-size: 20px;
-    margin-left: 10px;
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px var(--shadow-medium);
 }
 
 .theme-toggle:hover {
@@ -321,6 +362,8 @@ h2 {
 }
 
 .theme-toggle-icon {
+    width: 20px;
+    height: 20px;
     transition: transform 0.3s ease;
 }
 
@@ -335,6 +378,7 @@ hr {
     padding: 0;
     margin: 50px 0;
     border: 0;
+    transition: background 0.3s ease;
 }
 
 /* Timeline Section */
@@ -437,6 +481,7 @@ hr {
     letter-spacing: -0.5px;
     position: relative;
     padding-bottom: 10px;
+    transition: color 0.3s ease;
 }
 
 .ctitle::after {
@@ -480,11 +525,11 @@ hr {
 
 /* Writing Section Background */
 .writing-section {
-    background-color: var(--bg-tertiary);
     padding-top: 1px;
     margin-top: 50px;
     padding-bottom: 30px;
     transition: background-color 0.3s ease;
+    position: relative;
 }
 
 /* Featured Writing Section */
