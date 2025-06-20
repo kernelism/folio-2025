@@ -62,6 +62,8 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
+
 /* Subtle animated background */
 body::before {
     content: '';
@@ -72,8 +74,8 @@ body::before {
     height: 100%;
     background: 
         radial-gradient(circle at 20% 80%, rgba(120, 119, 198, var(--gradient-bg-opacity)) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 48, var(--gradient-bg-opacity)) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, calc(var(--gradient-bg-opacity) * 0.7)) 0%, transparent 50%);
+        radial-gradient(circle at 80% 20%, rgba(79, 172, 254, var(--gradient-bg-opacity)) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(139, 92, 246, calc(var(--gradient-bg-opacity) * 0.7)) 0%, transparent 50%);
     animation: backgroundMove 20s ease-in-out infinite;
     z-index: -1;
 }
@@ -282,6 +284,21 @@ h2 {
     transition: all 0.3s ease;
 }
 
+.iico-resume {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.iico-resume:hover {
+    transform: translateY(-3px);
+    color: var(--accent-green);
+}
+
 .iico:hover {
     transform: translateY(-3px);
     color: var(--accent-blue);
@@ -305,7 +322,7 @@ h2 {
 }
 
 /* Email Links - Make them more visible in dark mode */
-a[href^="mailto:"] {
+a[href^="mailto:"]{
     color: var(--accent-blue) !important;
     font-weight: 500;
     text-decoration: none;
@@ -369,6 +386,92 @@ a[href^="mailto:"]:hover {
 
 .theme-toggle:hover .theme-toggle-icon {
     transform: rotate(15deg);
+}
+
+/* Info Icon Toggle */
+.info-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-medium);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px var(--shadow-medium);
+}
+
+.info-toggle:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.info-toggle:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+.info-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 1px 2px var(--shadow-light));
+    color: var(--text-primary) !important;
+}
+
+.info-toggle:hover .info-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 2px 4px var(--shadow-medium));
+}
+
+.info-tooltip {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.info-toggle:hover .info-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(5px);
+}
+
+.info-tooltiptext {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+    position: relative;
+}
+
+.info-tooltiptext::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid var(--text-primary);
 }
 
 /* Divider */
