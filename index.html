@@ -14,10 +14,30 @@
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
     <svg class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle class="sun" cx="12" cy="12" r="5"></circle>
-      <path class="sun" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+      <path class="sun"
+        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+      </path>
       <path class="moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: none;"></path>
     </svg>
   </button>
+
+  <!-- Info Icon with Tooltip -->
+  <button class="info-toggle" id="infoToggle" aria-label="Last updated info">
+    <svg class="info-icon" fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0 0 32 32" xml:space="preserve">
+      <g>
+        <path d="M17.962,24.725l1.806,0.096v2.531h-7.534v-2.406l1.045-0.094c0.568-0.063,0.916-0.254,0.916-1.014v-8.801
+		c0-0.699-0.188-0.92-0.791-0.92l-1.106-0.062v-2.626h5.666L17.962,24.725L17.962,24.725z M15.747,4.648
+		c1.394,0,2.405,1.047,2.405,2.374c0,1.331-1.014,2.313-2.438,2.313c-1.454,0-2.404-0.982-2.404-2.313
+		C13.31,5.695,14.26,4.648,15.747,4.648z M16,32C7.178,32,0,24.822,0,16S7.178,0,16,0c8.82,0,16,7.178,16,16S24.82,32,16,32z M16,3
+		C8.832,3,3,8.832,3,16s5.832,13,13,13s13-5.832,13-13S23.168,3,16,3z" />
+      </g>
+    </svg>
+    <div class="info-tooltip">
+      <span class="info-tooltiptext">Last updated: 2025-06-20</span>
+    </div>
+  </button>
+
   <div id="dhead" class="container">
     <div class="row">
       <div id="dpic">
@@ -33,6 +53,7 @@
           <a href="https://github.com/kernelism"><i class="fab fa-github iico"></i></a>
           <a href="https://medium.com/@MinatoNamikaze02"><i class="fab fa-medium iico"></i></a>
           <a href="https://linkedin.com/in/arjhunsreedar"><i class="fab fa-linkedin iico"></i></a>
+          <a href="https://drive.google.com/file/d/1Rt0gJB14fGU_BRzIZKLHoL-rBRivgqLk/view?usp=sharing"><i class="fa-solid fa-file iico-resume"></i></a>
         </div>
       </div>
     </div>
@@ -143,7 +164,7 @@
         <img src="https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png" />
       </div>
       <div class="desc">
-        Worked as a <strong>Research Intern</strong> at Amrita x Sony SSUP funded project focusing on low-cost food
+        Worked as a <strong>Research Intern</strong> at <a href="https://drive.google.com/file/d/1h1dA4V0fb1tIXs5nfz4UNcSm_Hv6giKR/view?usp=sharing">Amrita x Sony SSUP </a>funded project focusing on low-cost food
         drying in a solar polyhouse modelled as a cyber physical system.
         <br />
         <br />
@@ -283,7 +304,8 @@
     <div class="ctitle">extracurricular</div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558">Content-Agnostic Community Classification Using Meta-Graph Representations of Conversational
+      <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558">Content-Agnostic
+          Community Classification Using Meta-Graph Representations of Conversational
           Dynamics - Preprint
         </a></div>
       <div class="pub-venue">OSNEM 2025 (In peer-review)</div>
@@ -430,11 +452,11 @@
     const themeToggle = document.getElementById('themeToggle');
     const sunElements = document.querySelectorAll('.sun');
     const moonElement = document.querySelector('.moon');
-    
+
     // Check for saved theme preference or default to light mode
     const currentTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);
-    
+
     // Update toggle icon based on current theme
     function updateToggleIcon(theme) {
       if (theme === 'dark') {
@@ -445,24 +467,30 @@
         moonElement.style.display = 'none';
       }
     }
-    
+
     // Initialize icon state
     updateToggleIcon(currentTheme);
-    
+
     // Toggle theme
-    themeToggle.addEventListener('click', function() {
+    themeToggle.addEventListener('click', function () {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
+
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
       updateToggleIcon(newTheme);
     });
+
+    // Info icon tooltip is handled via CSS hover
   </script>
 
   <footer
     style="text-align: center; padding: 20px 0; color: var(--text-muted); font-size: 0.9em; border-top: 1px solid var(--border-light); margin-top: 40px; transition: color 0.3s ease, border-color 0.3s ease;">
-    Base design adapted from <a href="https://karpathy.ai/" style="color: var(--text-muted); transition: color 0.3s ease;">Andrej Karpathy's</a> portfolio.
+    Base design adapted from <a href="https://karpathy.ai/"
+      style="color: var(--text-muted); transition: color 0.3s ease;">Andrej Karpathy's</a> portfolio.
+    <div>
+      Less, but better.
+    </div>
   </footer>
 </body>
 
