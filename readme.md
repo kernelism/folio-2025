@@ -6,9 +6,9 @@ Personal portfolio website built with HTML, CSS, and JavaScript.
 
 Open `index.html` in a web browser.
 
-## Structure
+## Credits
 
-- `index.html` - Main page
-- `content.html` - Content page
-- `styles.css` - Styling
-- `assets/` - Social media icons
+Base design inspired from [Andrej Karpathy's](https://karpathy.ai) website.
+
+## LICENSE 
+MIT
