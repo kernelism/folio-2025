@@ -10,5 +10,5 @@ Open `index.html` in a web browser.
 
 Base design inspired from [Andrej Karpathy's](https://karpathy.ai) website.
 
-## LICENSE 
+## License 
 MIT
