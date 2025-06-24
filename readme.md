@@ -1,14 +1,1 @@
-# Portfolio
-
-Personal portfolio website built with HTML, CSS, and JavaScript.
-
-## Usage
-
-Open `index.html` in a web browser.
-
-## Credits
-
-Base design inspired from [Andrej Karpathy's](https://karpathy.ai) website.
-
-## License 
-MIT
+Minimalist portfolio without the BS. Design adapated from [Andrej Karpathy](https://karpathy.ai)'s website.
