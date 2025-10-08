@@ -3,7 +3,7 @@
     "name": "Arjhun Sreedar",
     "nameAudio": "ur-june shree-dhar",
     "tagline": "I solve problems with code",
-    "profileImage": "./img.jpeg",
+    "profileImage": "../assets/img.jpeg",
     "socialLinks": [
       { "platform": "twitter", "url": "https://twitter.com/ArjhunSreedar", "icon": "fab fa-twitter iico" },
       { "platform": "github", "url": "https://github.com/kernelism", "icon": "fab fa-github iico" },
@@ -28,7 +28,7 @@
     "entries": [
     {
         "timespan": "2025 - Present",
-        "logo": "./cics.jpg",
+        "logo": "../assets/cics.jpg",
         "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. Work includes generating synthetic clinical SBDH datasets, annotating them and benchmarking the performance of LLMs on them."
     },
       {
@@ -43,7 +43,7 @@
       },
       {
         "timespan": "2023 - 2024",
-        "logo": "./cmhq.jpeg",
+        "logo": "../assets/cmhq.jpeg",
         "description": "<strong>Founding Software Engineer Intern</strong> at <a href=\"https://carbonmarketshq.com/\">CarbonMarketsHQ</a></strong>. Helped the company procure and manage their data, which was foundational to their mission statement. One of my most challending work experiences.<br /><br />I built and automated a robust data pipeline to handle over 22,000 carbon offset projects and 7 billion credits, pulling from four different data sources.<br />I also managed the underlying PostgreSQL database and handled CI/CD workflows using Azure.<br />On the ML side, I developed a multi-agent Retrieval-Augmented Generation (RAG) system powered by Llama 3, optimizing it with LFU caching to improve query speeds by 60%. I extended the system to automatically generate detailed reports and visualizations, and wrote comprehensive load tests that ultimately boosted the overall pipeline performance by 15%."
       },
       {
