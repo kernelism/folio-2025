@@ -23,7 +23,9 @@
     --gradient-bg-opacity: 0.03;
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+html.dark-theme,
+html.dark-theme body {
     --bg-primary: #121212;
     --bg-secondary: #1e1e1e;
     --bg-tertiary: #242424;
@@ -43,6 +45,32 @@
     --accent-red: #e57373;
     --accent-purple: #ba68c8;
     --gradient-bg-opacity: 0.06;
+}
+
+/* Safari-specific dark mode fix - redundant but necessary */
+html.dark-theme {
+    --bg-primary: #121212 !important;
+    --bg-secondary: #1e1e1e !important;
+    --bg-tertiary: #242424 !important;
+    --text-primary: #ffffff !important;
+    --text-secondary: #e0e0e0 !important;
+    --text-muted: #a0a0a0 !important;
+    --text-accent: #888888 !important;
+    --border-light: #333333 !important;
+    --border-medium: #444444 !important;
+    --border-card: #333333 !important;
+    --accent-blue: #64b5f6 !important;
+    --accent-blue-dark: #42a5f5 !important;
+    --accent-green: #81c784 !important;
+    --accent-red: #e57373 !important;
+    --accent-purple: #ba68c8 !important;
+    --gradient-bg-opacity: 0.06 !important;
+}
+
+/* Additional body-level rules for Safari */
+body.dark-theme {
+    background: #121212 !important;
+    color: #ffffff !important;
 }
 
 html {
@@ -761,6 +789,41 @@ hr {
     color: var(--accent-red);
     margin-top: 5px;
     font-style: italic;
+}
+
+/* Misc Section - Simple Styling */
+.misc-item {
+    padding: 10px 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+    transition: padding-left 0.2s ease;
+}
+
+.misc-item:last-child {
+    border-bottom: none;
+}
+
+.misc-item:hover {
+    padding-left: 8px;
+}
+
+.misc-item strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.misc-item a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.misc-item a:hover {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
 }
 
 /* Responsive adjustments */

@@ -1,0 +1,25 @@
+# Environment variables - NEVER commit these!
+.env
+.env.local
+.env.production
+.env.development
+
+# Vercel
+.vercel
+
+# MacOS
+.DS_Store
+
+# Node modules (if you add any build process)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
