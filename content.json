@@ -1,0 +1,203 @@
+{
+  "header": {
+    "name": "Arjhun Sreedar",
+    "nameAudio": "ur-june shree-dhar",
+    "tagline": "I solve problems with code",
+    "profileImage": "./img.jpeg",
+    "socialLinks": [
+      { "platform": "twitter", "url": "https://twitter.com/ArjhunSreedar", "icon": "fab fa-twitter iico" },
+      { "platform": "github", "url": "https://github.com/kernelism", "icon": "fab fa-github iico" },
+      { "platform": "medium", "url": "https://medium.com/@MinatoNamikaze02", "icon": "fab fa-medium iico" },
+      { "platform": "linkedin", "url": "https://linkedin.com/in/arjhunsreedar", "icon": "fab fa-linkedin iico" },
+      { "platform": "resume", "url": "https://drive.google.com/file/d/1Rt0gJB14fGU_BRzIZKLHoL-rBRivgqLk/view?usp=sharing", "icon": "fa-solid fa-file iico-resume" }
+    ]
+  },
+  "info": {
+    "lastUpdated": "2025-06-20"
+  },
+  "about": {
+    "title": "about me",
+    "paragraphs": [
+      "Hi! I'm Arjhun, a software engineer and researcher currently pursuing my Master's in Computer Science at UMass Amherst. I specialize in suddenly wanting to build something overnight, and losing interest the very next day.",
+      "When I'm not busy abandoning yesterday's brilliant idea, I build things that matter. I've professionally worked in climate tech and financial services domains.",
+      "Outside of code, I moonlight as a tech writer, open-source contributor and occasional cricketer.",
+      "Right now I'm deep in the rabbit hole of LLMs (aren't we all?). Always up to collaborate on interesting stuff! Hit me up at <a href=\"mailto:asreedar@umass.edu\">asreedar@umass.edu</a> or <a href=\"mailto:arjunsreedar26@gmail.com\">arjunsreedar26@gmail.com</a>."
+    ]
+  },
+  "history": {
+    "entries": [
+    {
+        "timespan": "2025 - Present",
+        "logo": "./cics.jpg",
+        "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. Work includes generating synthetic clinical SBDH datasets, annotating them and benchmarking the performance of LLMs on them."
+    },
+      {
+        "timespan": "2025 - 2027",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png",
+        "description": "Pusuing my <strong>Master of Science in Computer Science</strong> at University of Massachusetts, Amherst. Hope to do a lot of relevant research!"
+      },
+      {
+        "timespan": "2024 - 2025",
+        "logo": "https://1000logos.net/wp-content/uploads/2017/04/Oracle-Logo.jpg",
+        "description": "<strong>Software Engineer 1 at Oracle</strong>. My professional experience at Oracle was quite profound. I learnt a lot about how financial systems were handled a scale!<br /> <br />I significantly improved the debugging experience for our team by integrating CI metrics, like build times, failure trends, and flaky test tracking, directly into our internal portal UI, which sped up issue identification by about 20%.<br />To further streamline troubleshooting, I built a tool that automatically pulls and aggregates logs from various internal Oracle services, cutting diagnosis time by 30 to 40%.<br />I also modernized a chunk of legacy React code, which not only reduced page load times by 10% but also led to a noticeable improvement in user experience and made development smoother and more efficient for the team."
+      },
+      {
+        "timespan": "2023 - 2024",
+        "logo": "./cmhq.jpeg",
+        "description": "<strong>Founding Software Engineer Intern</strong> at <a href=\"https://carbonmarketshq.com/\">CarbonMarketsHQ</a></strong>. Helped the company procure and manage their data, which was foundational to their mission statement. One of my most challending work experiences.<br /><br />I built and automated a robust data pipeline to handle over 22,000 carbon offset projects and 7 billion credits, pulling from four different data sources.<br />I also managed the underlying PostgreSQL database and handled CI/CD workflows using Azure.<br />On the ML side, I developed a multi-agent Retrieval-Augmented Generation (RAG) system powered by Llama 3, optimizing it with LFU caching to improve query speeds by 60%. I extended the system to automatically generate detailed reports and visualizations, and wrote comprehensive load tests that ultimately boosted the overall pipeline performance by 15%."
+      },
+      {
+        "timespan": "2022 - 2023",
+        "logo": "https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png",
+        "description": "Worked as a <strong>Research Intern</strong> at <a href=\"https://drive.google.com/file/d/1h1dA4V0fb1tIXs5nfz4UNcSm_Hv6giKR/view?usp=sharing\">Amrita x Sony SSUP </a>funded project focusing on low-cost food drying in a solar polyhouse modelled as a cyber physical system.<br /><br />Primarily worked on the integration team responsible to making data from the microcontrollers accessible on the cloud.<br />Redesigned the existing backend module towards a microservices architecture and the entire dashboard frontend."
+      },
+      {
+        "timespan": "2020 - 2024",
+        "logo": "https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png",
+        "description": "<strong>B.Tech in Computer Science and Engineering</strong> at Amrita Vishwa Vidyapeetham, Coimbatore. Really fell in love with CS during my time there, but eternally hate the food and campus."
+      }
+    ]
+  },
+  "writing": {
+    "title": "writing",
+    "subtitle": "I occasionally write on medium.",
+    "articles": [
+      { "date": "Feb 2025", "title": "GraphSAGE: Full Paper Walkthrough!", "url": "https://medium.com/@MinatoNamikaze02/graphsage-full-paper-walkthrough-1b0ebd79afb4" },
+      { "date": "Jul 2023", "title": "Dynamic Programming I: A beginners guide.", "url": "https://medium.com/@MinatoNamikaze02/the-right-way-of-understanding-dynamic-programming-fad6a5bdafcf" },
+      { "date": "Feb 2025", "title": "Let's build an LSTM from scratch.", "url": "https://medium.com/@MinatoNamikaze02/lets-build-an-lstm-from-scratch-6845e0d64dae" },
+      { "date": "Jun 2025", "title": "Getting the most out of cursor/windsurf for modern frontend dev", "url": "https://medium.com/@MinatoNamikaze02/getting-the-most-out-of-cursor-windsurf-for-modern-frontend-dev-61e2559d08de" },
+      { "date": "Jun 2025", "title": "Dynamic Programming II: Memoization", "url": "https://medium.com/@MinatoNamikaze02/dynamic-programming-ii-memoization-e6e9170a8fb5" },
+      { "date": "Aug 2024", "title": "Modern Backend Stack Walkthrough: FastAPI, GraphQL, and Postgres", "url": "https://medium.com/@MinatoNamikaze02/a-f-guide-to-fastapi-graphql-postgres-084358d59847" },
+      { "date": "Nov 2023", "title": "Making Apache Pig Output Human-Readable", "url": "https://medium.com/@MinatoNamikaze02/how-to-pretty-print-apache-pig-outputs-5c4d6c430e4c" },
+      { "date": "Nov 2023", "title": "Running Selenium on Google Colab", "url": "https://medium.com/@MinatoNamikaze02/running-selenium-on-google-colab-a118d10ca5f8" },
+      { "date": "Sep 2023", "title": "Installing Hadoop on MacOS (M1/M2) : 2023", "url": "https://medium.com/@MinatoNamikaze02/installing-hadoop-on-macos-m1-m2-2023-d963abeab38e" },
+      { "date": "Sep 2023", "title": "Reddit Scraping Post-API Apocalypse", "url": "https://medium.com/@MinatoNamikaze02/you-dont-need-the-reddit-api-to-acquire-its-data-here-s-how-41ef8f15e1db" },
+      { "date": "Jul 2023", "title": "Writing Maintainable CSS in React Projects", "url": "https://medium.com/@MinatoNamikaze02/complicating-yet-simplifying-reactjs-a51d16c0235a" },
+      { "date": "Jul 2023", "title": "Mastering Named Entity Recognition with Custom Entities", "url": "https://medium.com/@MinatoNamikaze02/mastering-named-entity-recognition-with-custom-entities-5de246bbf584" },
+      { "date": "Aug 2022", "title": "Conquering Lazy Loading using Selenium", "url": "https://medium.com/@MinatoNamikaze02/conquering-lazy-loading-using-selenium-c722cd44f19" },
+      { "date": "Jul 2022", "title": "How to Scrape Image Data at Scale with Scrapy", "url": "https://medium.com/@MinatoNamikaze02/web-scraping-images-efficiently-using-scrapy-7902ceeab171" }
+    ],
+    "contentLink": {
+      "text": "→ my content suggestions",
+      "url": "content.html"
+    }
+  },
+  "projects": {
+    "title": "projects",
+    "items": [
+      {
+        "name": "jargon",
+        "url": "https://github.com/kernelism/jargon",
+        "image": "https://usercentrics.com/wp-content/uploads/2021/12/blog-hero-privacy-policy.jpeg",
+        "description": "is a NER based privacy policy analyser which identifies sections of importance in large jargons of text based on predefined tags generated by LLMs"
+      },
+      {
+        "name": "toolboxAi",
+        "url": "https://github.com/kernelism/toolboxai",
+        "image": "https://raw.githubusercontent.com/kernelism/toolboxai/main/assets/toolboxai.png",
+        "description": "is a web tool to ask questions about your pdf. It routes between LLMs, maintains conversation history and can be used to ask questions about your pdf, or even specific sections of it."
+      },
+      {
+        "name": "ChokeSpeare",
+        "url": "https://github.com/kernelism/chokespeare",
+        "image": "https://cdn.pixabay.com/photo/2024/05/26/20/52/william-shakespeare-8789475_1280.png",
+        "description": "is a collection of different generative models trained on different kinds of poems and can generate poems in a mixed style."
+      },
+      {
+        "name": "iDEA community website",
+        "url": "https://github.com/IDEA-Amrita/iDEA",
+        "image": "https://raw.githubusercontent.com/IDEA-Amrita/iDEA/main/public/images/logo.jpeg",
+        "description": "is a pure react website for the undergrad club I co-founded. It does not use any external libraries except styled components. An unorthodox design and code structure. Find the website hosted <a href=\"https://ideacommunity.me\">here</a>."
+      },
+      {
+        "name": "Reddit Scraper",
+        "url": "https://github.com/kernelism/reddit-scraper",
+        "image": "https://store-images.s-microsoft.com/image/apps.15970.14375561300249796.05fe8c27-ce9e-4144-8702-0e81e2f575b1.042364cb-b745-4796-a520-61291e2dd6b9",
+        "description": "is a CLI tool that can scrape reddit content quickly using a unique checkpointing mechanism and JSON trick."
+      },
+      {
+        "name": "WeisfeilerLehman Quick Compute",
+        "url": "https://github.com/kernelism/WL-split-merge",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4MfFbNhIC5lSmBxnSAnsESSjZ6YBykM41AQ&s",
+        "description": "is a python script that can speed up WL Kernel computations by computing as batches and merging."
+      }
+    ]
+  },
+  "publications": {
+    "title": "publications",
+    "items": [
+      {
+        "title": "Content-Agnostic Community Classification Using Meta-Graph Representations of Conversational Dynamics - Preprint",
+        "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558",
+        "venue": "OSNEM 2025 (In peer-review)",
+        "authors": "Arjhun Sreedar, Pranav Deepak, Dayanand V"
+      }
+    ]
+  },
+  "misc": {
+    "title": "misc",
+    "items": [
+      {
+        "title": "Writer on Medium",
+        "description": "600+ claps and 30k+ reads",
+        "url": "https://medium.com/@MinatoNamikaze02"
+      },
+      {
+        "title": "Hack@Arch Blockchain Hackathon 2022",
+        "description": "Finalist - One of the top 10 teams at the hackathon",
+        "url": null
+      },
+      {
+        "title": "CoinSwitch Kuber Blockchain Hackathon 2022",
+        "description": "Finalist - One of the top 5 teams at the hackathon",
+        "url": null
+      },
+      {
+        "title": "Open Source Contributor",
+        "description": "MxGoAI",
+        "url": "https://github.com/mxgoai/mxgo-core"
+      },
+      {
+        "title": "Open Source Contributor",
+        "description": "Pandas",
+        "url": "https://github.com/pandas-dev/pandas"
+      },
+      {
+        "title": "Chess.com",
+        "description": "Rated 1500",
+        "url": "https://www.chess.com/member/trippitroppi69"
+      },
+      {
+        "title": "Cricket",
+        "description": "Represented State/District/University/HighSchool in India in multiple tournaments from 2015-2020",
+        "url": ""
+      },
+      {
+        "title": "Dota 2",
+        "description": "Peak Rank: Archon V, Highest MMR: 3100",
+        "url": ""
+      }
+    ]
+  },
+  "contact": {
+    "title": "contact",
+    "description": "Have something interesting to discuss? Drop me a message.",
+    "placeholders": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message"
+    },
+    "submitButton": "Send",
+    "submitButtonSending": "Sending...",
+    "messages": {
+      "fillAllFields": "Please fill in all fields.",
+      "invalidEmail": "Please enter a valid email address.",
+      "success": "Message sent successfully! I'll get back to you soon.",
+      "error": "Failed to send message. Please try again or email me directly."
+    }
+  },
+  "footer": {
+    "attribution": "Base design adapted from <a href=\"https://karpathy.ai/\" style=\"color: var(--text-muted); transition: color 0.3s ease;\">Andrej Karpathy's</a> portfolio.",
+    "tagline": "Less, but better."
+  }
+}
