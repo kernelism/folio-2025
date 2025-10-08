@@ -7,6 +7,26 @@
   <title>Arjhun Sreedar</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Inline script to apply theme immediately for Safari compatibility -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('theme') || 'light';
+        var html = document.documentElement;
+        html.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          html.classList.add('dark-theme');
+          html.classList.remove('light-theme');
+        } else {
+          html.classList.add('light-theme');
+          html.classList.remove('dark-theme');
+        }
+      } catch (e) {
+        // Fallback if localStorage is not available
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -34,27 +54,19 @@
       </g>
     </svg>
     <div class="info-tooltip">
-      <span class="info-tooltiptext">Last updated: 2025-06-20</span>
+      <span class="info-tooltiptext" id="lastUpdated"></span>
     </div>
   </button>
 
   <div id="dhead" class="container">
     <div class="row">
       <div id="dpic">
-        <img
-          src="https://media.licdn.com/dms/image/v2/D5603AQHonTZ3nge6hw/profile-displayphoto-crop_800_800/B56Zkr_WdGHIAI-/0/1757379652410?e=1760572800&v=beta&t=Rju3vi8p_2jks6gPQtX7GwakRzu7xBYc1efBxVC_vY0"
-          class="ppic" />
+        <img src="" class="ppic" id="profileImage" />
       </div>
       <div id="ddesc">
-        <h1 class="pronunciation-tooltip" data-pronunciation="ur-june shree-dhar">Arjhun Sreedar</h1>
-        <h2>I solve problems with code</h2>
-        <div id="dico">
-          <a href="https://twitter.com/ArjhunSreedar"><i class="fab fa-twitter iico"></i></a>
-          <a href="https://github.com/kernelism"><i class="fab fa-github iico"></i></a>
-          <a href="https://medium.com/@arjuns0206"><i class="fab fa-medium iico"></i></a>
-          <a href="https://linkedin.com/in/arjhunsreedar"><i class="fab fa-linkedin iico"></i></a>
-          <a href="https://drive.google.com/file/d/1Rt0gJB14fGU_BRzIZKLHoL-rBRivgqLk/view?usp=sharing"><i class="fa-solid fa-file iico-resume"></i></a>
-        </div>
+        <h1 class="pronunciation-tooltip" id="userName" data-pronunciation=""></h1>
+        <h2 id="userTagline"></h2>
+        <div id="dico"></div>
       </div>
     </div>
   </div>
@@ -65,298 +77,31 @@
   </div>
 
   <div id="about" class="container">
-    <div class="ctitle">about me</div>
-    <div class="about-content">
-      <p>
-        Hi! I'm Arjhun, a software engineer and researcher currently pursuing my Master's in Computer Science at UMass
-        Amherst. I specialize in suddenly wanting to build something overnight, and losing interest the very next day.
-      </p>
-      <p>
-        When I'm not busy abandoning yesterday's brilliant idea, I build things that matter. 
-        I've professionally worked in climate tech and financial services domains. 
-      </p>
-      <p>
-        Outside of code, I moonlight as a tech writer, open-source contributor and occasional cricketer.
-      </p>
-      <p>
-        Right now I'm deep in the rabbit hole of LLMs (aren't we all?). Always up to collaborate on interesting stuff!
-        Hit me up at <a href="mailto:asreedar@umass.edu">asreedar@umass.edu</a> or <a href="mailto:arjunsreedar26@gmail.com">arjunsreedar26@gmail.com</a>.
-      </p>
-    </div>
+    <div class="ctitle" id="aboutTitle"></div>
+    <div class="about-content" id="aboutContent"></div>
   </div>
 
-  <div id="history" class="container">
-    <div class="entry row">
-      <div class="timespan">
-        2025 - 2027
-      </div>
-      <div class="ico">
-        <div class="entry-dot"></div>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png" />
-      </div>
-      <div class="desc">
-        Pusuing my <strong>Master of Science in Computer Science</strong> at University of Massachusetts, Amherst. Hope
-        to do a lot of relevant research!
-      </div>
-    </div>
-
-    <div class="entry row">
-      <div class="timespan">
-        2024 - 2025
-      </div>
-      <div class="ico">
-        <div class="entry-dot"></div>
-        <img src="https://1000logos.net/wp-content/uploads/2017/04/Oracle-Logo.jpg" />
-      </div>
-      <div class="desc">
-        <strong>Software Engineer 1 at Oracle</strong>. My professional experience at Oracle was quite profound. I
-        learnt a lot about how financial systems were handled a scale!
-        <br /> <br />
-        I significantly improved the debugging experience for our team by integrating CI metrics, like build times,
-        failure trends, and flaky test tracking, directly into our internal portal UI, which sped up issue
-        identification by about 20%.
-        <br />
-        To further streamline troubleshooting, I built a tool that automatically pulls and aggregates logs from various
-        internal Oracle services, cutting diagnosis time by 30 to 40%.
-        <br />
-        I also modernized a chunk of legacy React code, which not only reduced page load times by 10% but also led to a
-        noticeable improvement in user experience and made development smoother and more efficient for the team.
-      </div>
-    </div>
-
-    <div class="entry row">
-      <div class="timespan">
-        2023 - 2024
-      </div>
-      <div class="ico">
-        <div class="entry-dot"></div>
-        <img
-          src="https://media.licdn.com/dms/image/v2/D560BAQHVkQQySouYzw/company-logo_200_200/company-logo_200_200/0/1705149084851?e=1760572800&v=beta&t=BYVoKABWQYUh2RyE6FvQRPvO1pjTe3NIOO4IuLjW0QE" />
-      </div>
-      <div class="desc">
-        <strong>Founding Software Engineer Intern</strong> at <a
-          href="https://carbonmarketshq.com/">CarbonMarketsHQ</a></strong>. Helped the company procure and manage their
-        data, which was foundational to their mission statement.
-        One of my most challending work experiences.
-        <br />
-        <br />
-        I built and automated a robust data pipeline to handle over 22,000 carbon offset projects and 7 billion credits,
-        pulling from four different data sources.
-        <br />
-        I also managed the underlying PostgreSQL database and handled CI/CD workflows using Azure.
-        <br />
-        On the ML side, I developed a multi-agent Retrieval-Augmented Generation (RAG) system powered by Llama 3,
-        optimizing it with LFU caching to improve query speeds by 60%. I extended the system to automatically generate
-        detailed reports and visualizations, and wrote comprehensive load tests that ultimately boosted the overall
-        pipeline performance by 15%.
-      </div>
-    </div>
-
-    <div class="entry row">
-      <div class="timespan">
-        2022 - 2023
-      </div>
-      <div class="ico">
-        <div class="entry-dot"></div>
-        <img src="https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png" />
-      </div>
-      <div class="desc">
-        Worked as a <strong>Research Intern</strong> at <a href="https://drive.google.com/file/d/1h1dA4V0fb1tIXs5nfz4UNcSm_Hv6giKR/view?usp=sharing">Amrita x Sony SSUP </a>funded project focusing on low-cost food
-        drying in a solar polyhouse modelled as a cyber physical system.
-        <br />
-        <br />
-        Primarily worked on the integration team responsible to making data from the microcontrollers accessible on the
-        cloud.
-        <br />
-        Redesigned the existing backend module towards a microservices architecture and the entire dashboard frontend.
-      </div>
-    </div>
-
-    <div class="entry row">
-      <div class="timespan">
-        2020 - 2024
-      </div>
-      <div class="ico">
-        <div class="entry-dot"></div>
-        <img src="https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png" />
-      </div>
-      <div class="desc">
-        <strong>B.Tech in Computer Science and Engineering</strong> at Amrita Vishwa Vidyapeetham, Coimbatore. Really
-        fell in love with CS during my time there, but eternally hate the food and campus.
-      </div>
-    </div>
-  </div>
+  <div id="history" class="container"></div>
 
   <div class="writing-section">
-    <div class="container">
-      <div class="ctitle">writing</div>
-      <div>I occasionally write on medium.</div>
-      <ul class="nodot">
-        <li>Feb 2025 <a
-            href="https://medium.com/@arjuns0206/graphsage-full-paper-walkthrough-1b0ebd79afb4">GraphSAGE: Full
-            Paper Walkthrough!</a></li>
-        <li>Jul 2023 <a
-            href="https://medium.com/@arjuns0206/the-right-way-of-understanding-dynamic-programming-fad6a5bdafcf">Dynamic
-            Programming I: A beginners guide.</a></li>
-        <li>Feb 2025 <a href="https://medium.com/@arjuns0206/lets-build-an-lstm-from-scratch-6845e0d64dae">Let's
-            build an LSTM from scratch.</a></li>
-        <li>Jun 2025 <a
-            href="https://medium.com/@arjuns0206/getting-the-most-out-of-cursor-windsurf-for-modern-frontend-dev-61e2559d08de">Getting
-            the most out of cursor/windsurf for modern frontend dev</a></li>
-        <li>Jun 2025 <a
-            href="https://medium.com/@arjuns0206/dynamic-programming-ii-memoization-e6e9170a8fb5">Dynamic
-            Programming II: Memoization</a></li>
-        <li>Aug 2024 <a
-            href="https://medium.com/@arjuns0206/a-f-guide-to-fastapi-graphql-postgres-084358d59847">Modern
-            Backend Stack Walkthrough: FastAPI, GraphQL, and Postgres</a></li>
-        <li>Nov 2023 <a
-            href="https://medium.com/@arjuns0206/how-to-pretty-print-apache-pig-outputs-5c4d6c430e4c">Making
-            Apache Pig Output Human-Readable</a></li>
-        <li>Nov 2023 <a
-            href="https://medium.com/@arjuns0206/running-selenium-on-google-colab-a118d10ca5f8">Running Selenium
-            on Google Colab</a></li>
-        <li>Sep 2023 <a
-            href="https://medium.com/@arjuns0206/installing-hadoop-on-macos-m1-m2-2023-d963abeab38e">Installing
-            Hadoop on MacOS (M1/M2) : 2023</a></li>
-        <li>Sep 2023 <a
-            href="https://medium.com/@arjuns0206/you-dont-need-the-reddit-api-to-acquire-its-data-here-s-how-41ef8f15e1db">Reddit
-            Scraping Post-API Apocalypse</a></li>
-        <li>Jul 2023 <a
-            href="https://medium.com/@arjuns0206/complicating-yet-simplifying-reactjs-a51d16c0235a">Writing
-            Maintainable CSS in React Projects</a></li>
-        <li>Jul 2023 <a
-            href="https://medium.com/@arjuns0206/mastering-named-entity-recognition-with-custom-entities-5de246bbf584">Mastering
-            Named Entity Recognition with Custom Entities</a></li>
-        <li>Aug 2022 <a
-            href="https://medium.com/@arjuns0206/conquering-lazy-loading-using-selenium-c722cd44f19">Conquering
-            Lazy Loading using Selenium</a></li>
-        <li>Jul 2022 <a
-            href="https://medium.com/@arjuns0206/web-scraping-images-efficiently-using-scrapy-7902ceeab171">How to
-            Scrape Image Data at Scale with Scrapy</a></li>
-      </ul>
-      <p style="margin-top: 20px; font-size: 14px;">
-        <a href="content.html" style="color: var(--text-muted); text-decoration: none;">→ my content suggestions</a>
-      </p>
-    </div>
+    <div class="container" id="writingContainer"></div>
   </div>
 
-  <div id="pet-projects" class="container">
-    <div class="ctitle">projects</div>
+  <div id="pet-projects" class="container"></div>
 
-    <div class="project">
-      <div class="pico"><img src="https://usercentrics.com/wp-content/uploads/2021/12/blog-hero-privacy-policy.jpeg"
-          style="max-width: 64px;" /></div>
-      <div class="pdesc"><a href="https://github.com/kernelism/jargon">jargon</a> is a NER based privacy policy analyser
-        which identifies sections of importance in large jargons of text based on predefined tags generated by LLMs
-      </div>
-      <div class="pend"></div>
-    </div>
+  <div class="container" id="publicationsContainer"></div>
 
-    <div class="project">
-      <div class="pico"><img src="https://raw.githubusercontent.com/kernelism/toolboxai/main/assets/toolboxai.png"
-          style="max-width: 64px;" /></div>
-      <div class="pdesc"><a href="https://github.com/kernelism/toolboxai">toolboxAi</a> is a web tool to ask questions
-        about your pdf. It routes between LLMs, maintains conversation history and can be used to ask questions about
-        your pdf, or even specific sections of it.</div>
-      <div class="pend"></div>
-    </div>
-
-    <div class="project">
-      <div class="pico"><img src="https://cdn.pixabay.com/photo/2024/05/26/20/52/william-shakespeare-8789475_1280.png"
-          style="max-width: 64px;" /></div>
-      <div class="pdesc"><a href="https://github.com/kernelism/chokespeare">ChokeSpeare</a> is a collection of different
-        generative models trained on different kinds of poems and can generate poems in a mixed style.</div>
-      <div class="pend"></div>
-    </div>
-
-    <div class="project">
-      <div class="pico"><img src="https://raw.githubusercontent.com/IDEA-Amrita/iDEA/main/public/images/logo.jpeg"
-          style="max-width: 64px;" /></div>
-      <div class="pdesc"><a href="https://github.com/IDEA-Amrita/iDEA">iDEA community website</a> is a pure react
-        website for the undergrad club I co-founded. It does not use any external libraries except styled components. An
-        unorthodox design and code structure. Find the website hosted <a href="https://ideacommunity.me">here</a>.</div>
-      <div class="pend"></div>
-    </div>
-
-    <div class="project">
-      <div class="pico"><img
-          src="https://store-images.s-microsoft.com/image/apps.15970.14375561300249796.05fe8c27-ce9e-4144-8702-0e81e2f575b1.042364cb-b745-4796-a520-61291e2dd6b9"
-          style="max-width: 64px;" /></div>
-      <div class="pdesc"><a href="https://github.com/kernelism/reddit-scraper">Reddit Scraper</a> is a CLI tool that can
-        scrape reddit content quickly using a unique checkpointing mechanism and JSON trick.</div>
-      <div class="pend"></div>
-    </div>
-
-    <div class="project">
-      <div class="pico"><img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4MfFbNhIC5lSmBxnSAnsESSjZ6YBykM41AQ&s"
-          style="max-width: 64px;" /></div>
-      <div class="pdesc"><a href="https://github.com/kernelism/WL-split-merge">WeisfeilerLehman Quick Compute</a> is a
-        python script that can speed up WL Kernel computations by computing as batches and merging. </div>
-      <div class="pend"></div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="ctitle">misc</div>
-
-    <div class="pub">
-      <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558">Content-Agnostic
-          Community Classification Using Meta-Graph Representations of Conversational
-          Dynamics - Preprint
-        </a></div>
-      <div class="pub-venue">OSNEM 2025 (In peer-review)</div>
-      <div class="pub-authors">Arjhun Sreedar, Pranav Deepak, Dayanand V</div>
-    </div>
-
-    <div class="pub">
-      <div class="pub-title"><a href="https://medium.com/@arjuns0206">Writer</a></div>
-      <div class="pub-venue">Medium</div>
-      <div class="pub-authors">600+ claps and 30k+ reads</div>
-    </div>
-    
-    <div class="pub">
-      <div class="pub-title">Finalist</div>
-      <div class="pub-venue">CoinSwitch Kuber Blockchain Hackathon 2022</div>
-      <!-- <div class="pub-authors">One of the top 5 teams at the hackathon</div> -->
-    </div>
-
-    <div class="pub">
-      <div class="pub-title">Finalist</div>
-      <div class="pub-venue">Hack@Arch Hackathon 2022</div>
-      <!-- <div class="pub-authors">One of the top 5 teams at the hackathon</div> -->
-    </div>
-
-    <div class="pub">
-      <div class="pub-title"><a href="https://github.com/mxtoai/mxtoai-backend">Open Source Contributor</a></div>
-      <div class="pub-venue">MxFlow</div>
-      <div class="pub-authors">Active contributor at MxFlow, an AI tool for email based workflow automation.</div>
-    </div>
-
-    <div class="pub">
-      <div class="pub-title"><a href="https://github.com/pandas-dev/pandas">Open Source Contributor</a></div>
-      <div class="pub-venue">Pandas</div>
-      <div class="pub-authors">Active contributor in the pandas repo, including triaging and bug fixing.</div>
-    </div>
-    
-    <!-- <div class="pub">
-      <div class="pub-title"><a href="https://github.com/elastic/ElasticSearch">Open Source Contributor</a></div>
-      <div class="pub-venue">ElasticSearch</div>
-      <div class="pub-authors">Active contributor in the ElasticSearch repo, including triaging and bug fixing.</div>
-    </div> -->
-
-  </div>
+  <div class="container" id="miscContainer"></div>
 
   <div id="contact" class="container">
-    <div class="ctitle">contact</div>
+    <div class="ctitle" id="contactTitle"></div>
     <div class="contact-content">
-      <p>Have something interesting to discuss? Drop me a message.</p>
+      <p id="contactDescription"></p>
       <form id="contactForm" class="contact-form">
-        <input type="text" id="name" placeholder="Name" required />
-        <input type="email" id="email" placeholder="Email" required />
-        <textarea id="message" placeholder="Message" rows="4" required></textarea>
-        <button type="submit" id="submitBtn">Send</button>
+        <input type="text" id="name" placeholder="" required />
+        <input type="email" id="email" placeholder="" required />
+        <textarea id="message" placeholder="" rows="4" required></textarea>
+        <button type="submit" id="submitBtn"></button>
       </form>
       <div id="formStatus" style="display: none; margin-top: 10px;"></div>
     </div>
@@ -364,7 +109,133 @@
 
   <br><br><br><br>
 
-  <!-- Contact Form Functionality -->
+  <!-- Content Loading Script -->
+  <script type="text/javascript">
+    let siteContent = null;
+
+    // Load content from JSON
+    async function loadContent() {
+      try {
+        const response = await fetch('content.json');
+        siteContent = await response.json();
+        populateContent();
+      } catch (error) {
+        console.error('Failed to load content:', error);
+      }
+    }
+
+    // Populate all sections with content from JSON
+    function populateContent() {
+      if (!siteContent) return;
+
+      // Header
+      document.getElementById('profileImage').src = siteContent.header.profileImage;
+      document.getElementById('userName').textContent = siteContent.header.name;
+      document.getElementById('userName').setAttribute('data-pronunciation', siteContent.header.nameAudio);
+      document.getElementById('userTagline').textContent = siteContent.header.tagline;
+      
+      const socialLinks = document.getElementById('dico');
+      socialLinks.innerHTML = siteContent.header.socialLinks.map(link => 
+        `<a href="${link.url}"><i class="${link.icon}"></i></a>`
+      ).join('');
+
+      // Last Updated
+      document.getElementById('lastUpdated').textContent = `Last updated: ${siteContent.info.lastUpdated}`;
+
+      // About
+      document.getElementById('aboutTitle').textContent = siteContent.about.title;
+      document.getElementById('aboutContent').innerHTML = siteContent.about.paragraphs.map(p => 
+        `<p>${p}</p>`
+      ).join('');
+
+      // History
+      const historyContainer = document.getElementById('history');
+      historyContainer.innerHTML = siteContent.history.entries.map(entry => `
+        <div class="entry row">
+          <div class="timespan">${entry.timespan}</div>
+          <div class="ico">
+            <div class="entry-dot"></div>
+            <img src="${entry.logo}" />
+          </div>
+          <div class="desc">${entry.description}</div>
+        </div>
+      `).join('');
+
+      // Writing
+      const writingContainer = document.getElementById('writingContainer');
+      writingContainer.innerHTML = `
+        <div class="ctitle">${siteContent.writing.title}</div>
+        <div>${siteContent.writing.subtitle}</div>
+        <ul class="nodot">
+          ${siteContent.writing.articles.map(article => 
+            `<li>${article.date} <a href="${article.url}">${article.title}</a></li>`
+          ).join('')}
+        </ul>
+        <p style="margin-top: 20px; font-size: 14px;">
+          <a href="${siteContent.writing.contentLink.url}" style="color: var(--text-muted); text-decoration: none;">
+            ${siteContent.writing.contentLink.text}
+          </a>
+        </p>
+      `;
+
+      // Projects
+      const projectsContainer = document.getElementById('pet-projects');
+      projectsContainer.innerHTML = `
+        <div class="ctitle">${siteContent.projects.title}</div>
+        ${siteContent.projects.items.map(project => `
+          <div class="project">
+            <div class="pico"><img src="${project.image}" style="max-width: 64px;" /></div>
+            <div class="pdesc"><a href="${project.url}">${project.name}</a> ${project.description}</div>
+            <div class="pend"></div>
+          </div>
+        `).join('')}
+      `;
+
+      // Publications
+      const publicationsContainer = document.getElementById('publicationsContainer');
+      publicationsContainer.innerHTML = `
+        <div class="ctitle">${siteContent.publications.title}</div>
+        ${siteContent.publications.items.map(item => `
+          <div class="pub">
+            <div class="pub-title">${item.url ? `<a href="${item.url}">${item.title}</a>` : item.title}</div>
+            <div class="pub-venue">${item.venue}</div>
+            <div class="pub-authors">${item.authors}</div>
+          </div>
+        `).join('')}
+      `;
+
+      // Misc
+      const miscContainer = document.getElementById('miscContainer');
+      miscContainer.innerHTML = `
+        <div class="ctitle">${siteContent.misc.title}</div>
+        ${siteContent.misc.items.map(item => `
+          <div class="misc-item">
+            <strong>${item.url ? `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` : item.title}</strong>
+            ${item.description ? ` - ${item.description}` : ''}
+          </div>
+        `).join('')}
+      `;
+
+      // Contact
+      document.getElementById('contactTitle').textContent = siteContent.contact.title;
+      document.getElementById('contactDescription').textContent = siteContent.contact.description;
+      document.getElementById('name').placeholder = siteContent.contact.placeholders.name;
+      document.getElementById('email').placeholder = siteContent.contact.placeholders.email;
+      document.getElementById('message').placeholder = siteContent.contact.placeholders.message;
+      document.getElementById('submitBtn').textContent = siteContent.contact.submitButton;
+
+      // Footer
+      document.getElementById('footer').innerHTML = `
+        ${siteContent.footer.attribution}
+        <div>${siteContent.footer.tagline}</div>
+      `;
+    }
+
+    // Load content on page load
+    loadContent();
+  </script>
+
+  <!-- Contact Form Functionality with Web3Forms -->
   <script type="text/javascript">
     document.getElementById('contactForm').addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -383,14 +254,14 @@
       // Basic validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!name || !email || !message) {
-        formStatus.textContent = 'Please fill in all fields.';
+        formStatus.textContent = siteContent?.contact.messages.fillAllFields || 'Please fill in all fields.';
         formStatus.className = 'error';
         formStatus.style.display = 'block';
         return;
       }
 
       if (!emailRegex.test(email)) {
-        formStatus.textContent = 'Please enter a valid email address.';
+        formStatus.textContent = siteContent?.contact.messages.invalidEmail || 'Please enter a valid email address.';
         formStatus.className = 'error';
         formStatus.style.display = 'block';
         return;
@@ -398,40 +269,55 @@
 
       // Disable submit button
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
+      const originalButtonText = submitBtn.textContent;
+      submitBtn.textContent = siteContent?.contact.submitButtonSending || 'Sending...';
 
       try {
-        const contactData = {
-          timestamp: new Date().toISOString(),
-          name,
-          email,
-          message,
+        // Prepare form data
+        const formData = {
+          name: name,
+          email: email,
+          message: message
         };
 
-        await fetch('https://sheetdb.io/api/v1/q6rfs9ii575wi', {
+        // Submit to our serverless function (keeps access key secure)
+        const response = await fetch('/api/contact', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: contactData }),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
         });
 
-        // Success
-        formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
-        formStatus.className = 'success';
-        formStatus.style.display = 'block';
-        document.getElementById('contactForm').reset();
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Success
+          formStatus.textContent = siteContent?.contact.messages.success || "Message sent successfully! I'll get back to you soon.";
+          formStatus.className = 'success';
+          formStatus.style.display = 'block';
+          document.getElementById('contactForm').reset();
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            formStatus.style.display = 'none';
+          }, 5000);
+        } else {
+          // Error from API
+          throw new Error(result.error || result.message || 'Submission failed');
+        }
       } catch (error) {
         // Error
-        formStatus.textContent = 'Failed to send message. Please try again or email me directly.';
+        formStatus.textContent = siteContent?.contact.messages.error || 'Failed to send message. Please try again or email me directly.';
         formStatus.className = 'error';
         formStatus.style.display = 'block';
-        console.error('Contact form failed:', error);
+        console.error('Contact form error:', error);
       } finally {
         // Re-enable submit button
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send';
+        submitBtn.textContent = originalButtonText;
       }
     });
-
   </script>
 
   <!-- attempt hiding from spambots :p -->
@@ -453,14 +339,57 @@
 
   <!-- Dark Mode Toggle Functionality -->
   <script type="text/javascript">
-    // Dark mode toggle functionality
+    // Dark mode toggle functionality with Safari compatibility
     const themeToggle = document.getElementById('themeToggle');
     const sunElements = document.querySelectorAll('.sun');
     const moonElement = document.querySelector('.moon');
 
     // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', currentTheme);
+    let currentTheme;
+    try {
+      currentTheme = localStorage.getItem('theme') || 'light';
+    } catch (e) {
+      // Fallback if localStorage is not available
+      currentTheme = 'light';
+    }
+
+    // Apply theme with Safari compatibility
+    function applyTheme(theme) {
+      // Set the attribute on html
+      document.documentElement.setAttribute('data-theme', theme);
+      
+      // Set classes on both html and body for maximum Safari compatibility
+      const htmlEl = document.documentElement;
+      const bodyEl = document.body;
+      
+      if (theme === 'dark') {
+        htmlEl.classList.add('dark-theme');
+        htmlEl.classList.remove('light-theme');
+        bodyEl.classList.add('dark-theme');
+        bodyEl.classList.remove('light-theme');
+      } else {
+        htmlEl.classList.add('light-theme');
+        htmlEl.classList.remove('dark-theme');
+        bodyEl.classList.add('light-theme');
+        bodyEl.classList.remove('dark-theme');
+      }
+      
+      // Multiple force reflows for Safari - this is crucial
+      void htmlEl.offsetHeight;
+      void bodyEl.offsetHeight;
+      
+      // Use requestAnimationFrame to ensure changes are applied
+      requestAnimationFrame(() => {
+        void htmlEl.offsetHeight;
+      });
+      
+      // Save to localStorage
+      try {
+        localStorage.setItem('theme', theme);
+      } catch (e) {
+        console.warn('Could not save theme preference');
+      }
+    }
 
     // Update toggle icon based on current theme
     function updateToggleIcon(theme) {
@@ -473,29 +402,32 @@
       }
     }
 
-    // Initialize icon state
+    // Initialize theme and icon state
+    // Ensure theme is applied on DOM ready for Safari
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        applyTheme(currentTheme);
+        updateToggleIcon(currentTheme);
+      });
+    } else {
+      applyTheme(currentTheme);
     updateToggleIcon(currentTheme);
+    }
 
     // Toggle theme
     themeToggle.addEventListener('click', function () {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
+      applyTheme(newTheme);
       updateToggleIcon(newTheme);
     });
 
     // Info icon tooltip is handled via CSS hover
   </script>
 
-  <footer
+  <footer id="footer"
     style="text-align: center; padding: 20px 0; color: var(--text-muted); font-size: 0.9em; border-top: 1px solid var(--border-light); margin-top: 40px; transition: color 0.3s ease, border-color 0.3s ease;">
-    Base design adapted from <a href="https://karpathy.ai/"
-      style="color: var(--text-muted); transition: color 0.3s ease;">Andrej Karpathy's</a> portfolio.
-    <div>
-      Less, but better.
-    </div>
   </footer>
 </body>
 
