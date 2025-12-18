@@ -61,83 +61,41 @@
     <div class="content-container">
       <a href="index.html" class="back-link">← back to portfolio</a>
       
-      <h1 style="font-size: 36px; font-weight: 300; margin-bottom: 40px; color: var(--text-primary);">Content Suggestions</h1>
+      <h1 style="font-size: 36px; font-weight: 300; margin-bottom: 40px; color: var(--text-primary);" id="pageTitle">Content Suggestions</h1>
 
-      <!-- Video Content Section -->
-      <div class="content-section">
-        <div class="section-title">video content</div>
-        
-        <div class="content-item">
-          <div class="content-title"><a href="https://youtu.be/EWvNQjAaOHw?si=Ncr569fiIsVXDN7i">How I use LLMs</a></div>
-          <div class="content-attribution">Andrej Karpathy</div>
-        </div>
-        <div class="content-item">
-          <div class="content-title"><a href="https://youtu.be/0VH1Lim8gL8?si=HQRNAZ_Xd10zaJKj">Deep Learning: SOTA</a></div>
-          <div class="content-attribution">Lex Fridman</div>
-        </div>
-        <div class="content-item">
-          <div class="content-title"><a href="https://youtu.be/eMlx5fFNoYc?si=W38D_-y2HT-MMs6a">Attention in Transformers, step by step</a></div>
-          <div class="content-attribution">3Blue1Brown</div>
-        </div>
-        <div class="content-item">
-          <div class="content-title"><a href="https://youtu.be/wVyu7NB7W6Y?si=wyyUAEbJscaWjvWl">Exposing the flaw in our phone system</a></div>
-          <div class="content-attribution">Veritasium</div>
-        </div>
-      </div>
-
-      <!-- Books Section -->
-      <div class="content-section">
-        <div class="section-title">books (I like alternate history fiction)</div>
-        
-        <div class="content-item">
-          <div class="content-title">The years of rice and salt</div>
-          <div class="content-attribution">Kim Stanley Robinson</div>
-        </div>
-
-        <div class="content-item">
-            <div class="content-title">1984</div>
-            <div class="content-attribution">George Orwell</div>
-          </div>
-
-          <div class="content-item">
-            <div class="content-title">11/22/63</div>
-            <div class="content-attribution">Stephen King</div>
-          </div>
-        
-          <div class="content-item">
-            <div class="content-title">The man in the high castle</div>
-            <div class="content-attribution">Philip K. Dick</div>
-          </div>
-      </div>
-
-      <div class="content-section">
-        <div class="section-title">articles</div>
-
-        <div class="content-item">
-            <div class="content-title"><a href="https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></div>
-            <div class="content-attribution">David Goldberg</div>
-          </div>
-    
-          <div class="content-item">
-            <div class="content-title"><a href="https://moi.vonos.net/linux/beginners-installing-from-source/">Installing from source on Linux</a></div>
-            <div class="content-attribution">Simon Kitching</div>
-          </div>
-
-            <div class="content-item">
-                <div class="content-title"><a href="https://moi.vonos.net/2023/08/vpns/">Why consumer VPNs are useless</a></div>
-                <div class="content-attribution">Simon Kitching</div>
-            </div>
-
-            <div class="content-item">
-                <div class="content-title"><a href="https://karpathy.medium.com/yes-you-should-understand-backprop-e2f06eab496b">Do you actually understand backprop?</a></div>
-                <div class="content-attribution">Andrej Karpathy</div>
-            </div>
-            <div class="content-item">
-                <div class="content-title"><a href="https://blog.ezyang.com/2019/05/pytorch-internals/">PyTorch Internals</a></div>
-                <div class="content-attribution">Edward Z. Yang</div>
-            </div>
-        
-      </div>
+      <div id="contentSections"></div>
     </div>
-  </body>
+
+    <script>
+      async function loadContentSuggestions() {
+        try {
+          const response = await fetch('./content/suggestions.json');
+          const data = await response.json();
+          const suggestions = data.suggestions;
+
+          document.getElementById('pageTitle').textContent = suggestions.title;
+
+          const sectionsContainer = document.getElementById('contentSections');
+          sectionsContainer.innerHTML = suggestions.sections.map(section => `
+            <div class="content-section">
+              <div class="section-title">${section.title}</div>
+              ${section.items.map(item => `
+                <div class="content-item">
+                  <div class="content-title">
+                    ${item.url ? `<a href="${item.url}">${item.title}</a>` : item.title}
+                  </div>
+                  <div class="content-attribution">${item.attribution}</div>
+                  ${item.description ? `<div style="font-size: 13px; color: var(--text-secondary); margin-top: 5px;">${item.description}</div>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          `).join('');
+        } catch (error) {
+          console.error('Failed to load content suggestions:', error);
+          document.getElementById('contentSections').innerHTML = '<p>Error loading content suggestions.</p>';
+        }
+      }
+
+      loadContentSuggestions();
+    </script>
 </html>
