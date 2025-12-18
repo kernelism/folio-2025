@@ -7,21 +7,21 @@
     "socialLinks": [
       { "platform": "twitter", "url": "https://twitter.com/ArjhunSreedar", "icon": "fab fa-twitter iico" },
       { "platform": "github", "url": "https://github.com/kernelism", "icon": "fab fa-github iico" },
-      { "platform": "medium", "url": "https://medium.com/@MinatoNamikaze02", "icon": "fab fa-medium iico" },
+      { "platform": "medium", "url": "https://medium.com/@arjuns0206", "icon": "fab fa-medium iico" },
       { "platform": "linkedin", "url": "https://linkedin.com/in/arjhunsreedar", "icon": "fab fa-linkedin iico" },
       { "platform": "resume", "url": "https://drive.google.com/file/d/1Rt0gJB14fGU_BRzIZKLHoL-rBRivgqLk/view?usp=sharing", "icon": "fa-solid fa-file iico-resume" }
     ]
   },
   "info": {
-    "lastUpdated": "2025-06-20"
+    "lastUpdated": "2025-12-17"
   },
   "about": {
     "title": "about me",
     "paragraphs": [
       "Hi! I'm Arjhun, a software engineer and researcher currently pursuing my Master's in Computer Science at UMass Amherst. I specialize in suddenly wanting to build something overnight, and losing interest the very next day.",
-      "When I'm not busy abandoning yesterday's brilliant idea, I build things that matter. I've professionally worked in climate tech and financial services domains.",
-      "Outside of code, I moonlight as a tech writer, open-source contributor and occasional cricketer.",
-      "Right now I'm deep in the rabbit hole of LLMs (aren't we all?). Always up to collaborate on interesting stuff! Hit me up at <a href=\"mailto:asreedar@umass.edu\">asreedar@umass.edu</a> or <a href=\"mailto:arjunsreedar26@gmail.com\">arjunsreedar26@gmail.com</a>."
+      "When I'm not busy abandoning yesterday's brilliant idea, I build things that matter. I've professionally worked in climate tech and cloud domains.",
+      "Outside of code, I moonlight as a tech writer, open-source contributor, gym rat and occasional cricketer.",
+      "Right now I'm deep in the rabbit hole of LLMs (aren't we all?) and how they can solve relevant problems. Always up to collaborate on interesting stuff! Hit me up at <a href=\"mailto:asreedar@umass.edu\">asreedar@umass.edu</a> or <a href=\"mailto:arjunsreedar26@gmail.com\">arjunsreedar26@gmail.com</a>."
     ]
   },
   "history": {
@@ -29,32 +29,42 @@
     {
         "timespan": "2025 - Present",
         "logo": "../assets/cics.jpg",
-        "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. Work includes generating synthetic clinical SBDH datasets, annotating them and benchmarking the performance of LLMs on them."
+        "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. <br/> Synthetic data generation for clinical use-cases. Working towards and EMNLP paper."
     },
       {
         "timespan": "2025 - 2027",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png",
-        "description": "Pusuing my <strong>Master of Science in Computer Science</strong> at University of Massachusetts, Amherst. Hope to do a lot of relevant research!"
+        "description": "Pursuing my <strong>Master of Science in Computer Science</strong> at University of Massachusetts, Amherst. <br/> Coursework: <ul><li>Advanced Natural Language Processing</li><li>Distributed Computing and Systems</li><li>Independent Study on NLPxBioInformatics</li></ul>"
       },
       {
         "timespan": "2024 - 2025",
         "logo": "https://1000logos.net/wp-content/uploads/2017/04/Oracle-Logo.jpg",
-        "description": "<strong>Software Engineer 1 at Oracle</strong>. My professional experience at Oracle was quite profound. I learnt a lot about how financial systems were handled a scale!<br /> <br />I significantly improved the debugging experience for our team by integrating CI metrics, like build times, failure trends, and flaky test tracking, directly into our internal portal UI, which sped up issue identification by about 20%.<br />To further streamline troubleshooting, I built a tool that automatically pulls and aggregates logs from various internal Oracle services, cutting diagnosis time by 30 to 40%.<br />I also modernized a chunk of legacy React code, which not only reduced page load times by 10% but also led to a noticeable improvement in user experience and made development smoother and more efficient for the team."
+        "description": "<strong>Software Engineer I at Oracle</strong>, India. <br/> Modernized logging and observability with structured events and AI-assisted log triage, reducing debugging time by 30% and mean-time-to-identify by 45%. Improved alerting and real-time telemetry to suppress noise and increase on-call signal-to-noise by 60%."
       },
       {
-        "timespan": "2023 - 2024",
+        "timespan": "2024",
         "logo": "../assets/cmhq.jpeg",
-        "description": "<strong>Founding Software Engineer Intern</strong> at <a href=\"https://carbonmarketshq.com/\">CarbonMarketsHQ</a></strong>. Helped the company procure and manage their data, which was foundational to their mission statement. One of my most challending work experiences.<br /><br />I built and automated a robust data pipeline to handle over 22,000 carbon offset projects and 7 billion credits, pulling from four different data sources.<br />I also managed the underlying PostgreSQL database and handled CI/CD workflows using Azure.<br />On the ML side, I developed a multi-agent Retrieval-Augmented Generation (RAG) system powered by Llama 3, optimizing it with LFU caching to improve query speeds by 60%. I extended the system to automatically generate detailed reports and visualizations, and wrote comprehensive load tests that ultimately boosted the overall pipeline performance by 15%."
+        "description": "<strong>Software Engineer Intern</strong> at <a href=\"https://carbonmarketshq.com/\">CarbonMarketsHQ</a>, India (Feb - Jul 2024). <br/> <ul><li>Stateless, concurrent and fault-tolerant data pipelining to extract, store, index and repurpose climate records.</li><li>AI climate analytics.</li><li>Maintained FastAPI + GraphQL backend.</li><li>Setup and maintained Azure hosting, Postgres database and AI search services.</li></ul>"
+      },
+      {
+        "timespan": "2023-2024",
+        "logo": "../assets/cmhq.jpeg",
+        "description": "<strong>Software Engineer Co-op</strong> at <a href=\"https://carbonmarketshq.com/\">CarbonMarketsHQ</a>, India (Sep - Dec 2023). <br/> <ul><li>Worked directly for MicroEnergy Credits (MEC) to build and end-to-end pipeline that converts obtuse XLSX credit offset records to readable data to draw insights from.</li></ul>"
       },
       {
         "timespan": "2022 - 2023",
-        "logo": "https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png",
-        "description": "Worked as a <strong>Research Intern</strong> at <a href=\"https://drive.google.com/file/d/1h1dA4V0fb1tIXs5nfz4UNcSm_Hv6giKR/view?usp=sharing\">Amrita x Sony SSUP </a>funded project focusing on low-cost food drying in a solar polyhouse modelled as a cyber physical system.<br /><br />Primarily worked on the integration team responsible to making data from the microcontrollers accessible on the cloud.<br />Redesigned the existing backend module towards a microservices architecture and the entire dashboard frontend."
+        "logo": "../assets/sony.jpg",
+        "description": "Worked as a <strong>Research Intern</strong> at <a href=\"https://drive.google.com/file/d/1h1dA4V0fb1tIXs5nfz4UNcSm_Hv6giKR/view?usp=sharing\"> Sony SSUP </a> <br/> Efficient polyhouse based solar drying through machine learning and IoT"
+      },
+      {
+        "timespan": "2022",
+        "logo": "../assets/stych.png",
+        "description": "<strong>Software Engineer Intern</strong> at <a href=\"https://stych.social\">Stych India</a>. <br/> <ul><li>Worked on 40+ features including carpooling, activities & itinerary planning, payment, etc on their <b>FastAPI</b> + <b>PostgreSQL backend</b>.</li><li>Wrote Extensive unit tests.</li><li>Setup <b>Stripe</b> payment end-to-end.</li></ul>"
       },
       {
         "timespan": "2020 - 2024",
         "logo": "https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png",
-        "description": "<strong>B.Tech in Computer Science and Engineering</strong> at Amrita Vishwa Vidyapeetham, Coimbatore. Really fell in love with CS during my time there, but eternally hate the food and campus."
+        "description": "<strong>B.Tech in Computer Science and Engineering</strong> at Amrita Vishwa Vidyapeetham, Coimbatore. Really fell in love with CS during my time there, but WILL not endorse the curriculum, grading or values this university stands for."
       }
     ]
   },
@@ -86,40 +96,60 @@
     "title": "projects",
     "items": [
       {
+        "name": "yesreply",
+        "url": "https://github.com/kernelism/yes-reply",
+        "image": "https://img.freepik.com/free-psd/phone-icon-design_23-2151311652.jpg?semt=ais_hybrid&w=740&q=80",
+        "description": "is an inbox-as-a-marketplace application that adds a paywall to your email address. Full stack application build with React.js, FastAPI, AWS SES, Cloudflare, RabbitMQ and Stripe.",
+        "detailedDescription": "YesReply is a comprehensive monetized email platform designed to transform your inbox into a marketplace. The system enables users to add a paywall to their email address, allowing them to earn money from unsolicited messages while maintaining full control over who can contact them.<br/><br/><strong>Architecture:</strong> The platform uses an event-driven, fault-tolerant pipeline that processes incoming emails through AWS SES, routes them via SNS to Cloudflare Workers for preprocessing, then through RabbitMQ for reliable message queuing to the backend.<br/><br/><strong>Key Features:</strong><ul><li>Strict RFC 822 email threading compliance for proper conversation management</li><li>Idempotent email ingestion to prevent duplicate processing</li><li>Secure payment flows integrated with Stripe</li><li>JWT-based authentication with wallet credit system</li><li>Cashout functionality for earned credits</li><li>React.js frontend with real-time updates</li></ul><br/><strong>Technical Highlights:</strong> The email paywall pipeline implements exactly-once delivery semantics, ensuring no message loss while preventing duplicates. The system handles multiple failure scenarios including email provider outages, payment processing failures, and network interruptions. The implementation demonstrates deep understanding of distributed systems, event processing, and payment gateway integration."
+      },
+      {
         "name": "jargon",
         "url": "https://github.com/kernelism/jargon",
         "image": "https://usercentrics.com/wp-content/uploads/2021/12/blog-hero-privacy-policy.jpeg",
-        "description": "is a NER based privacy policy analyser which identifies sections of importance in large jargons of text based on predefined tags generated by LLMs"
+        "description": "is a NER based privacy policy analyser which identifies sections of importance in large jargons of text based on predefined tags generated by LLMs",
+        "detailedDescription": "Jargon is an advanced privacy policy analysis tool that leverages BERT-based Named Entity Recognition (NER) to automatically extract and classify critical clauses from dense legal documents.<br/><br/><strong>Problem Solved:</strong> Privacy policies are notoriously difficult to parse manually. This tool automates the identification of important sections, categorizing data collection practices, retention policies, sharing clauses, and legal rights.<br/><br/><strong>Technical Implementation:</strong><ul><li>BERT-based clause extraction pipeline fine-tuned for legal domain</li><li>Self-training approach enables learning from limited labeled data</li><li>Achieved 0.80 F1 score on dense legal text classification</li><li>Data-efficient learning through semi-supervised techniques</li><li>Model optimization for production deployment</li></ul><br/><strong>Key Metrics:</strong> The model demonstrates strong performance on legal domain NER with careful handling of domain-specific terminology and complex clause structures. The self-training approach reduced labeled data requirements by 60% while maintaining accuracy.<br/><br/><strong>Use Cases:</strong> Helpful for researchers analyzing privacy practices across companies, regulatory compliance teams, and consumers understanding their data rights."
       },
       {
         "name": "toolboxAi",
         "url": "https://github.com/kernelism/toolboxai",
         "image": "https://raw.githubusercontent.com/kernelism/toolboxai/main/assets/toolboxai.png",
-        "description": "is a web tool to ask questions about your pdf. It routes between LLMs, maintains conversation history and can be used to ask questions about your pdf, or even specific sections of it."
+        "description": "is a web tool to ask questions about your pdf. It routes between LLMs, maintains conversation history and can be used to ask questions about your pdf, or even specific sections of it.",
+        "detailedDescription": "ToolboxAI is an intelligent PDF question-answering system that makes large documents searchable and interactive through natural language queries.<br/><br/><strong>Core Functionality:</strong><ul><li>Upload and parse PDFs of any size</li><li>Ask natural language questions about document content</li><li>Get contextually relevant answers with citations</li><li>Maintain full conversation history across sessions</li><li>Query specific sections or entire documents</li></ul><br/><strong>Technical Architecture:</strong> The system uses a multi-LLM routing strategy that intelligently selects the best model for each query type based on complexity, cost, and performance considerations. Backend processes PDFs into semantic chunks, creates embeddings, and implements RAG (Retrieval-Augmented Generation) for accurate answers grounded in document content.<br/><br/><strong>Advanced Features:</strong><ul><li>LLM router that balances speed vs. accuracy</li><li>Conversation memory management for context preservation</li><li>Semantic chunking for better retrieval</li><li>Source attribution showing which document sections were used</li></ul><br/><strong>Use Cases:</strong> Perfect for researchers analyzing large papers, business professionals reviewing complex contracts, students studying from textbooks, and anyone needing to extract insights from document collections."
       },
       {
         "name": "ChokeSpeare",
         "url": "https://github.com/kernelism/chokespeare",
         "image": "https://cdn.pixabay.com/photo/2024/05/26/20/52/william-shakespeare-8789475_1280.png",
-        "description": "is a collection of different generative models trained on different kinds of poems and can generate poems in a mixed style."
+        "description": "is a collection of different generative models trained on different kinds of poems and can generate poems in a mixed style.",
+        "detailedDescription": "ChokeSpeare is a creative AI system that generates original poetry by leveraging multiple fine-tuned language models, each specialized in different poetic styles and traditions.<br/><br/><strong>System Design:</strong><ul><li>Multiple model implementations, each trained on specific poetry genres (sonnets, haikus, free verse, etc.)</li><li>Style blending capabilities that combine characteristics from different poetic traditions</li><li>Controllable generation parameters for customization</li></ul><br/><strong>Models Included:</strong> The system contains individual models trained on various datasets including Shakespearean sonnets, contemporary poetry, classical Chinese poetry, and modern experimental verse.<br/><br/><strong>Technical Features:</strong><ul><li>Transfer learning from pre-trained language models</li><li>Fine-tuning pipelines for domain-specific poetry generation</li><li>Mixed-style generation using ensemble techniques</li><li>Configurable generation parameters (temperature, style weights, length constraints)</li><li>Evaluation metrics for poetic quality (meter, rhyme consistency, coherence)</li></ul><br/><strong>Creative Applications:</strong> Useful for poetry enthusiasts exploring new creative directions, educational tools for understanding different poetic styles, inspiration for human writers, and demonstration of how AI can engage with creative domains.<br/><br/><strong>Unique Aspect:</strong> The mixed-style generation is particularly interesting—it can create poetry that blends Shakespearean sonnet structure with modern free verse themes, or combine Eastern and Western poetic traditions."
       },
       {
         "name": "iDEA community website",
         "url": "https://github.com/IDEA-Amrita/iDEA",
         "image": "https://raw.githubusercontent.com/IDEA-Amrita/iDEA/main/public/images/logo.jpeg",
-        "description": "is a pure react website for the undergrad club I co-founded. It does not use any external libraries except styled components. An unorthodox design and code structure. Find the website hosted <a href=\"https://ideacommunity.me\">here</a>."
+        "description": "is a pure react website for the undergrad club I co-founded. It does not use any external libraries except styled components. An unorthodox design and code structure. Find the website hosted <a href=\"https://ideacommunity.me\">here</a>.",
+        "detailedDescription": "The iDEA community website is a pure React implementation of a community hub for the undergraduate innovation and development club at Amrita Vishwa Vidyapeetham.<br/><br/><strong>Philosophy:</strong> Built with a minimalist approach—using only React and styled-components for styling, with zero external UI component libraries. This constraint-driven development resulted in unique design patterns and deep React expertise.<br/><br/><strong>Key Features:</strong><ul><li>Member directory with profiles and contributions</li><li>Project showcase highlighting community work</li><li>Event management and registration</li><li>Resource library for learning materials</li><li>Community feed and activity tracking</li><li>Responsive design for all devices</li></ul><br/><strong>Technical Highlights:</strong><ul><li>Custom component library built from scratch using styled-components</li><li>State management using React Context API</li><li>Unconventional file structure optimized for scaling</li><li>Performance optimizations through React memoization and lazy loading</li><li>Deployment automation for continuous updates</li></ul><br/><strong>Design Approach:</strong> The \"unorthodox\" design structure reflects creative problem-solving around React patterns. Rather than following standard conventions, the architecture prioritizes maintainability and scalability through innovative component composition and state sharing patterns.<br/><br/><strong>Impact:</strong> Successfully serves as the central hub for a 200+ member community, hosts project archives, manages events, and provides resources for peer learning. The website demonstrates how constraints can lead to innovative solutions and deeper technical understanding."
       },
       {
         "name": "Reddit Scraper",
         "url": "https://github.com/kernelism/reddit-scraper",
         "image": "https://store-images.s-microsoft.com/image/apps.15970.14375561300249796.05fe8c27-ce9e-4144-8702-0e81e2f575b1.042364cb-b745-4796-a520-61291e2dd6b9",
-        "description": "is a CLI tool that can scrape reddit content quickly using a unique checkpointing mechanism and JSON trick."
+        "description": "is a CLI tool that can scrape reddit content quickly using a unique checkpointing mechanism and JSON trick.",
+        "detailedDescription": "Reddit Scraper is a high-performance command-line tool designed to efficiently collect Reddit data at scale, addressing challenges in web scraping reliability and performance.<br/><br/><strong>Problem Context:</strong> Reddit's API deprecation made traditional scraping approaches obsolete. This tool provides an alternative that efficiently bypasses common scraping challenges like rate limiting, IP blocking, and data loss.<br/><br/><strong>Key Features:</strong><ul><li>Fast bulk data collection from Reddit without API access</li><li>Intelligent checkpointing mechanism for resumable scrapes</li><li>Novel JSON extraction technique for reliable data parsing</li><li>Configurable filters (subreddit, date range, karma thresholds)</li><li>Output to structured formats (JSON, CSV, database)</li></ul><br/><strong>Technical Innovation:</strong> The unique checkpointing mechanism allows scraping jobs to resume from exactly where they left off, even after network failures. The 'JSON trick' cleverly extracts data from HTML by identifying embedded JSON structures, making it more robust than traditional HTML parsing.<br/><br/><strong>Performance Characteristics:</strong><ul><li>Multi-threaded downloading for parallel requests</li><li>Connection pooling and request batching</li><li>Efficient memory usage for large-scale scrapes</li><li>Minimal bandwidth overhead</li></ul><br/><strong>Use Cases:</strong> Academic research on Reddit communities, sentiment analysis of public discourse, market research, content archival, and social science studies. The tool democratizes access to Reddit data for researchers who lack API access."
       },
       {
         "name": "WeisfeilerLehman Quick Compute",
         "url": "https://github.com/kernelism/WL-split-merge",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4MfFbNhIC5lSmBxnSAnsESSjZ6YBykM41AQ&s",
-        "description": "is a python script that can speed up WL Kernel computations by computing as batches and merging."
+        "description": "is a python script that can speed up WL Kernel computations by computing as batches and merging.",
+        "detailedDescription": "This project optimizes Weisfeiler-Lehman (WL) kernel computations, which are fundamental algorithms in graph neural networks and graph machine learning for computing graph similarity and generating graph features.<br/><br/><strong>Problem Solved:</strong> WL kernel computations on large graph datasets are computationally expensive. The naive implementation processes graphs sequentially, leading to significant bottlenecks in batch processing scenarios.<br/><br/><strong>Solution Overview:</strong> The split-merge approach decomposes large batches of graphs into independent subsets, computes WL kernels in parallel, and intelligently merges results using mathematical properties of kernel matrices.<br/><br/><strong>Technical Details:</strong><ul><li>Batch-wise kernel computation enabling parallelization</li><li>Memory-efficient merge strategy using kernel matrix algebra</li><li>Significant speedup for large-scale graph learning tasks</li><li>Maintains numerical precision despite split operations</li></ul><br/><strong>Performance Gains:</strong><ul><li>2-4x speedup on typical batches (depending on hardware)</li><li>Linear scaling with batch size</li><li>Reduced memory footprint through streaming computation</li></ul><br/><strong>Applications:</strong> Used in graph classification tasks, molecular property prediction, protein structure analysis, social network analysis, and any domain where WL kernels are applied to multiple graphs.<br/><br/><strong>Mathematical Foundation:</strong> Leverages properties of positive semi-definite matrices and kernel algebra to ensure that split-compute-merge preserves kernel matrix properties essential for downstream ML algorithms."
+      },
+      {
+        "name": "SuitUP",
+        "url": "https://github.com/kernelism/suitup",
+        "image": "../assets/suitup.png",
+        "description": "is a AI Application that automatically scrapes jobs relevant to your resume.",
+        "detailedDescription": "SuitUP is an intelligent job discovery platform that leverages AI and web scraping to match you with job opportunities tailored to your skills and experience.<br/><br/><strong>Problem Solved:</strong> Job hunting is tedious—manually browsing job boards, filtering by skills, and applying to irrelevant positions wastes time. SuitUP automates this process by analyzing your resume and proactively finding positions that align with your expertise.<br/><br/><strong>Core Features:</strong><ul><li>Resume parsing to extract skills, experience, and qualifications</li><li>Intelligent job scraping from multiple job boards and company websites</li><li>AI-powered matching algorithm to rank jobs by relevance</li><li>Automated filtering based on your preferences (location, salary, company type)</li><li>Job aggregation from diverse sources into a unified dashboard</li><li>Application tracking and job history management</li></ul><br/><strong>Technical Architecture:</strong><ul><li>Resume parsing using NLP and PDF extraction</li><li>Distributed web scrapers for concurrent job collection across multiple platforms</li><li>LLM-based job relevance scoring comparing resume content with job descriptions</li><li>Efficient database for storing and querying job listings</li><li>Real-time job alert system with smart deduplication</li></ul><br/><strong>Key Technologies:</strong> Python for backend logic, web scraping libraries for data collection, LLMs for intelligent matching, and modern APIs for job board integration.<br/><br/><strong>Unique Value Proposition:</strong> Unlike passive job boards that require you to search, SuitUP actively brings opportunities to you. The AI-driven matching goes beyond simple keyword matching—it understands context, experience progression, and genuine skill compatibility.<br/><br/><strong>User Impact:</strong> Reduces job search time by automatically filtering noise and surfacing only highly relevant opportunities. Helps job seekers discover roles they might have missed and increases interview-to-application ratios."
       }
     ]
   },
@@ -135,46 +165,41 @@
     ]
   },
   "misc": {
-    "title": "misc",
+    "title": "more links",
     "items": [
       {
-        "title": "Writer on Medium",
-        "description": "600+ claps and 30k+ reads",
+        "title": "medium.com",
+        "description": "",
         "url": "https://medium.com/@MinatoNamikaze02"
       },
       {
-        "title": "Hack@Arch Blockchain Hackathon 2022",
-        "description": "Finalist - One of the top 10 teams at the hackathon",
-        "url": null
-      },
-      {
-        "title": "CoinSwitch Kuber Blockchain Hackathon 2022",
-        "description": "Finalist - One of the top 5 teams at the hackathon",
-        "url": null
-      },
-      {
-        "title": "Open Source Contributor",
-        "description": "MxGoAI",
-        "url": "https://github.com/mxgoai/mxgo-core"
-      },
-      {
-        "title": "Open Source Contributor",
-        "description": "Pandas",
-        "url": "https://github.com/pandas-dev/pandas"
-      },
-      {
-        "title": "Chess.com",
-        "description": "Rated 1500",
+        "title": "chess.com",
+        "description": "",
         "url": "https://www.chess.com/member/trippitroppi69"
       },
       {
-        "title": "Cricket",
-        "description": "Represented State/District/University/HighSchool in India in multiple tournaments from 2015-2020",
-        "url": ""
+        "title": "letterboxd",
+        "description": "",
+        "url": "https://letterboxd.com/movietourist02/"
       },
       {
-        "title": "Dota 2",
-        "description": "Peak Rank: Archon V, Highest MMR: 3100",
+        "title": "leetcode",
+        "description": "",
+        "url": "https://leetcode.com/u/kernelism/"
+      },
+      {
+        "title": "codeforces",
+        "description": "",
+        "url": "https://codeforces.com/profile/kernelism"
+      },
+      {
+        "title": "youtube",
+        "description": "",
+        "url": "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+      },
+      {
+        "title": "discord",
+        "description": "arjuns02",
         "url": ""
       }
     ]

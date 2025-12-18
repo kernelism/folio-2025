@@ -1,34 +1,24 @@
-// Vercel Serverless Function to handle contact form submissions
-// This keeps your Web3Forms access key secure on the server
-
 export default async function handler(req, res) {
-  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // CORS headers for your domain
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight request
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
   try {
     const { name, email, message } = req.body;
-
-    // Basic validation
     if (!name || !email || !message) {
       return res.status(400).json({ 
         success: false, 
         error: 'Missing required fields' 
       });
     }
-
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ 
@@ -36,8 +26,6 @@ export default async function handler(req, res) {
         error: 'Invalid email address' 
       });
     }
-
-    // Get access key from environment variable
     const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
     
     if (!accessKey) {
@@ -47,8 +35,6 @@ export default async function handler(req, res) {
         error: 'Server configuration error' 
       });
     }
-
-    // Prepare data for Web3Forms
     const formData = {
       access_key: accessKey,
       name: name,
@@ -59,7 +45,6 @@ export default async function handler(req, res) {
       timestamp: new Date().toISOString()
     };
 
-    // Submit to Web3Forms
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
