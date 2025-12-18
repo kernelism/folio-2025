@@ -233,7 +233,7 @@
         });
 
         const result = await response.json();
-
+        console.log(result);
         if (response.ok && result.success) {
           formStatus.textContent = siteContent?.contact.messages.success || "Message sent successfully! I'll get back to you soon.";
           formStatus.className = 'success';

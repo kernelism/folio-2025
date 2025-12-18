@@ -39,12 +39,12 @@
       {
         "timespan": "2024 - 2025",
         "logo": "https://1000logos.net/wp-content/uploads/2017/04/Oracle-Logo.jpg",
-        "description": "<strong>Software Engineer I at Oracle</strong>, India. <br/> Modernized logging and observability with structured events and AI-assisted log triage, reducing debugging time by 30% and mean-time-to-identify by 45%. Improved alerting and real-time telemetry to suppress noise and increase on-call signal-to-noise by 60%."
+        "description": "<strong>Software Engineer I at Oracle</strong>, India. <br/> Modernized logging and observability with structured events and AI-assisted log triage, reducing debugging time by <b>30%</b> and mean-time-to-identify by <b>45%</b>. Improved alerting and real-time telemetry to suppress noise and increase on-call signal-to-noise by <b>60%</b>."
       },
       {
         "timespan": "2024",
         "logo": "../assets/cmhq.jpeg",
-        "description": "<strong>Software Engineer Intern</strong> at <a href=\"https://carbonmarketshq.com/\">CarbonMarketsHQ</a>, India (Feb - Jul 2024). <br/> <ul><li>Stateless, concurrent and fault-tolerant data pipelining to extract, store, index and repurpose climate records.</li><li>AI climate analytics.</li><li>Maintained FastAPI + GraphQL backend.</li><li>Setup and maintained Azure hosting, Postgres database and AI search services.</li></ul>"
+        "description": "<strong>Software Engineer Intern</strong> at <a href=\"https://carbonmarketshq.com/\">CarbonMarketsHQ</a>, India (Feb - Jul 2024). <br/> <ul><li>Stateless, concurrent and fault-tolerant data pipelining to extract, store, index and repurpose climate records.</li><li>AI climate analytics.</li><li>Maintained <b>FastAPI + GraphQL</b> backend.</li><li>Setup and maintained <b>Azure</b> hosting, <b>Postgres</b> database and AI search services.</li></ul>"
       },
       {
         "timespan": "2023-2024",
@@ -54,7 +54,7 @@
       {
         "timespan": "2022 - 2023",
         "logo": "../assets/sony.jpg",
-        "description": "Worked as a <strong>Research Intern</strong> at <a href=\"https://drive.google.com/file/d/1h1dA4V0fb1tIXs5nfz4UNcSm_Hv6giKR/view?usp=sharing\"> Sony SSUP </a> <br/> Efficient polyhouse based solar drying through machine learning and IoT"
+        "description": "Worked as a <strong>Research Intern</strong> at <a href=\"https://drive.google.com/file/d/1h1dA4V0fb1tIXs5nfz4UNcSm_Hv6giKR/view?usp=sharing\"> Sony SSUP </a> <br/> Efficient polyhouse based solar drying through <b>machine learning</b> and IoT."
       },
       {
         "timespan": "2022",
@@ -88,7 +88,7 @@
       { "date": "Jul 2022", "title": "How to Scrape Image Data at Scale with Scrapy", "url": "https://medium.com/@MinatoNamikaze02/web-scraping-images-efficiently-using-scrapy-7902ceeab171" }
     ],
     "contentLink": {
-      "text": "→ my content suggestions",
+      "text": "→ Curations",
       "url": "content.html"
     }
   },
