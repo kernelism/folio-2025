@@ -29,7 +29,7 @@
     {
         "timespan": "2025 - Present",
         "logo": "../assets/cics.jpg",
-        "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. <br/> Synthetic data generation for clinical use-cases. Working towards and EMNLP paper."
+        "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. <br/> Synthetic data generation for clinical use-cases. Working towards an EMNLP paper."
     },
       {
         "timespan": "2025 - 2027",
@@ -58,8 +58,8 @@
       },
       {
         "timespan": "2022",
-        "logo": "../assets/stych.png",
-        "description": "<strong>Software Engineer Intern</strong> at <a href=\"https://stych.social\">Stych India</a>. <br/> <ul><li>Worked on 40+ features including carpooling, activities & itinerary planning, payment, etc on their <b>FastAPI</b> + <b>PostgreSQL backend</b>.</li><li>Wrote Extensive unit tests.</li><li>Setup <b>Stripe</b> payment end-to-end.</li></ul>"
+        "logo": "../assets/zobyt.jpeg",
+        "description": "<strong>Software Engineer Intern</strong> at <a href=\"https://zobyt.com\">Zobyt</a>. <br/> <ul><li>Worked on 40+ features including carpooling, activities & itinerary planning, payment, etc on their <b>FastAPI</b> + <b>PostgreSQL backend</b>.</li><li>Wrote Extensive unit tests.</li><li>Setup <b>Stripe</b> payment end-to-end.</li></ul>"
       },
       {
         "timespan": "2020 - 2024",
