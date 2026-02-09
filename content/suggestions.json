@@ -133,30 +133,6 @@
             "url": "https://blog.ezyang.com/2019/05/pytorch-internals/",
             "attribution": "Edward Z. Yang",
             "description": ""
-          },
-          {
-            "title": "GPUs for Distributed Machine Learning",
-            "url": "https://medium.com/weles-ai/how-to-efficiently-use-gpus-for-distributed-machine-learning-in-mlops-94add9801a2b",
-            "attribution": "Rafał Siwek",
-            "description": ""
-          },
-          {
-            "title": "MLOps on AWS",
-            "url": "https://medium.com/platform-engineer/mlops-on-aws-a-practical-architecture-best-practices-guide-ff1d003cd4a5",
-            "attribution": "Thilina Ashen Gamage",
-            "description": ""
-          },
-          {
-            "title": "AI Model Serving Architecture",
-            "url": "https://www.runpod.io/articles/guides/ai-model-serving-architecture-building-scalable-inference-apis-for-production-applications",
-            "attribution": "Emmett Fear",
-            "description": ""
-          },
-          {
-            "title": "Cherami: Uber Engineering's Durable and Scalable Task Queue in Go",
-            "url": "https://www.uber.com/blog/cherami-message-queue-system",
-            "attribution": "Xu Ning, Maxim Fateev",
-            "description": ""
           }
         ]
       }
