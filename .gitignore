@@ -19,6 +19,9 @@ yarn.lock
 dist/
 build/
 
+# Writer (local blog editor - not part of the site)
+writer/
+
 # Logs
 *.log
 npm-debug.log*

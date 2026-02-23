@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Blog — Arjhun Sreedar</title>
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/blog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="blog-nav">
+    <a href="./index.html" class="blog-nav-back">← Home</a>
+  </div>
+
+  <div class="blog-header">
+    <h1 class="blog-title">Blog</h1>
+    <p class="blog-subtitle">Long-form writing, hosted here.</p>
+  </div>
+
+  <div class="blog-list-container" id="blogList">
+    <p class="blog-loading">Loading posts...</p>
+  </div>
+
+  <footer class="blog-footer">
+    <a href="./index.html">← Back to portfolio</a>
+  </footer>
+
+  <script>
+    // Parse markdown frontmatter
+    function parseFrontmatter(md) {
+      const match = md.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+      if (!match) return { meta: {}, content: md };
+      const meta = {};
+      match[1].split('\n').forEach(line => {
+        const [key, ...rest] = line.split(':');
+        if (key && rest.length) {
+          let val = rest.join(':').trim();
+          if (val.startsWith('[')) {
+            try { val = JSON.parse(val); } catch(e) {}
+          }
+          meta[key.trim().toLowerCase()] = val;
+        }
+      });
+      return { meta, content: match[2].trim() };
+    }
+
+    // Parse basic frontmatter from markdown (title line + metadata)
+    function parsePostMeta(md, filename) {
+      const lines = md.split('\n');
+      const meta = { slug: filename.replace('.md', '') };
+      
+      // Get title from first # heading
+      for (const line of lines) {
+        if (line.startsWith('# ')) {
+          meta.title = line.replace('# ', '').trim();
+          break;
+        }
+      }
+
+      // Get metadata from **Key:** Value pattern
+      for (const line of lines) {
+        const dateMatch = line.match(/\*\*Date:\*\*\s*(.+)/);
+        const descMatch = line.match(/\*\*Description:\*\*\s*(.+)/);
+        const tagsMatch = line.match(/\*\*Tags:\*\*\s*(.+)/);
+        if (dateMatch) meta.date = dateMatch[1].trim();
+        if (descMatch) meta.description = descMatch[1].trim();
+        if (tagsMatch) meta.tags = tagsMatch[1].split(',').map(t => t.trim());
+      }
+
+      return meta;
+    }
+
+    // Fetch blog index
+    async function loadBlogPosts() {
+      const container = document.getElementById('blogList');
+      
+      try {
+        // Fetch the manifest of posts
+        const response = await fetch('./content/content.json');
+        const content = await response.json();
+        const onSitePosts = content.writing.onSiteArticles || [];
+        
+        if (onSitePosts.length === 0) {
+          container.innerHTML = '<p class="blog-empty">No posts yet. Check back soon.</p>';
+          return;
+        }
+
+        // Fetch each post to get metadata
+        const posts = [];
+        for (const post of onSitePosts) {
+          try {
+            const mdResponse = await fetch(`./blog/posts/${post.file}`);
+            if (mdResponse.ok) {
+              const md = await mdResponse.text();
+              const meta = parsePostMeta(md, post.file);
+              posts.push({ ...post, ...meta });
+            }
+          } catch (e) {
+            console.warn(`Failed to load post: ${post.file}`, e);
+          }
+        }
+
+        // Sort by date descending
+        posts.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+        container.innerHTML = posts.map(post => `
+          <a href="./blog/post.html?slug=${post.slug}" class="blog-card">
+            <div class="blog-card-content">
+              <time class="blog-card-date">${post.date || ''}</time>
+              <h2 class="blog-card-title">${post.title}</h2>
+              ${post.description ? `<p class="blog-card-desc">${post.description}</p>` : ''}
+              ${post.tags ? `<div class="blog-card-tags">${post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>` : ''}
+            </div>
+            <span class="blog-card-arrow">→</span>
+          </a>
+        `).join('');
+
+      } catch (error) {
+        console.error('Failed to load blog posts:', error);
+        container.innerHTML = '<p class="blog-empty">Failed to load posts.</p>';
+      }
+    }
+
+    loadBlogPosts();
+  </script>
+</body>
+
+</html>
