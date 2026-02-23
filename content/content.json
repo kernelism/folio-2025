@@ -13,7 +13,7 @@
     ]
   },
   "info": {
-    "lastUpdated": "2025-12-17"
+    "lastUpdated": "2026-02-22"
   },
   "about": {
     "title": "about me",
@@ -26,11 +26,16 @@
   },
   "history": {
     "entries": [
-    {
-        "timespan": "2025 - Present",
-        "logo": "../assets/cics.jpg",
-        "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. <br/> Synthetic data generation for clinical use-cases. Working towards an EMNLP paper."
-    },
+      {
+          "timespan": "2026 - Present",
+          "logo": "../assets/pipelines_logo.jpeg",
+          "description": "Founding Engineer Intern at <b>Pipelines</b> in their San Francisco office. <br/> Pipelines is an early-stage VC backed AI Infra startup. We're building end-to-end R&D solutions for businesses to collect data and train LLMs. <br/> <i>cutting edge tech; super cool team; best city (i'm a warriors fan); </i>"
+      },
+      {
+          "timespan": "2025 - Present",
+          "logo": "../assets/cics.jpg",
+          "description": "Working as a Graduate Researcher at <b>UMass BioNLP Lab</b>. <br/> Synthetic data generation for clinical use-cases. Working towards an EMNLP paper."
+      },
       {
         "timespan": "2025 - 2027",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png",
@@ -39,7 +44,7 @@
       {
         "timespan": "2024 - 2025",
         "logo": "https://1000logos.net/wp-content/uploads/2017/04/Oracle-Logo.jpg",
-        "description": "<strong>Software Engineer I at Oracle</strong>, India. <br/> Modernized logging and observability with structured events and AI-assisted log triage, reducing debugging time by <b>30%</b> and mean-time-to-identify by <b>45%</b>. Improved alerting and real-time telemetry to suppress noise and increase on-call signal-to-noise by <b>60%</b>."
+        "description": "<strong>Software Engineer at Oracle</strong>.<br/> Worked on Job Scheduling systems for financial data operations pipelining on large-scale data. Additionally, worked on modernizing logging and observability with AI."
       },
       {
         "timespan": "2024",
@@ -64,13 +69,17 @@
       {
         "timespan": "2020 - 2024",
         "logo": "https://www.facultyplus.com/wp-content/uploads/2021/12/Amrita-vishwa-vidyapeetham-color-logo.png",
-        "description": "<strong>B.Tech in Computer Science and Engineering</strong> at Amrita Vishwa Vidyapeetham, Coimbatore. Really fell in love with CS during my time there, but WILL not endorse the curriculum, grading or values this university stands for."
+        "description": "<strong>B.Tech in Computer Science and Engineering — Amrita Vishwa Vidyapeetham, Coimbatore</strong> <br/> I discovered my passion for computer science here, but based on my experience, I cannot personally endorse this institution."
       }
     ]
   },
   "writing": {
     "title": "writing",
     "subtitle": "I occasionally write on medium.",
+    "onSiteArticles": [
+      { "date": "Feb 2026", "title": "Hello, World!", "file": "hello-world.md", "description": "My first blog post on this site — why I decided to start writing here." },
+      { "date": "Feb 2026", "title": "You're not good at anything!", "file": "youre-not-good-at-anything.md", "description": "Philosophical advice on getting better at stuff"}
+    ],
     "articles": [
       { "date": "Feb 2025", "title": "GraphSAGE: Full Paper Walkthrough!", "url": "https://medium.com/@MinatoNamikaze02/graphsage-full-paper-walkthrough-1b0ebd79afb4" },
       { "date": "Jul 2023", "title": "Dynamic Programming I: A beginners guide.", "url": "https://medium.com/@MinatoNamikaze02/the-right-way-of-understanding-dynamic-programming-fad6a5bdafcf" },
@@ -161,6 +170,12 @@
         "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558",
         "venue": "OSNEM 2025 (In peer-review)",
         "authors": "Arjhun Sreedar, Pranav Deepak, Dayanand V"
+      },
+      {
+        "title": "From Emotion Classification to Emotional Reasoning: Enhancing Emotional Intelligence in Large Language Models",
+        "url": "https://arxiv.org/abs/2601.01407",
+        "venue": "arXiv",
+        "authors": "Arjhun Sreedar, Rohan Pillay, Laukik Patade"
       }
     ]
   },

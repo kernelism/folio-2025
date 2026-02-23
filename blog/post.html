@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Loading... — Arjhun Sreedar</title>
+  <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="../styles/blog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="blog-nav">
+    <a href="../blog.html" class="blog-nav-back">← All posts</a>
+  </div>
+
+  <article class="blog-post" id="blogPost">
+    <p class="blog-loading">Loading...</p>
+  </article>
+
+  <footer class="blog-footer">
+    <a href="../blog.html">← All posts</a>
+  </footer>
+
+  <script>
+    // Simple markdown to HTML renderer (no dependencies)
+    function renderMarkdown(md) {
+      let html = md;
+
+      // Code blocks (fenced)
+      html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+        const escaped = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return `<pre><code class="language-${lang || 'text'}">${escaped.trim()}</code></pre>`;
+      });
+
+      // Inline code
+      html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+      // Images
+      html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="blog-img" />');
+
+      // Links
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+      // Bold
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+      // Italic
+      html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+      // Strikethrough
+      html = html.replace(/~~(.+?)~~/g, '<del>$1</del>');
+
+      // Headings
+      html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+      // Horizontal rules
+      html = html.replace(/^---$/gm, '<hr>');
+
+      // Blockquotes
+      html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
+      // Merge consecutive blockquotes
+      html = html.replace(/<\/blockquote>\n<blockquote>/g, '<br>');
+
+      // Unordered lists
+      html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+      html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+
+      // Paragraphs — wrap remaining lines
+      const lines = html.split('\n');
+      let result = [];
+      let inBlock = false;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith('<pre>') || trimmed.startsWith('<ul>') || trimmed.startsWith('<blockquote>') || trimmed.startsWith('<h') || trimmed.startsWith('<hr')) {
+          inBlock = true;
+        }
+        
+        if (inBlock) {
+          result.push(line);
+          if (trimmed.includes('</pre>') || trimmed.includes('</ul>') || trimmed.includes('</blockquote>') || trimmed.match(/<\/h\d>/) || trimmed.startsWith('<hr')) {
+            inBlock = false;
+          }
+        } else if (trimmed === '') {
+          result.push('');
+        } else {
+          result.push(`<p>${line}</p>`);
+        }
+      }
+
+      // Clean up empty paragraphs
+      return result.join('\n').replace(/<p><\/p>/g, '').replace(/\n{3,}/g, '\n\n');
+    }
+
+    // Extract body content (skip frontmatter-style metadata lines)
+    function extractBody(md) {
+      const lines = md.split('\n');
+      let bodyStart = 0;
+      let foundTitle = false;
+      let pastMeta = false;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        
+        if (!foundTitle && line.startsWith('# ')) {
+          foundTitle = true;
+          continue;
+        }
+        
+        if (foundTitle && !pastMeta) {
+          // Skip metadata lines (bold key-value pairs and blank lines after title)
+          if (line === '' || line.match(/^\*\*\w+:\*\*/)) {
+            continue;
+          }
+          if (line === '---') {
+            bodyStart = i + 1;
+            pastMeta = true;
+            continue;
+          }
+          // If we hit regular content without ---, this is the body start
+          bodyStart = i;
+          pastMeta = true;
+        }
+        
+        if (pastMeta) {
+          bodyStart = i;
+          break;
+        }
+      }
+
+      return lines.slice(bodyStart).join('\n');
+    }
+
+    // Parse metadata
+    function parsePostMeta(md) {
+      const lines = md.split('\n');
+      const meta = {};
+      
+      for (const line of lines) {
+        if (line.startsWith('# ')) {
+          meta.title = line.replace('# ', '').trim();
+        }
+        const dateMatch = line.match(/\*\*Date:\*\*\s*(.+)/);
+        const authorMatch = line.match(/\*\*Author:\*\*\s*(.+)/);
+        const tagsMatch = line.match(/\*\*Tags:\*\*\s*(.+)/);
+        const descMatch = line.match(/\*\*Description:\*\*\s*(.+)/);
+        if (dateMatch) meta.date = dateMatch[1].trim();
+        if (authorMatch) meta.author = authorMatch[1].trim();
+        if (tagsMatch) meta.tags = tagsMatch[1].split(',').map(t => t.trim());
+        if (descMatch) meta.description = descMatch[1].trim();
+      }
+
+      return meta;
+    }
+
+    async function loadPost() {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+      const container = document.getElementById('blogPost');
+
+      if (!slug) {
+        container.innerHTML = '<p>Post not found.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(`./posts/${slug}.md`);
+        if (!response.ok) throw new Error('Not found');
+        
+        const md = await response.text();
+        const meta = parsePostMeta(md);
+        const body = extractBody(md);
+        const bodyHtml = renderMarkdown(body);
+
+        document.title = `${meta.title || slug} — Arjhun Sreedar`;
+
+        container.innerHTML = `
+          <header class="post-header">
+            <h1 class="post-title">${meta.title || slug}</h1>
+            <div class="post-meta">
+              ${meta.date ? `<time>${meta.date}</time>` : ''}
+              ${meta.author ? `<span class="post-author">by ${meta.author}</span>` : ''}
+            </div>
+            ${meta.description ? `<p class="post-description">${meta.description}</p>` : ''}
+            ${meta.tags ? `<div class="post-tags">${meta.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>` : ''}
+          </header>
+          <div class="post-body">
+            ${bodyHtml}
+          </div>
+        `;
+
+      } catch (error) {
+        console.error('Failed to load post:', error);
+        container.innerHTML = '<p>Post not found.</p>';
+      }
+    }
+
+    loadPost();
+  </script>
+</body>
+
+</html>

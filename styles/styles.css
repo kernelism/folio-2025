@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&f[]=clash-display@200,300,400,500,600,700&display=swap');
 
 /* Modern minimalist styling with subtle animations */
 
@@ -83,7 +83,7 @@ body {
     margin: 0;
     padding: 0;
     background: var(--bg-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-primary);
@@ -202,11 +202,12 @@ body::before {
 }
 
 h1 {
-    font-size: 42px;
-    font-weight: 300;
+    font-family: 'Clash Display', 'General Sans', sans-serif;
+    font-size: 48px;
+    font-weight: 600;
     padding: 0;
     margin: 0 0 10px 0;
-    letter-spacing: -0.5px;
+    letter-spacing: -1.5px;
     color: var(--text-primary);
     transition: color 0.3s ease;
     position: relative;

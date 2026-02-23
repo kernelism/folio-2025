@@ -114,14 +114,33 @@
       `).join('');
 
       const writingContainer = document.getElementById('writingContainer');
+      const onSiteArticles = siteContent.writing.onSiteArticles || [];
+      const mediumArticles = siteContent.writing.articles || [];
+      
       writingContainer.innerHTML = `
         <div class="ctitle">${siteContent.writing.title}</div>
-        <div>${siteContent.writing.subtitle}</div>
-        <ul class="nodot">
-          ${siteContent.writing.articles.map(article => 
-            `<li>${article.date} <a href="${article.url}">${article.title}</a></li>`
-          ).join('')}
-        </ul>
+        ${onSiteArticles.length > 0 ? `
+          <div style="margin-bottom: 30px;">
+            <h3 style="font-weight: 500; font-size: 18px; color: var(--text-primary); margin-bottom: 12px;">On this site</h3>
+            <ul class="nodot">
+              ${onSiteArticles.map(article => 
+                `<li>${article.date} <a href="./blog/post.html?slug=${article.file.replace('.md', '')}">${article.title}</a></li>`
+              ).join('')}
+            </ul>
+            <p style="margin-top: 10px; font-size: 14px;">
+              <a href="./blog.html" style="color: var(--accent-blue); text-decoration: none;">→ All blog posts</a>
+            </p>
+          </div>
+        ` : ''}
+        <div>
+          <h3 style="font-weight: 500; font-size: 18px; color: var(--text-primary); margin-bottom: 12px;">On Medium</h3>
+          <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">${siteContent.writing.subtitle}</div>
+          <ul class="nodot">
+            ${mediumArticles.map(article => 
+              `<li>${article.date} <a href="${article.url}">${article.title}</a></li>`
+            ).join('')}
+          </ul>
+        </div>
         <p style="margin-top: 20px; font-size: 14px;">
           <a href="${siteContent.writing.contentLink.url}" style="color: var(--text-muted); text-decoration: none;">
             ${siteContent.writing.contentLink.text}
