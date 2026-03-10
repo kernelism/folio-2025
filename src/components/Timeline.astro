@@ -1,0 +1,340 @@
+---
+interface TimelineEntry {
+  timespan: string;
+  company: string;
+  role: string;
+  logo: string;
+  description: string;
+  tags: string[];
+}
+
+interface Props {
+  data: { entries: TimelineEntry[] };
+}
+
+const { data } = Astro.props;
+---
+
+<section class="timeline-section" id="experience">
+  <div class="timeline-header">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Experience</h2>
+  </div>
+
+  <div class="timeline-pin">
+    <div class="timeline-progress">
+      <div class="timeline-progress-fill" id="tl-progress"></div>
+    </div>
+    <div class="timeline-track" id="tl-track">
+      {data.entries.map((entry, i) => {
+        const year = entry.timespan.split(/\s/)[0];
+        return (
+          <div class="timeline-card" data-index={i}>
+            <div class="timeline-card-top">
+              <span class="timeline-year">{year}</span>
+              <span class="timeline-timespan">{entry.timespan}</span>
+            </div>
+            <div class="timeline-card-body">
+              <div class="timeline-logo-wrap">
+                <img
+                  src={entry.logo}
+                  alt={entry.company}
+                  class="timeline-logo"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="timeline-company">{entry.company}</h3>
+              <span class="timeline-role">{entry.role}</span>
+              <p class="timeline-desc">{entry.description}</p>
+              <div class="timeline-tags">
+                {entry.tags.map((tag) => (
+                  <span class="timeline-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <svg class="timeline-svg-filters" width="0" height="0">
+    <defs>
+      <filter id="liquid-filter">
+        <feTurbulence
+          id="liquid-turbulence"
+          type="fractalNoise"
+          baseFrequency="0"
+          numOctaves="3"
+          result="noise"
+          seed="2"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="noise"
+          scale="0"
+          id="liquid-displacement"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </defs>
+  </svg>
+</section>
+
+<style>
+  .timeline-section {
+    padding-top: var(--section-padding-y);
+    overflow: hidden;
+  }
+
+  .timeline-header {
+    padding: 0 var(--section-padding-x);
+    position: relative;
+    margin-bottom: 4vh;
+  }
+
+  .timeline-pin {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .timeline-progress {
+    position: absolute;
+    bottom: 0;
+    left: 4vw;
+    right: 4vw;
+    height: 2px;
+    background: var(--text-light);
+    z-index: 10;
+    opacity: 0.4;
+  }
+
+  .timeline-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--text);
+    will-change: width;
+  }
+
+  .timeline-track {
+    display: flex;
+    gap: 3vw;
+    padding: 4vh 4vw 6vh;
+    width: max-content;
+    will-change: transform;
+    filter: url(#liquid-filter);
+  }
+
+  .timeline-card {
+    flex-shrink: 0;
+    width: clamp(300px, 26vw, 400px);
+    position: relative;
+  }
+
+  .timeline-card-top {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--text-light);
+    padding-bottom: 0.75rem;
+  }
+
+  .timeline-year {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(36px, 3.5vw, 54px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-timespan {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .timeline-card-body {
+    padding-top: 0.5rem;
+  }
+
+  .timeline-logo-wrap {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .timeline-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .timeline-company {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(22px, 2vw, 32px);
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-role {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .timeline-tag {
+    font-family: var(--font-body);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--text-light);
+    color: var(--text-muted);
+  }
+
+  .timeline-svg-filters {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-pin {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .timeline-pin::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-track {
+      filter: none;
+      padding: 3vh 4vw 6vh;
+    }
+
+    .timeline-card {
+      width: 80vw;
+    }
+
+    .timeline-progress {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger, lenis } from '../scripts/init';
+
+  const pin = document.querySelector('.timeline-pin') as HTMLElement;
+  const track = document.getElementById('tl-track') as HTMLElement;
+  const cards = document.querySelectorAll('.timeline-card');
+  const progress = document.getElementById('tl-progress');
+  const turbulence = document.getElementById('liquid-turbulence');
+  const displacement = document.getElementById('liquid-displacement');
+  const isMobile = window.innerWidth <= 768;
+
+  if (pin && track && !isMobile) {
+    const totalScroll = track.scrollWidth - window.innerWidth;
+
+    lenis.stop();
+    requestAnimationFrame(() => {
+      lenis.start();
+      ScrollTrigger.refresh();
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: pin,
+        start: 'top top',
+        end: () => `+=${totalScroll}`,
+        pin: true,
+        scrub: 0.8,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          if (progress) progress.style.width = `${self.progress * 100}%`;
+
+          const velocity = Math.abs(self.getVelocity());
+          const freq = Math.min(velocity * 0.0000025, 0.012);
+          const scale = Math.min(velocity * 0.006, 10);
+
+          if (turbulence) turbulence.setAttribute('baseFrequency', String(freq));
+          if (displacement) displacement.setAttribute('scale', String(scale));
+        },
+      },
+    });
+
+    tl.to(track, { x: -totalScroll, ease: 'none' });
+
+    cards.forEach((card) => {
+      const inner = card.querySelector('.timeline-card-body')!;
+      const top = card.querySelector('.timeline-card-top')!;
+
+      gsap.from(top, {
+        x: 60,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          containerAnimation: tl,
+          start: 'left 90%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      gsap.from(inner, {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          containerAnimation: tl,
+          start: 'left 80%',
+          toggleActions: 'play none none none',
+        },
+        delay: 0.1,
+      });
+    });
+  } else if (pin && track && isMobile) {
+    cards.forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        x: 40,
+        duration: 0.5,
+        delay: i * 0.08,
+        ease: 'power2.out',
+      });
+    });
+  }
+</script>

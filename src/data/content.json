@@ -1,0 +1,210 @@
+{
+  "header": {
+    "name": "Arjhun Sreedar",
+    "nameAudio": "ur-june shree-dhar",
+    "tagline": "I solve problems with code",
+    "profileImage": "/assets/img.jpeg",
+    "socialLinks": [
+      { "platform": "twitter", "url": "https://twitter.com/ArjhunSreedar" },
+      { "platform": "github", "url": "https://github.com/kernelism" },
+      { "platform": "medium", "url": "https://medium.com/@arjuns0206" },
+      { "platform": "linkedin", "url": "https://linkedin.com/in/arjhunsreedar" },
+      { "platform": "resume", "url": "https://drive.google.com/file/d/1Rt0gJB14fGU_BRzIZKLHoL-rBRivgqLk/view?usp=sharing" }
+    ]
+  },
+  "about": {
+    "paragraphs": [
+      "Hi! I'm Arjhun, a software engineer and researcher currently pursuing my Master's in Computer Science at UMass Amherst. I specialize in suddenly wanting to build something overnight, and losing interest the very next day.",
+      "When I'm not busy abandoning yesterday's brilliant idea, I build things that matter. I've professionally worked in climate tech and cloud domains.",
+      "Outside of code, I moonlight as a tech writer, open-source contributor, gym rat and occasional cricketer.",
+      "Right now I'm deep in the rabbit hole of LLMs (aren't we all?) and how they can solve relevant problems. Always up to collaborate on interesting stuff!"
+    ]
+  },
+  "history": {
+    "entries": [
+      {
+        "timespan": "2026 — Present",
+        "company": "Pipelines",
+        "role": "Founding Engineer Intern",
+        "logo": "/assets/pipelines_logo.jpeg",
+        "description": "Early-stage VC-backed AI Infra startup in San Francisco. Building end-to-end R&D solutions for businesses to collect data and train LLMs.",
+        "tags": ["AI Infrastructure", "San Francisco"]
+      },
+      {
+        "timespan": "2025 — Present",
+        "company": "UMass BioNLP Lab",
+        "role": "Graduate Researcher",
+        "logo": "/assets/cics.jpg",
+        "description": "Synthetic data generation for clinical use-cases. Working towards an EMNLP paper.",
+        "tags": ["NLP", "Research"]
+      },
+      {
+        "timespan": "2025 — 2027",
+        "company": "UMass Amherst",
+        "role": "M.S. Computer Science",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/UMass_Amherst_athletics_logo.svg/1200px-UMass_Amherst_athletics_logo.svg.png",
+        "description": "Advanced NLP, Distributed Computing, Independent Study on NLP × BioInformatics.",
+        "tags": ["Graduate School"]
+      },
+      {
+        "timespan": "2024 — 2025",
+        "company": "Oracle",
+        "role": "Software Engineer",
+        "logo": "https://1000logos.net/wp-content/uploads/2017/04/Oracle-Logo.jpg",
+        "description": "Job Scheduling systems for financial data operations. Modernizing logging and observability with AI.",
+        "tags": ["Cloud", "Enterprise"]
+      },
+      {
+        "timespan": "2023 — 2024",
+        "company": "CarbonMarketsHQ",
+        "role": "Software Engineer (Co-op → Intern)",
+        "logo": "/assets/cmhq.jpeg",
+        "description": "Stateless, concurrent data pipelining for climate records. AI climate analytics. End-to-end pipeline converting credit offset records to actionable data for MicroEnergy Credits. FastAPI + GraphQL.",
+        "tags": ["Climate Tech", "Data", "Pipeline"]
+      },
+      {
+        "timespan": "2022 — 2023",
+        "company": "Sony SSUP",
+        "role": "Research Intern",
+        "logo": "/assets/sony.jpg",
+        "description": "Efficient polyhouse-based solar drying through machine learning and IoT.",
+        "tags": ["ML", "IoT"]
+      },
+      {
+        "timespan": "2022",
+        "company": "Zobyt",
+        "role": "Software Engineer Intern",
+        "logo": "/assets/zobyt.jpeg",
+        "description": "40+ features including carpooling, activities, payment. FastAPI + PostgreSQL. Stripe integration end-to-end.",
+        "tags": ["Full Stack", "Startup"]
+      }
+    ]
+  },
+  "projects": {
+    "items": [
+      {
+        "name": "yesreply",
+        "url": "https://github.com/kernelism/yes-reply",
+        "image": "https://img.freepik.com/free-psd/phone-icon-design_23-2151311652.jpg?semt=ais_hybrid&w=740&q=80",
+        "description": "Inbox-as-a-marketplace. Adds a paywall to your email address. React, FastAPI, AWS SES, Stripe.",
+        "featured": true
+      },
+      {
+        "name": "jargon",
+        "url": "https://github.com/kernelism/jargon",
+        "image": "https://usercentrics.com/wp-content/uploads/2021/12/blog-hero-privacy-policy.jpeg",
+        "description": "NER-based privacy policy analyser. BERT-powered clause extraction with 0.80 F1 on legal text.",
+        "featured": true
+      },
+      {
+        "name": "toolboxAi",
+        "url": "https://github.com/kernelism/toolboxai",
+        "image": "https://raw.githubusercontent.com/kernelism/toolboxai/main/assets/toolboxai.png",
+        "description": "Ask questions about your PDFs. Multi-LLM routing, conversation history, RAG pipeline.",
+        "featured": false
+      },
+      {
+        "name": "ChokeSpeare",
+        "url": "https://github.com/kernelism/chokespeare",
+        "image": "https://cdn.pixabay.com/photo/2024/05/26/20/52/william-shakespeare-8789475_1280.png",
+        "description": "Collection of generative models trained on different poems. Mixed-style poetry generation.",
+        "featured": false
+      },
+      {
+        "name": "Reddit Scraper",
+        "url": "https://github.com/kernelism/reddit-scraper",
+        "image": "https://store-images.s-microsoft.com/image/apps.15970.14375561300249796.05fe8c27-ce9e-4144-8702-0e81e2f575b1.042364cb-b745-4796-a520-61291e2dd6b9",
+        "description": "High-performance CLI tool for Reddit data collection. Unique checkpointing and JSON trick.",
+        "featured": false
+      },
+      {
+        "name": "WL Quick Compute",
+        "url": "https://github.com/kernelism/WL-split-merge",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4MfFbNhIC5lSmBxnSAnsESSjZ6YBykM41AQ&s",
+        "description": "Speeds up Weisfeiler-Lehman kernel computations via batch split-merge strategy. 2-4x speedup.",
+        "featured": false
+      },
+      {
+        "name": "EC2ER",
+        "url": "https://github.com/kernelism/EC2ER",
+        "image": "/assets/ec2er.jpg",
+        "description": "Enhancing emotional intelligence in LLMs via synthetic data generation and fine-tuning. Up to +438% improvement on EmoBench.",
+        "featured": true
+      },
+      {
+        "name": "Distributed Inference",
+        "url": "https://github.com/kernelism/distributed-inference",
+        "image": "/assets/inference.png",
+        "description": "GPU-accelerated AI inference server. C++ CUDA engine + Go REST API. Multi-model ONNX serving with low-latency inference.",
+        "featured": true
+      },
+      {
+        "name": "SuitUP",
+        "url": "https://github.com/kernelism/suitup",
+        "image": "/assets/suitup.png",
+        "description": "AI-powered job discovery. Scrapes and matches jobs to your resume using NLP.",
+        "featured": false
+      }
+    ]
+  },
+  "publications": {
+    "items": [
+      {
+        "title": "Content-Agnostic Community Classification Using Meta-Graph Representations of Conversational Dynamics",
+        "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5238558",
+        "venue": "OSNEM 2025",
+        "authors": "Arjhun Sreedar, Pranav Deepak, Dayanand V"
+      },
+      {
+        "title": "From Emotion Classification to Emotional Reasoning: Enhancing Emotional Intelligence in LLMs",
+        "url": "https://arxiv.org/abs/2601.01407",
+        "venue": "arXiv",
+        "authors": "Arjhun Sreedar, Rohan Pillay, Laukik Patade"
+      }
+    ]
+  },
+  "writing": {
+    "onSiteArticles": [
+      {
+        "date": "Feb 2026",
+        "title": "Hello, World!",
+        "slug": "hello-world",
+        "description": "My first blog post on this site — why I decided to start writing here."
+      },
+      {
+        "date": "Feb 2026",
+        "title": "You're not good at anything!",
+        "slug": "youre-not-good-at-anything",
+        "description": "Philosophical advice on getting better at stuff."
+      }
+    ],
+    "articles": [
+      { "date": "Jun 2025", "title": "Getting the most out of Cursor/Windsurf for modern frontend dev", "url": "https://medium.com/@MinatoNamikaze02/getting-the-most-out-of-cursor-windsurf-for-modern-frontend-dev-61e2559d08de" },
+      { "date": "Jun 2025", "title": "Dynamic Programming II: Memoization", "url": "https://medium.com/@MinatoNamikaze02/dynamic-programming-ii-memoization-e6e9170a8fb5" },
+      { "date": "Feb 2025", "title": "GraphSAGE: Full Paper Walkthrough!", "url": "https://medium.com/@MinatoNamikaze02/graphsage-full-paper-walkthrough-1b0ebd79afb4" },
+      { "date": "Feb 2025", "title": "Let's build an LSTM from scratch.", "url": "https://medium.com/@MinatoNamikaze02/lets-build-an-lstm-from-scratch-6845e0d64dae" },
+      { "date": "Aug 2024", "title": "Modern Backend Stack Walkthrough: FastAPI, GraphQL, and Postgres", "url": "https://medium.com/@MinatoNamikaze02/a-f-guide-to-fastapi-graphql-postgres-084358d59847" },
+      { "date": "Nov 2023", "title": "Making Apache Pig Output Human-Readable", "url": "https://medium.com/@MinatoNamikaze02/how-to-pretty-print-apache-pig-outputs-5c4d6c430e4c" },
+      { "date": "Sep 2023", "title": "Reddit Scraping Post-API Apocalypse", "url": "https://medium.com/@MinatoNamikaze02/you-dont-need-the-reddit-api-to-acquire-its-data-here-s-how-41ef8f15e1db" },
+      { "date": "Jul 2023", "title": "Dynamic Programming I: A beginners guide.", "url": "https://medium.com/@MinatoNamikaze02/the-right-way-of-understanding-dynamic-programming-fad6a5bdafcf" },
+      { "date": "Jul 2023", "title": "Writing Maintainable CSS in React Projects", "url": "https://medium.com/@MinatoNamikaze02/complicating-yet-simplifying-reactjs-a51d16c0235a" },
+      { "date": "Jul 2023", "title": "Mastering Named Entity Recognition with Custom Entities", "url": "https://medium.com/@MinatoNamikaze02/mastering-named-entity-recognition-with-custom-entities-5de246bbf584" },
+      { "date": "Aug 2022", "title": "Conquering Lazy Loading using Selenium", "url": "https://medium.com/@MinatoNamikaze02/conquering-lazy-loading-using-selenium-c722cd44f19" },
+      { "date": "Jul 2022", "title": "How to Scrape Image Data at Scale with Scrapy", "url": "https://medium.com/@MinatoNamikaze02/web-scraping-images-efficiently-using-scrapy-7902ceeab171" }
+    ]
+  },
+  "misc": {
+    "items": [
+      { "title": "medium", "url": "https://medium.com/@MinatoNamikaze02" },
+      { "title": "chess.com", "url": "https://www.chess.com/member/trippitroppi69" },
+      { "title": "letterboxd", "url": "https://letterboxd.com/movietourist02/" },
+      { "title": "leetcode", "url": "https://leetcode.com/u/kernelism/" },
+      { "title": "codeforces", "url": "https://codeforces.com/profile/kernelism" },
+      { "title": "monkeytype", "url": "https://monkeytype.com/profile/MinatoNamikaze02" },
+      { "title": "discord", "url": "", "note": "arjuns02" }
+    ]
+  },
+  "contact": {
+    "description": "Have something interesting to discuss? Drop me a message."
+  }
+}

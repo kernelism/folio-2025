@@ -1,0 +1,163 @@
+---
+interface ProjectItem {
+  name: string;
+  url: string;
+  image: string;
+  description: string;
+  featured: boolean;
+}
+
+interface Props {
+  data: { items: ProjectItem[] };
+}
+
+const { data } = Astro.props;
+---
+
+<section class="section projects" id="projects">
+  <span class="section-number">03</span>
+  <h2 class="section-title">Projects</h2>
+
+  <div class="projects-grid">
+    {data.items.map((project) => (
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class:list={['project-card', { featured: project.featured }]}
+      >
+        <div class="project-image-wrap">
+          <img
+            src={project.image}
+            alt={project.name}
+            class="project-image"
+            loading="lazy"
+          />
+        </div>
+        <div class="project-info">
+          <h3 class="project-name">{project.name}</h3>
+          <p class="project-desc">{project.description}</p>
+          <span class="project-link-text">view project →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-left: 2vw;
+  }
+
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+  }
+
+  .project-image-wrap {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    margin-bottom: 1rem;
+  }
+
+  .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .project-card:hover .project-image {
+    filter: grayscale(0.3) contrast(1);
+    transform: scale(1.04);
+  }
+
+  .project-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(20px, 1.8vw, 28px);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .project-name::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--text);
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .project-card:hover .project-name::after {
+    width: 100%;
+  }
+
+  .project-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .project-link-text {
+    font-family: var(--font-body);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    transition: color 0.3s;
+  }
+
+  .project-card:hover .project-link-text {
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-card.featured {
+      grid-column: span 1;
+    }
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger } from '../scripts/init';
+
+  const cards = document.querySelectorAll('.project-card');
+
+  cards.forEach((card, i) => {
+    gsap.from(card, {
+      clipPath: 'inset(100% 0 0 0)',
+      opacity: 0,
+      rotation: 1.5,
+      duration: 0.7,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+      },
+      delay: (i % 3) * 0.1,
+    });
+  });
+</script>

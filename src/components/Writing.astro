@@ -1,0 +1,214 @@
+---
+interface OnSiteArticle {
+  date: string;
+  title: string;
+  slug: string;
+  description: string;
+}
+
+interface MediumArticle {
+  date: string;
+  title: string;
+  url: string;
+}
+
+interface Props {
+  data: {
+    onSiteArticles: OnSiteArticle[];
+    articles: MediumArticle[];
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<section class="section writing" id="writing">
+  <span class="section-number">05</span>
+  <h2 class="section-title">Writing</h2>
+
+  <div class="writing-content">
+    <div class="writing-blog">
+      <h3 class="writing-subtitle">on this site</h3>
+      <div class="blog-cards">
+        {data.onSiteArticles.map((post) => (
+          <a href={`/blog/${post.slug}`} class="blog-card">
+            <span class="blog-card-date">{post.date}</span>
+            <h4 class="blog-card-title">{post.title}</h4>
+            <p class="blog-card-desc">{post.description}</p>
+          </a>
+        ))}
+      </div>
+      <a href="/blog" class="writing-more link-hover">→ all posts</a>
+    </div>
+
+    <div class="writing-medium">
+      <h3 class="writing-subtitle">on medium</h3>
+      <div class="medium-list">
+        {data.articles.map((article) => (
+          <a href={article.url} target="_blank" rel="noopener noreferrer" class="medium-item">
+            <span class="medium-date">{article.date}</span>
+            <span class="medium-title">{article.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <a href="/curations" class="writing-more link-hover">→ curations</a>
+  </div>
+</section>
+
+<style>
+  .writing-content {
+    margin-left: 2vw;
+    max-width: 800px;
+  }
+
+  .writing-subtitle {
+    font-family: var(--font-body);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-card {
+    display: block;
+    padding: 1.5rem;
+    border: 1px solid var(--text-light);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .blog-card:hover {
+    border-color: var(--text);
+    transform: translateY(-3px);
+  }
+
+  .blog-card-date {
+    font-family: var(--font-body);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-card-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .writing-medium {
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .medium-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .medium-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--text-light);
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s;
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+
+  .medium-item:first-child {
+    border-top: 1px solid var(--text-light);
+  }
+
+  .medium-item:hover {
+    opacity: 0.6;
+  }
+
+  .medium-date {
+    flex-shrink: 0;
+    width: 80px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .medium-title {
+    flex: 1;
+  }
+
+  .writing-more {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 14px;
+    margin-top: 1rem;
+    color: var(--text-muted);
+    transition: color 0.3s;
+  }
+
+  .writing-more:hover {
+    color: var(--text);
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger } from '../scripts/init';
+
+  const blogCards = document.querySelectorAll('.blog-card');
+  const mediumItems = document.querySelectorAll('.medium-item');
+
+  blogCards.forEach((card, i) => {
+    gsap.from(card, {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+      },
+      delay: i * 0.1,
+    });
+  });
+
+  mediumItems.forEach((item, i) => {
+    gsap.from(item, {
+      x: -20,
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 92%',
+        toggleActions: 'play none none none',
+      },
+      delay: i * 0.05,
+    });
+  });
+</script>

@@ -1,0 +1,137 @@
+---
+---
+
+<div id="loader" class="loader">
+  <div class="loader-terminal">
+    <div class="loader-word" id="loader-word"></div>
+    <div class="loader-bar-row">
+      <span class="loader-bar" id="loader-bar">[<span id="loader-fill"></span><span id="loader-empty"></span>]</span>
+      <span class="loader-pct" id="loader-pct">&nbsp;0%</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loader.hiding {
+    pointer-events: none;
+  }
+
+  .loader-terminal {
+    font-family: var(--font-body, 'JetBrains Mono', monospace);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .loader-word {
+    font-family: var(--font-display, 'Boska', serif);
+    font-weight: 800;
+    font-size: clamp(28px, 5vw, 52px);
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    opacity: 0.9;
+    min-height: 1.2em;
+    text-align: center;
+  }
+
+  .loader-bar-row {
+    font-size: clamp(11px, 1.1vw, 14px);
+    white-space: pre;
+    display: flex;
+    align-items: baseline;
+    line-height: 1;
+  }
+
+  .loader-bar {
+    letter-spacing: 0;
+  }
+
+  .loader-pct {
+    width: 5ch;
+    text-align: right;
+    opacity: 0.7;
+  }
+</style>
+
+<script>
+  import { gsap } from '../scripts/init';
+
+  const loader = document.getElementById('loader')!;
+  const wordEl = document.getElementById('loader-word')!;
+  const fillEl = document.getElementById('loader-fill')!;
+  const emptyEl = document.getElementById('loader-empty')!;
+  const pctEl = document.getElementById('loader-pct')!;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const BAR_WIDTH = 30;
+  const WORDS = [
+    'Conjuring', 'Brewing', 'Cerebrating', 'Forging',
+    'Simmering', 'Noodling', 'Synthesizing', 'Manifesting',
+  ];
+
+  function completeLoader() {
+    loader.classList.add('hiding');
+    gsap.to(loader, {
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        loader.remove();
+        document.body.classList.add('loaded');
+        window.dispatchEvent(new CustomEvent('loader-complete'));
+      },
+    });
+  }
+
+  if (prefersReducedMotion) {
+    completeLoader();
+  } else {
+    runLoader();
+  }
+
+  async function runLoader() {
+    const totalDuration = 2200;
+    const perWord = totalDuration / WORDS.length;
+    let filled = 0;
+
+    fillEl.textContent = '';
+    emptyEl.textContent = ' '.repeat(BAR_WIDTH);
+
+    for (let i = 0; i < WORDS.length; i++) {
+      wordEl.textContent = WORDS[i];
+      gsap.fromTo(wordEl, { opacity: 0 }, { opacity: 0.9, duration: 0.2 });
+
+      const target = Math.round(((i + 1) / WORDS.length) * BAR_WIDTH);
+      const steps = target - filled;
+      const charDelay = steps > 0 ? perWord / steps : perWord;
+
+      while (filled < target) {
+        filled++;
+        const pct = Math.round((filled / BAR_WIDTH) * 100);
+        fillEl.textContent = '#'.repeat(filled);
+        emptyEl.textContent = ' '.repeat(BAR_WIDTH - filled);
+        pctEl.textContent = pct < 100 ? `${pct}%` : '100%';
+        await new Promise(r => setTimeout(r, charDelay));
+      }
+    }
+
+    wordEl.textContent = 'ready';
+    await new Promise(r => setTimeout(r, 300));
+    completeLoader();
+  }
+</script>

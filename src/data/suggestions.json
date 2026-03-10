@@ -1,0 +1,43 @@
+{
+  "sections": [
+    {
+      "title": "video content",
+      "items": [
+        { "title": "How I use LLMs", "url": "https://youtu.be/EWvNQjAaOHw", "attribution": "Andrej Karpathy" },
+        { "title": "Deep Learning: SOTA", "url": "https://youtu.be/0VH1Lim8gL8", "attribution": "Lex Fridman" },
+        { "title": "Attention in Transformers, step by step", "url": "https://youtu.be/eMlx5fFNoYc", "attribution": "3Blue1Brown" },
+        { "title": "Exposing the flaw in our phone system", "url": "https://youtu.be/wVyu7NB7W6Y", "attribution": "Veritasium" },
+        { "title": "What 'Follow Your Dreams' Misses", "url": "https://www.youtube.com/watch?v=W3I3kAg2J7w", "attribution": "3Blue1Brown" },
+        { "title": "Miscellaneous Myths: Krishna", "url": "https://www.youtube.com/watch?v=x837yDfcyho", "attribution": "Overly Sarcastic Productions" },
+        { "title": "WORLD CHESS CHAMPION!!!!!", "url": "https://www.youtube.com/watch?v=MnaoIvHRl80", "attribution": "GothamChess" }
+      ]
+    },
+    {
+      "title": "books",
+      "items": [
+        { "title": "The years of rice and salt", "url": "", "attribution": "Kim Stanley Robinson" },
+        { "title": "1984", "url": "", "attribution": "George Orwell" },
+        { "title": "11/22/63", "url": "", "attribution": "Stephen King" },
+        { "title": "The man in the high castle", "url": "", "attribution": "Philip K. Dick" },
+        { "title": "The Maze Runner (all books)", "url": "", "attribution": "James Dashner" }
+      ]
+    },
+    {
+      "title": "technical books",
+      "items": [
+        { "title": "Speech and Language Processing", "url": "https://web.stanford.edu/~jurafsky/slp3/", "attribution": "Dan Jurafsky and James H. Martin" },
+        { "title": "Computer Networking: A Top-Down Approach", "url": "https://gaia.cs.umass.edu/kurose_ross/index.php", "attribution": "Jim Kurose and Keith Ross" }
+      ]
+    },
+    {
+      "title": "articles",
+      "items": [
+        { "title": "What Every CS Should Know About Floating-Point Arithmetic", "url": "https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html", "attribution": "David Goldberg" },
+        { "title": "Installing from source on Linux", "url": "https://moi.vonos.net/linux/beginners-installing-from-source/", "attribution": "Simon Kitching" },
+        { "title": "Why consumer VPNs are useless", "url": "https://moi.vonos.net/2023/08/vpns/", "attribution": "Simon Kitching" },
+        { "title": "Do you actually understand backprop?", "url": "https://karpathy.medium.com/yes-you-should-understand-backprop-e2f06eab496b", "attribution": "Andrej Karpathy" },
+        { "title": "PyTorch Internals", "url": "https://blog.ezyang.com/2019/05/pytorch-internals/", "attribution": "Edward Z. Yang" }
+      ]
+    }
+  ]
+}

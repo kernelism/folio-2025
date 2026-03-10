@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import suggestions from '../data/suggestions.json';
+---
+
+<BaseLayout title="Curations — Arjhun Sreedar" description="Things I recommend: videos, books, articles.">
+  <nav class="cur-nav">
+    <a href="/" class="link-hover">← home</a>
+    <a href="/blog" class="link-hover">blog</a>
+  </nav>
+
+  <header class="cur-header">
+    <h1 class="cur-title">Curations</h1>
+    <p class="cur-sub">Things I've found valuable.</p>
+  </header>
+
+  <div class="cur-content">
+    {suggestions.sections.map((section) => (
+      <div class="cur-section">
+        <h2 class="cur-section-title">{section.title}</h2>
+        <div class="cur-list">
+          {section.items.map((item) => (
+            <div class="cur-item">
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="cur-item-title link-hover">
+                  {item.title}
+                </a>
+              ) : (
+                <span class="cur-item-title">{item.title}</span>
+              )}
+              <span class="cur-item-attr">{item.attribution}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .cur-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem var(--section-padding-x);
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+
+  .cur-header {
+    padding: 6vh var(--section-padding-x) 4vh;
+  }
+
+  .cur-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(48px, 8vw, 100px);
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .cur-sub {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .cur-content {
+    padding: 0 var(--section-padding-x) 8rem;
+    max-width: 700px;
+  }
+
+  .cur-section {
+    margin-bottom: 4rem;
+  }
+
+  .cur-section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 36px);
+    text-transform: capitalize;
+    margin-bottom: 1.5rem;
+  }
+
+  .cur-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cur-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--text-light);
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+
+  .cur-item:first-child {
+    border-top: 1px solid var(--text-light);
+  }
+
+  .cur-item-title {
+    flex: 1;
+    color: var(--text);
+  }
+
+  a.cur-item-title {
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  a.cur-item-title:hover {
+    opacity: 0.6;
+  }
+
+  .cur-item-attr {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .cur-item {
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .cur-item-attr {
+      text-align: left;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from '../scripts/init';
+
+  document.body.classList.add('loaded');
+
+  gsap.from('.cur-title', {
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out',
+    delay: 0.1,
+  });
+
+  document.querySelectorAll('.cur-section').forEach((section, i) => {
+    gsap.from(section, {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+      delay: 0.3 + i * 0.1,
+    });
+  });
+</script>

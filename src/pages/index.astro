@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ParticleLoader from '../components/ParticleLoader.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Timeline from '../components/Timeline.astro';
+import Projects from '../components/Projects.astro';
+import Publications from '../components/Publications.astro';
+import Writing from '../components/Writing.astro';
+import MiscLinks from '../components/MiscLinks.astro';
+import Terminal from '../components/Terminal.astro';
+
+import content from '../data/content.json';
+---
+
+<BaseLayout>
+  <ParticleLoader />
+
+  <main id="main-content">
+    <Hero data={content.header} />
+    <About data={content.about} />
+    <Timeline data={content.history} />
+    <Projects data={content.projects} />
+    <Publications data={content.publications} />
+    <Writing data={content.writing} />
+    <MiscLinks data={content.misc} />
+  </main>
+
+  <Terminal />
+</BaseLayout>
