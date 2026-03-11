@@ -293,38 +293,46 @@
     cursor.style.animation = 'none';
     cursor.style.opacity = '0.9';
 
+    const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY as string | undefined;
+    if (!accessKey) {
+      addLine('> error: contact form not configured. set PUBLIC_WEB3FORMS_ACCESS_KEY.');
+      cursor.style.animation = '';
+      return;
+    }
+
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name,
+          email,
+          message,
+          subject: `Portfolio Contact from ${name}`,
+        }),
       });
 
-      let data: { success?: boolean; error?: string };
+      let data: { success?: boolean; message?: string };
       try {
         data = await res.json();
       } catch {
-        addLine('> error: invalid response from server.');
+        addLine('> error: invalid response from email service.');
         cursor.style.animation = '';
         return;
       }
 
-      if (data.success) {
+      if (res.ok && data.success) {
         addLine('> message sent. thank you.');
         addLine('> connection closed.');
         sent = true;
         inputLine.style.display = 'none';
       } else {
-        addLine(`> error: ${data.error || 'failed to send.'}`);
+        addLine(`> error: ${data.message || 'failed to send.'}`);
         cursor.style.animation = '';
       }
     } catch {
-      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-        addLine('> [dev] contact api requires vercel deployment.');
-        addLine(`> [dev] would send: ${name} <${email}> — "${message}"`);
-      } else {
-        addLine('> error: could not reach server. try again later.');
-      }
+      addLine('> error: could not reach server. try again later.');
       cursor.style.animation = '';
     }
   });

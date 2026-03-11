@@ -34,8 +34,7 @@ This project is configured for Vercel deployment:
 
 1. Push the `site/` folder to a GitHub repo (or set it as the root)
 2. Import to Vercel — it auto-detects Astro
-3. Set environment variable `WEB3FORMS_ACCESS_KEY` in Vercel dashboard
-4. The `api/contact.js` serverless function handles the contact form
+3. Set environment variable `PUBLIC_WEB3FORMS_ACCESS_KEY` in Vercel (Settings → Environment Variables). Use your Web3Forms access key from [web3forms.com](https://web3forms.com). The form submits directly from the browser to avoid Cloudflare blocking server-side requests.
 
 The `CNAME` file in `public/` points to `arjunsreedar.xyz`.
 
@@ -43,7 +42,6 @@ The `CNAME` file in `public/` points to `arjunsreedar.xyz`.
 
 ```
 site/
-├── api/contact.js              # Vercel serverless function (Web3Forms)
 ├── public/assets/              # Static images
 ├── src/
 │   ├── components/             # Astro components (each section)
@@ -84,7 +82,7 @@ The terminal at the bottom of the page accepts messages in the format:
 name | email | message
 ```
 
-In production (Vercel), it routes through the serverless function. Locally, it falls back to the Web3Forms API directly.
+Submits directly to Web3Forms from the browser. Set `PUBLIC_WEB3FORMS_ACCESS_KEY` (build-time env) in Vercel. For local dev, add it to `.env` or `.env.local`.
 
 ## Fonts
 
