@@ -1,13 +1,13 @@
-# Portfolio — The Typographic Machine
+# Portfolio — Tech Bro Edition
 
-Maximalist, vintage-styled portfolio built with Astro, GSAP, Three.js, and Lenis.
+Maximalist portfolio built with Astro, GSAP, and Lenis. Dark-mode-first, gradient text, glassmorphism, dot grid backgrounds, and neon glow effects.
 
 ## Stack
 
 - **Astro 5** — static site generation, content collections for blog
 - **GSAP + ScrollTrigger** — scroll animations, horizontal timeline, staggers
 - **Lenis** — smooth scrolling
-- **Boska** (Fontshare) — display serif
+- **Space Grotesk** (Google Fonts) — display sans-serif
 - **JetBrains Mono** (Google Fonts) — body/terminal monospace
 
 ## Running locally
@@ -88,6 +88,6 @@ In production (Vercel), it routes through the serverless function. Locally, it f
 
 ## Fonts
 
-- **Boska** is loaded from Fontshare CDN (free for personal and commercial use)
+- **Space Grotesk** is loaded from Google Fonts (geometric sans-serif)
 - **JetBrains Mono** is loaded from Google Fonts
-- To swap to a different display font (e.g. Grafier), change `--font-display` in `global.css` and update the `<link>` in `BaseLayout.astro`
+- To swap to a different display font, change `--font-display` in `global.css` and update the `<link>` in `BaseLayout.astro`

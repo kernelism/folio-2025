@@ -15,55 +15,47 @@ const { data } = Astro.props;
 <section class="section misc" id="misc">
   <h2 class="section-title">More</h2>
 
-  <div class="misc-scatter">
-    {data.items.map((item, i) => {
-      const offsetY = Math.sin(i * 1.2) * 15;
-      const scale = 0.85 + (Math.cos(i * 0.9) * 0.15);
-      return item.url ? (
-        <a
-          href={item.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="misc-link link-hover"
-          style={`--offset-y: ${offsetY}px; --scale: ${scale}`}
-        >
-          {item.title}
-        </a>
-      ) : (
-        <span
-          class="misc-link misc-static"
-          style={`--offset-y: ${offsetY}px; --scale: ${scale}`}
-          title={item.note}
-        >
-          {item.title}{item.note && <span class="misc-note"> ({item.note})</span>}
-        </span>
-      );
-    })}
-  </div>
+  <nav class="misc-links">
+    {data.items.map((item, i) => (
+      <>
+        {item.url ? (
+          <a href={item.url} target="_blank" rel="noopener noreferrer" class="misc-link">{item.title}</a>
+        ) : (
+          <span class="misc-link misc-static" title={item.note}>
+            {item.title}{item.note && <span class="misc-note"> ({item.note})</span>}
+          </span>
+        )}
+        {i < data.items.length - 1 && <span class="misc-sep">·</span>}
+      </>
+    ))}
+  </nav>
 </section>
 
 <style>
   .misc {
-    padding-bottom: 6vh;
+    padding-bottom: 8vh;
+    z-index: 1;
   }
 
-  .misc-scatter {
+  .misc-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1.5rem 2.5rem;
+    gap: 0.35rem;
     margin-left: 2vw;
-    padding: 4vh 0;
+    padding: 3vh 0;
+    font-family: var(--font-body);
+    font-size: 13px;
   }
 
   .misc-link {
-    font-family: var(--font-body);
-    font-size: calc(14px * var(--scale, 1));
-    transform: translateY(var(--offset-y, 0));
     color: var(--text);
     text-decoration: none;
-    transition: color 0.3s;
-    display: inline-block;
+    transition: opacity 0.2s;
+  }
+
+  .misc-link:hover {
+    opacity: 0.6;
   }
 
   .misc-static {
@@ -71,15 +63,15 @@ const { data } = Astro.props;
     cursor: default;
   }
 
+  .misc-sep {
+    color: var(--text-muted);
+    opacity: 0.4;
+    user-select: none;
+  }
+
   .misc-note {
     font-size: 11px;
     color: var(--text-muted);
-  }
-
-  @media (max-width: 768px) {
-    .misc-scatter {
-      gap: 1rem 1.5rem;
-    }
   }
 </style>
 
@@ -89,22 +81,16 @@ const { data } = Astro.props;
   const links = document.querySelectorAll('.misc-link');
 
   links.forEach((link, i) => {
-    const angle = (Math.random() - 0.5) * 60;
-    const dist = 30 + Math.random() * 30;
-    const rad = (angle * Math.PI) / 180;
-
     gsap.from(link, {
-      x: Math.cos(rad) * dist,
-      y: Math.sin(rad) * dist,
       opacity: 0,
-      duration: 0.5,
+      duration: 0.4,
       ease: 'power2.out',
       scrollTrigger: {
         trigger: link,
         start: 'top 92%',
         toggleActions: 'play none none none',
       },
-      delay: i * 0.07,
+      delay: i * 0.04,
     });
   });
 </script>

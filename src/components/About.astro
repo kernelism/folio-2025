@@ -8,11 +8,12 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section class="section about" id="about">
+<section class="section about about-hidden" id="about">
   <span class="section-number">01</span>
   <h2 class="section-title">About</h2>
 
   <div class="about-content">
+    <span class="about-accent-line" aria-hidden="true"></span>
     {data.paragraphs.map((p) => (
       <p class="about-paragraph">{p}</p>
     ))}
@@ -21,23 +22,46 @@ const { data } = Astro.props;
 
 <style>
   .about {
-    min-height: 80vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 1;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+  }
+
+  .about-hidden {
+    opacity: 0;
   }
 
   .about-content {
-    max-width: 600px;
+    max-width: 520px;
     margin-left: 2vw;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .about-accent-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--accent);
+    transform-origin: top;
   }
 
   .about-paragraph {
     font-family: var(--font-body);
-    font-size: clamp(15px, 1.1vw, 18px);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 1rem;
     color: var(--text);
+  }
+
+  .about-paragraph:last-child {
+    margin-bottom: 0;
   }
 </style>
 
@@ -46,31 +70,55 @@ const { data } = Astro.props;
 
   const section = document.querySelector('.about')!;
   const number = section.querySelector('.section-number')!;
+  const accentLine = section.querySelector('.about-accent-line')!;
   const paragraphs = section.querySelectorAll('.about-paragraph');
 
+  gsap.set(accentLine, { scaleY: 0 });
+
+  gsap.to(section, {
+    opacity: 1,
+    duration: 0.6,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 85%',
+      toggleActions: 'play none none none',
+    },
+  });
+
+  gsap.to(accentLine, {
+    scaleY: 1,
+    duration: 0.85,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 78%',
+      toggleActions: 'play none none none',
+    },
+  });
+
   gsap.from(number, {
-    y: 60,
     opacity: 0,
+    duration: 0.5,
     scrollTrigger: {
       trigger: section,
       start: 'top 80%',
-      end: 'top 20%',
-      scrub: 1,
+      toggleActions: 'play none none none',
     },
   });
 
   paragraphs.forEach((p, i) => {
     gsap.from(p, {
-      clipPath: 'inset(100% 0 0 0)',
+      y: 16,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.5,
       ease: 'power3.out',
       scrollTrigger: {
         trigger: p,
-        start: 'top 85%',
+        start: 'top 88%',
         toggleActions: 'play none none none',
       },
-      delay: i * 0.1,
+      delay: i * 0.06,
     });
   });
 </script>

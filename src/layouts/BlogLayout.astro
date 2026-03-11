@@ -40,12 +40,16 @@ const { title, date, description } = Astro.props;
     font-size: 14px;
     text-transform: lowercase;
     color: var(--text);
+    position: relative;
+    z-index: 1;
   }
 
   .blog-article {
     max-width: 920px;
     margin: 0 auto;
     padding: 4rem var(--section-padding-x) 8rem;
+    position: relative;
+    z-index: 1;
   }
 
   .blog-header {
@@ -54,11 +58,14 @@ const { title, date, description } = Astro.props;
 
   .blog-title {
     font-family: var(--font-display);
-    font-weight: 900;
+    font-weight: 700;
     font-size: clamp(36px, 6vw, 72px);
     line-height: 1;
     margin-bottom: 1rem;
-    color: var(--text);
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .blog-date {
@@ -97,17 +104,18 @@ const { title, date, description } = Astro.props;
   }
 
   .blog-body :global(a) {
+    color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: opacity 0.3s;
   }
 
   .blog-body :global(a:hover) {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   .blog-body :global(blockquote) {
-    border-left: 3px solid var(--text-light);
+    border-left: 3px solid var(--accent);
     padding-left: 1.5rem;
     margin: 2rem 0;
     color: var(--text-muted);
@@ -115,9 +123,10 @@ const { title, date, description } = Astro.props;
   }
 
   .blog-body :global(code) {
-    background: color-mix(in srgb, var(--text) 8%, transparent);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     padding: 0.15em 0.4em;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
     font-size: 0.9em;
   }
 
@@ -125,7 +134,8 @@ const { title, date, description } = Astro.props;
     background: var(--surface-dark);
     color: var(--cursor-color);
     padding: 1.5rem;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     overflow-x: auto;
     margin: 2rem 0;
     font-size: 14px;
@@ -136,6 +146,7 @@ const { title, date, description } = Astro.props;
     background: none;
     padding: 0;
     border-radius: 0;
+    border: none;
   }
 
   .blog-body :global(ul),
@@ -149,7 +160,7 @@ const { title, date, description } = Astro.props;
 
   .blog-body :global(hr) {
     border: none;
-    border-top: 1px solid var(--text-light);
+    border-top: 1px solid var(--card-border);
     margin: 3rem 0;
   }
 
@@ -166,7 +177,9 @@ const { title, date, description } = Astro.props;
     margin: 0 auto;
     padding: 0 var(--section-padding-x) 4rem;
     font-size: 14px;
-    color: var(--text);
+    color: var(--accent);
+    position: relative;
+    z-index: 1;
   }
 </style>
 

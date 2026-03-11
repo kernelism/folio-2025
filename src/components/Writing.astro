@@ -1,25 +1,39 @@
 ---
-interface OnSiteArticle {
+interface WritingItem {
   date: string;
   title: string;
-  slug: string;
-  description: string;
-}
-
-interface MediumArticle {
-  date: string;
-  title: string;
-  url: string;
+  slug?: string;
+  url?: string;
+  description?: string;
 }
 
 interface Props {
   data: {
-    onSiteArticles: OnSiteArticle[];
-    articles: MediumArticle[];
+    onSiteArticles: { date: string; title: string; slug: string; description: string }[];
+    articles: { date: string; title: string; url: string }[];
   };
 }
 
 const { data } = Astro.props;
+
+const MONTHS: Record<string, number> = {
+  Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6,
+  Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12
+};
+
+function parseDate(s: string): number {
+  const [monthStr, yearStr] = s.split(' ');
+  const m = MONTHS[monthStr] ?? 1;
+  const y = parseInt(yearStr || '0', 10);
+  return y * 12 + m;
+}
+
+const allItems: WritingItem[] = [
+  ...data.onSiteArticles.map((a) => ({ ...a, slug: a.slug, description: a.description })),
+  ...data.articles.map((a) => ({ date: a.date, title: a.title, url: a.url }))
+];
+
+allItems.sort((a, b) => parseDate(b.date) - parseDate(a.date));
 ---
 
 <section class="section writing" id="writing">
@@ -27,30 +41,20 @@ const { data } = Astro.props;
   <h2 class="section-title">Writing</h2>
 
   <div class="writing-content">
-    <div class="writing-blog">
-      <h3 class="writing-subtitle">on this site</h3>
-      <div class="blog-cards">
-        {data.onSiteArticles.map((post) => (
-          <a href={`/blog/${post.slug}`} class="blog-card">
-            <span class="blog-card-date">{post.date}</span>
-            <h4 class="blog-card-title">{post.title}</h4>
-            <p class="blog-card-desc">{post.description}</p>
+    <div class="writing-list">
+      {allItems.map((item) => (
+        item.slug ? (
+          <a href={`/blog/${item.slug}`} class="writing-item">
+            <span class="writing-date">{item.date}</span>
+            <span class="writing-title">{item.title}</span>
           </a>
-        ))}
-      </div>
-      <a href="/blog" class="writing-more link-hover">→ all posts</a>
-    </div>
-
-    <div class="writing-medium">
-      <h3 class="writing-subtitle">on medium</h3>
-      <div class="medium-list">
-        {data.articles.map((article) => (
-          <a href={article.url} target="_blank" rel="noopener noreferrer" class="medium-item">
-            <span class="medium-date">{article.date}</span>
-            <span class="medium-title">{article.title}</span>
+        ) : (
+          <a href={item.url!} target="_blank" rel="noopener noreferrer" class="writing-item">
+            <span class="writing-date">{item.date}</span>
+            <span class="writing-title">{item.title}</span>
           </a>
-        ))}
-      </div>
+        )
+      ))}
     </div>
 
     <a href="/curations" class="writing-more link-hover">→ curations</a>
@@ -60,146 +64,72 @@ const { data } = Astro.props;
 <style>
   .writing-content {
     margin-left: 2vw;
-    max-width: 800px;
+    max-width: 600px;
   }
 
-  .writing-subtitle {
-    font-family: var(--font-body);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .blog-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .blog-card {
-    display: block;
-    padding: 1.5rem;
-    border: 1px solid var(--text-light);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .blog-card:hover {
-    border-color: var(--text);
-    transform: translateY(-3px);
-  }
-
-  .blog-card-date {
-    font-family: var(--font-body);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .blog-card-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-  }
-
-  .blog-card-desc {
-    font-family: var(--font-body);
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  .writing-medium {
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .medium-list {
+  .writing-list {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
   }
 
-  .medium-item {
+  .writing-item {
     display: flex;
     align-items: baseline;
     gap: 1.5rem;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--text-light);
+    padding-left: 1.5rem;
+    margin-left: 0.5rem;
+    border-left: 1px solid var(--card-border);
     text-decoration: none;
     color: inherit;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
     font-family: var(--font-body);
     font-size: 14px;
   }
 
-  .medium-item:first-child {
-    border-top: 1px solid var(--text-light);
+  .writing-item:hover {
+    opacity: 0.75;
   }
 
-  .medium-item:hover {
-    opacity: 0.6;
-  }
-
-  .medium-date {
+  .writing-date {
     flex-shrink: 0;
-    width: 80px;
+    width: 72px;
     font-size: 12px;
     color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
   }
 
-  .medium-title {
+  .writing-title {
     flex: 1;
+    color: var(--text);
+  }
+
+  .writing-item:hover .writing-title {
+    color: var(--accent);
   }
 
   .writing-more {
     display: inline-block;
     font-family: var(--font-body);
-    font-size: 14px;
-    margin-top: 1rem;
+    font-size: 13px;
+    margin-top: 2rem;
     color: var(--text-muted);
-    transition: color 0.3s;
+    transition: color 0.2s;
   }
 
   .writing-more:hover {
-    color: var(--text);
+    color: var(--accent);
   }
 </style>
 
 <script>
   import { gsap, ScrollTrigger } from '../scripts/init';
 
-  const blogCards = document.querySelectorAll('.blog-card');
-  const mediumItems = document.querySelectorAll('.medium-item');
+  const items = document.querySelectorAll('.writing-item');
 
-  blogCards.forEach((card, i) => {
-    gsap.from(card, {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 88%',
-        toggleActions: 'play none none none',
-      },
-      delay: i * 0.1,
-    });
-  });
-
-  mediumItems.forEach((item, i) => {
+  items.forEach((item, i) => {
     gsap.from(item, {
-      x: -20,
+      x: -16,
       opacity: 0,
       duration: 0.4,
       ease: 'power2.out',
@@ -208,7 +138,7 @@ const { data } = Astro.props;
         start: 'top 92%',
         toggleActions: 'play none none none',
       },
-      delay: i * 0.05,
+      delay: i * 0.03,
     });
   });
 </script>

@@ -6,12 +6,12 @@ import suggestions from '../data/suggestions.json';
 <BaseLayout title="Curations — Arjhun Sreedar" description="Things I recommend: videos, books, articles.">
   <nav class="cur-nav">
     <a href="/" class="link-hover">← home</a>
-    <a href="/blog" class="link-hover">blog</a>
+    <a href="/#writing" class="link-hover">writing</a>
   </nav>
 
   <header class="cur-header">
     <h1 class="cur-title">Curations</h1>
-    <p class="cur-sub">Things I've found valuable.</p>
+    <p class="cur-sub">Things I've found valuable</p>
   </header>
 
   <div class="cur-content">
@@ -22,13 +22,16 @@ import suggestions from '../data/suggestions.json';
           {section.items.map((item) => (
             <div class="cur-item">
               {item.url ? (
-                <a href={item.url} target="_blank" rel="noopener noreferrer" class="cur-item-title link-hover">
-                  {item.title}
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="cur-item-link">
+                  <span class="cur-item-title">{item.title}</span>
+                  <span class="cur-item-attr">{item.attribution}</span>
                 </a>
               ) : (
-                <span class="cur-item-title">{item.title}</span>
+                <div class="cur-item-link cur-item-static">
+                  <span class="cur-item-title">{item.title}</span>
+                  <span class="cur-item-attr">{item.attribution}</span>
+                </div>
               )}
-              <span class="cur-item-attr">{item.attribution}</span>
             </div>
           ))}
         </div>
@@ -41,97 +44,121 @@ import suggestions from '../data/suggestions.json';
   .cur-nav {
     display: flex;
     justify-content: space-between;
-    padding: 2rem var(--section-padding-x);
+    padding: 3rem var(--section-padding-x);
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    position: relative;
+    z-index: 1;
   }
 
   .cur-header {
-    padding: 6vh var(--section-padding-x) 4vh;
+    padding: 6vh var(--section-padding-x) 6vh;
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
   }
 
   .cur-title {
     font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(48px, 8vw, 100px);
-    line-height: 0.9;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: clamp(22px, 3vw, 28px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
     color: var(--text);
   }
 
   .cur-sub {
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 12px;
     color: var(--text-muted);
   }
 
   .cur-content {
     padding: 0 var(--section-padding-x) 8rem;
-    max-width: 700px;
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
   }
 
   .cur-section {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cur-section:last-child {
+    margin-bottom: 0;
   }
 
   .cur-section-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(24px, 3vw, 36px);
-    text-transform: capitalize;
-    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
   }
 
   .cur-list {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
   }
 
   .cur-item {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--text-light);
-    font-family: var(--font-body);
-    font-size: 14px;
+    border-left: 1px solid var(--card-border);
+    padding-left: 1.25rem;
+    margin-left: 0.5rem;
   }
 
-  .cur-item:first-child {
-    border-top: 1px solid var(--text-light);
+  .cur-item-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+  }
+
+  .cur-item-link:hover {
+    opacity: 0.9;
+  }
+
+  .cur-item-static {
+    cursor: default;
+  }
+
+  .cur-item-static:hover {
+    opacity: 1;
   }
 
   .cur-item-title {
-    flex: 1;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
     color: var(--text);
   }
 
-  a.cur-item-title {
-    text-decoration: none;
-    transition: opacity 0.3s;
-  }
-
-  a.cur-item-title:hover {
-    opacity: 0.6;
+  a.cur-item-link:hover .cur-item-title {
+    color: var(--accent);
   }
 
   .cur-item-attr {
-    flex-shrink: 0;
+    font-family: var(--font-body);
     font-size: 12px;
     color: var(--text-muted);
-    text-align: right;
   }
 
   @media (max-width: 600px) {
-    .cur-item {
-      flex-direction: column;
-      gap: 0.15rem;
+    .cur-section {
+      margin-bottom: 2rem;
     }
 
-    .cur-item-attr {
-      text-align: left;
+    .cur-list {
+      gap: 0.85rem;
     }
   }
 </style>
@@ -142,7 +169,7 @@ import suggestions from '../data/suggestions.json';
   document.body.classList.add('loaded');
 
   gsap.from('.cur-title', {
-    y: 50,
+    y: 40,
     opacity: 0,
     duration: 0.8,
     ease: 'power3.out',
@@ -151,11 +178,11 @@ import suggestions from '../data/suggestions.json';
 
   document.querySelectorAll('.cur-section').forEach((section, i) => {
     gsap.from(section, {
-      y: 30,
+      y: 24,
       opacity: 0,
       duration: 0.6,
       ease: 'power3.out',
-      delay: 0.3 + i * 0.1,
+      delay: 0.2 + i * 0.08,
     });
   });
 </script>

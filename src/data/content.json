@@ -2,7 +2,7 @@
   "header": {
     "name": "Arjhun Sreedar",
     "nameAudio": "ur-june shree-dhar",
-    "tagline": "I solve problems with code",
+    "tagline": "engineer · researcher · builder",
     "profileImage": "/assets/img.jpeg",
     "socialLinks": [
       { "platform": "twitter", "url": "https://twitter.com/ArjhunSreedar" },
@@ -165,12 +165,6 @@
   },
   "writing": {
     "onSiteArticles": [
-      {
-        "date": "Feb 2026",
-        "title": "Hello, World!",
-        "slug": "hello-world",
-        "description": "My first blog post on this site — why I decided to start writing here."
-      },
       {
         "date": "Feb 2026",
         "title": "You're not good at anything!",

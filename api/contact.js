@@ -50,7 +50,20 @@ export default async function handler(req, res) {
       }),
     });
 
-    const result = await response.json();
+    let result;
+    const contentType = response.headers.get('Content-Type') || '';
+    if (contentType.includes('application/json')) {
+      try {
+        result = await response.json();
+      } catch (parseErr) {
+        console.error('Web3Forms response parse error:', parseErr);
+        return res.status(500).json({ success: false, error: 'Invalid response from email service' });
+      }
+    } else {
+      const text = await response.text();
+      console.error('Web3Forms returned non-JSON:', text?.slice(0, 200));
+      return res.status(500).json({ success: false, error: 'Email service temporarily unavailable' });
+    }
 
     if (response.ok && result.success) {
       return res.status(200).json({ success: true });

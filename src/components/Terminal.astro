@@ -9,9 +9,9 @@
   <div class="terminal">
     <div class="terminal-bar">
       <div class="terminal-dots">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
       </div>
       <span class="terminal-bar-title">arjhun@portfolio:~$</span>
     </div>
@@ -40,6 +40,8 @@
     width: 100%;
     min-height: 420px;
     margin-top: 8vh;
+    z-index: 1;
+    position: relative;
   }
 
   .terminal-gap {
@@ -55,8 +57,11 @@
     font-family: var(--font-display);
     font-weight: 300;
     font-size: clamp(100px, 12vw, 180px);
-    color: var(--text-light);
-    opacity: 0.4;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.2;
     user-select: none;
   }
 
@@ -67,6 +72,11 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    border-radius: var(--radius-lg) 0 0 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: none;
+    border-bottom: none;
   }
 
   .terminal::before {
@@ -77,8 +87,8 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(245, 240, 232, 0.02) 2px,
-      rgba(245, 240, 232, 0.02) 4px
+      rgba(245, 158, 11, 0.02) 2px,
+      rgba(245, 158, 11, 0.02) 4px
     );
     pointer-events: none;
     z-index: 1;
@@ -89,7 +99,8 @@
     align-items: center;
     gap: 1rem;
     padding: 0.75rem 1.25rem;
-    border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
   }
 
   .terminal-dots {
@@ -101,12 +112,11 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--cursor-color);
-    opacity: 0.25;
   }
 
-  .dot:first-child { opacity: 0.4; }
-  .dot:nth-child(2) { opacity: 0.3; }
+  .dot-red { background: #FF5F57; }
+  .dot-yellow { background: #FFBD2E; }
+  .dot-green { background: #28CA41; }
 
   .terminal-bar-title {
     font-family: var(--font-body);
@@ -139,6 +149,7 @@
   .terminal-prompt {
     flex-shrink: 0;
     opacity: 0.7;
+    color: var(--accent);
   }
 
   .terminal-input-display {
@@ -149,6 +160,7 @@
   .terminal-cursor {
     animation: blink 1s step-end infinite;
     opacity: 0.9;
+    color: var(--accent);
   }
 
   @keyframes blink {
@@ -176,6 +188,8 @@
 
     .terminal {
       width: 100%;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .terminal-deco {
@@ -187,25 +201,6 @@
 <script>
   import { gsap, ScrollTrigger } from '../scripts/init';
 
-  const THINKING_WORDS = [
-    'Accomplishing', 'Actioning', 'Actualizing', 'Baking', 'Brewing',
-    'Calculating', 'Cerebrating', 'Churning', 'Clauding', 'Coalescing',
-    'Cogitating', 'Computing', 'Conjuring', 'Considering', 'Cooking',
-    'Crafting', 'Creating', 'Crunching', 'Deliberating', 'Determining',
-    'Doing', 'Effecting', 'Finagling', 'Forging', 'Forming', 'Generating',
-    'Hatching', 'Herding', 'Honking', 'Hustling', 'Ideating', 'Inferring',
-    'Manifesting', 'Marinating', 'Moseying', 'Mulling', 'Mustering',
-    'Musing', 'Noodling', 'Percolating', 'Pondering', 'Processing',
-    'Puttering', 'Reticulating', 'Ruminating', 'Schlepping', 'Shucking',
-    'Simmering', 'Smooshing', 'Spinning', 'Stewing', 'Synthesizing',
-    'Thinking', 'Transmuting', 'Vibing', 'Working',
-  ];
-
-  function pick(arr: string[], n: number) {
-    const shuffled = [...arr].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, n);
-  }
-
   const output = document.getElementById('terminal-output')!;
   const inputLine = document.getElementById('terminal-input-line')!;
   const inputDisplay = document.getElementById('terminal-input-display')!;
@@ -213,12 +208,8 @@
   const cursor = document.getElementById('terminal-cursor')!;
   const termBody = document.getElementById('terminal-body')!;
 
-  const bootWords = pick(THINKING_WORDS, 4);
   const bootLines = [
-    `${bootWords[0]}...`,
-    `${bootWords[1]}...`,
-    `${bootWords[2]}... done.`,
-    `${bootWords[3]}... ready.`,
+    'ready.',
     '',
     '> drop a message. format: name | email | message',
   ];
@@ -298,8 +289,7 @@
       return;
     }
 
-    const word = pick(THINKING_WORDS, 1)[0];
-    addLine(`> ${word.toLowerCase()}...`);
+    addLine('> sending...');
     cursor.style.animation = 'none';
     cursor.style.opacity = '0.9';
 
@@ -310,7 +300,14 @@
         body: JSON.stringify({ name, email, message }),
       });
 
-      const data = await res.json();
+      let data: { success?: boolean; error?: string };
+      try {
+        data = await res.json();
+      } catch {
+        addLine('> error: invalid response from server.');
+        cursor.style.animation = '';
+        return;
+      }
 
       if (data.success) {
         addLine('> message sent. thank you.');
