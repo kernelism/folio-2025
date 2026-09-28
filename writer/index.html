@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playback Writer</title>
+  <link rel="stylesheet" href="/__writer/writer.css">
+</head>
+
+<body>
+  <header class="bar">
+    <div class="bar-left">
+      <button class="icon-btn" id="toggleSidebar" title="Show or hide the post list" aria-label="Toggle post list">☰</button>
+      <span class="brand">Playback <em>Writer</em></span>
+      <span class="branch" id="branch" title="Current git branch"></span>
+    </div>
+
+    <div class="bar-mid">
+      <span class="save-state" id="saveState">—</span>
+    </div>
+
+    <div class="bar-right">
+      <button class="ghost-btn" id="themeToggle" title="Preview in dark mode">◐</button>
+      <button class="ghost-btn" id="newPost">New</button>
+      <button class="ghost-btn" id="savePost" title="⌘S">Save</button>
+      <button class="primary-btn" id="publishPost">Publish</button>
+    </div>
+  </header>
+
+  <main class="layout" id="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <span>Posts</span>
+        <span class="count" id="postCount"></span>
+      </div>
+      <ul class="post-list" id="postList"></ul>
+      <div class="sidebar-foot">
+        <span class="dot draft"></span> draft
+        <span class="dot live"></span> published
+        <span class="dot edited"></span> unpushed edits
+      </div>
+    </aside>
+
+    <section class="editor" id="editorPane">
+      <div class="meta" id="meta">
+        <label class="field wide">
+          <span>Title</span>
+          <input id="f-title" type="text" placeholder="The re-release" autocomplete="off">
+        </label>
+
+        <label class="field">
+          <span>Slug <small id="slugHint"></small></span>
+          <input id="f-slug" type="text" placeholder="the-re-release" autocomplete="off" spellcheck="false">
+        </label>
+
+        <label class="field">
+          <span>Date</span>
+          <input id="f-date" type="date">
+        </label>
+
+        <label class="field">
+          <span>Theme</span>
+          <input id="f-theme" type="text" list="themes" placeholder="cinema" autocomplete="off">
+          <datalist id="themes">
+            <option value="cinema"></option>
+            <option value="music"></option>
+            <option value="writing"></option>
+          </datalist>
+        </label>
+
+        <label class="field wide side-field">
+          <input id="f-side" type="checkbox">
+          <span>Side B <small>hidden from the listing and home page, found by flipping the tape</small></span>
+        </label>
+
+        <label class="field wide">
+          <span>Description <small>shown on the listing and under the title</small></span>
+          <input id="f-description" type="text" placeholder="One line that makes someone click.">
+        </label>
+
+        <details class="more" id="moreMeta">
+          <summary>Film credits &amp; tags</summary>
+          <div class="more-grid">
+            <label class="field">
+              <span>Film</span>
+              <input id="f-film" type="text" placeholder="Ghilli" autocomplete="off">
+            </label>
+            <label class="field">
+              <span>Year</span>
+              <input id="f-year" type="text" placeholder="2004" autocomplete="off">
+            </label>
+            <label class="field">
+              <span>Director <small>not rendered</small></span>
+              <input id="f-director" type="text" placeholder="Dharani" autocomplete="off">
+            </label>
+            <label class="field">
+              <span>Music <small>not rendered</small></span>
+              <input id="f-music" type="text" placeholder="Vidyasagar" autocomplete="off">
+            </label>
+            <label class="field wide">
+              <span>Tags <small>comma separated, not rendered</small></span>
+              <input id="f-tags" type="text" placeholder="tamil, home" autocomplete="off">
+            </label>
+          </div>
+        </details>
+      </div>
+
+      <div class="toolbar" id="toolbar">
+        <button type="button" data-mark="bold" title="Bold (⌘B)"><b>B</b></button>
+        <button type="button" data-mark="italic" title="Italic (⌘I)"><i>I</i></button>
+        <button type="button" data-mark="h2" title="Heading">H2</button>
+        <button type="button" data-mark="quote" title="Blockquote">&rdquo;</button>
+        <button type="button" data-mark="link" title="Link (⌘K)">↗</button>
+        <span class="tb-sep"></span>
+        <button type="button" data-block="lyric">Lyric</button>
+        <button type="button" data-block="dialogue">Dialogue</button>
+        <button type="button" data-block="image">Image</button>
+        <button type="button" data-block="clip">Clip</button>
+        <button type="button" data-block="loop">Loop</button>
+        <button type="button" data-block="youtube">YouTube</button>
+        <span class="tb-hint">or type <kbd>/</kbd></span>
+      </div>
+
+      <div class="body-wrap" id="bodyWrap">
+        <textarea id="body" spellcheck="true" placeholder="Write.
+
+Type / for a lyric, a clip, a dialogue.
+Drop a video anywhere to add it."></textarea>
+        <div class="drop-veil" id="dropVeil"><span>Drop it — I'll file it in assets/clips/</span></div>
+      </div>
+    </section>
+
+    <section class="preview" id="previewPane">
+      <iframe id="previewFrame" src="/__writer/preview.html" title="Live preview"></iframe>
+    </section>
+  </main>
+
+  <div class="slash" id="slash" hidden></div>
+  <div class="toasts" id="toasts"></div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <h2 id="modalTitle">Publish</h2>
+      <div id="modalBody"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <!-- The site's own engine: the editor parses frontmatter with the same
+       code the published post does. marked comes along because blog.js
+       renders through it. -->
+  <script src="/blog/marked.min.js"></script>
+  <script src="/blog/blog.js"></script>
+  <script src="/__writer/writer.js"></script>
+</body>
+
+</html>

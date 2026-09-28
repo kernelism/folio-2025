@@ -1,0 +1,6 @@
+# The blog editor is a local tool. It writes to disk and shells out to git, so
+# it has no meaning on a static host — and no reason to be reachable there.
+writer/
+
+# Design notes, not part of the site.
+docs/

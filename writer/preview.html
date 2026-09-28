@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preview</title>
+  <!-- The site's own stylesheets, served off disk by writer/server.js. The
+       preview is only trustworthy because these are the real files. -->
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="/styles/blog.css">
+  <style>
+    /* The iframe is the page, so give it the post's own breathing room and
+       nothing else. No editor chrome leaks in here. */
+    html, body { margin: 0; padding: 0; }
+    body { overflow-x: hidden; }
+
+    .preview-empty {
+      max-width: 34rem;
+      margin: 6rem auto;
+      padding: 0 1.5rem;
+      opacity: .45;
+      font-style: italic;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Same element and class post.html uses, so blog.css applies identically. -->
+  <article class="blog-post" id="post" data-topic="cinema">
+    <p class="preview-empty">Your post will appear here as you write.</p>
+  </article>
+
+  <script src="/blog/marked.min.js"></script>
+  <script src="/blog/blog.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var post = document.getElementById('post');
+
+      /* Re-rendering blows away scroll position on every keystroke, which makes
+         the preview useless while editing the middle of a long post. Restore it
+         after each render. */
+      function render(payload) {
+        var meta = payload.meta || {};
+        var scroll = window.scrollY;
+
+        post.setAttribute('data-topic', Blog.topicOf(meta));
+        document.body.classList.toggle('side-b', Blog.sideOf(meta) === 'b');
+        document.documentElement.classList.toggle('side-b', Blog.sideOf(meta) === 'b');
+
+        try {
+          post.innerHTML = Blog.renderPost(meta, payload.body || '', payload.slug);
+          Blog.attachBehaviors(post);
+        } catch (e) {
+          post.innerHTML = '<p class="preview-empty">Preview failed: ' +
+            Blog.escapeHtml(e && e.message ? e.message : String(e)) + '</p>';
+        }
+
+        window.scrollTo(0, scroll);
+      }
+
+      window.addEventListener('message', function (event) {
+        // Same-origin only: the editor and this frame are both served by
+        // writer/server.js on localhost.
+        if (event.origin !== window.location.origin) return;
+        var data = event.data;
+        if (!data || data.type !== 'preview') return;
+        render(data);
+      });
+
+      /* Links inside a preview should never navigate the frame — you'd lose the
+         preview and wonder where it went. Open them in a real tab instead. */
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href]');
+        if (!a) return;
+        e.preventDefault();
+        var href = a.getAttribute('href');
+        if (href && !/^#/.test(href)) window.open(a.href, '_blank', 'noopener');
+      });
+
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'preview-ready' }, window.location.origin);
+      }
+    })();
+  </script>
+</body>
+
+</html>

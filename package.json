@@ -4,7 +4,7 @@
   "private": true,
   "description": "Personal portfolio website",
   "scripts": {
-    "dev": "vercel dev"
+    "dev": "vercel dev",
+    "write": "node writer/server.js"
   }
 }
-

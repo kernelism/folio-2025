@@ -4,127 +4,204 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Blog — Arjhun Sreedar</title>
-  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
-  <link rel="stylesheet" type="text/css" href="./styles/blog.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Playback — Arjun Sreedar</title>
+  <meta name="description"
+    content="Cinema and music that got into me and stayed there. Tamil films, the songs that came with them, and what they sound like from a long way away.">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css?v=2026-09-28g">
+  <link rel="stylesheet" type="text/css" href="/styles/blog.css?v=2026-09-28g">
 </head>
 
 <body>
   <div class="blog-nav">
-    <a href="./index.html" class="blog-nav-back">← Home</a>
+    <a href="/index.html" class="blog-nav-back">← Home</a>
   </div>
 
-  <div class="blog-header">
-    <h1 class="blog-title">Blog</h1>
-    <p class="blog-subtitle">Long-form writing, hosted here.</p>
-  </div>
+  <header class="blog-header">
+    <h1 class="blog-title">Playback<span class="side-mark" id="sideMark" aria-hidden="true">A</span></h1>
+    <p class="blog-subtitle" data-side="a">Everything cinema and music that got into me and stayed there —
+      and what it all sounds like from eight thousand miles away.</p>
+    <p class="blog-subtitle" data-side="b" hidden>The other side of the tape. The things I think about
+      more than I say out loud.</p>
+  </header>
 
-  <div class="blog-list-container" id="blogList">
-    <p class="blog-loading">Loading posts...</p>
-  </div>
+  <nav class="theme-bar" id="themeBar" aria-label="Filter by theme"></nav>
+
+  <main class="blog-list-container" id="blogList">
+    <p class="blog-loading">Loading…</p>
+  </main>
 
   <footer class="blog-footer">
-    <a href="./index.html">← Back to portfolio</a>
+    <a href="/index.html">← Back to portfolio</a>
   </footer>
 
+  <script src="/blog/marked.min.js"></script>
+  <script src="/blog/blog.js?v=2026-09-28g"></script>
   <script>
-    // Parse markdown frontmatter
-    function parseFrontmatter(md) {
-      const match = md.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-      if (!match) return { meta: {}, content: md };
-      const meta = {};
-      match[1].split('\n').forEach(line => {
-        const [key, ...rest] = line.split(':');
-        if (key && rest.length) {
-          let val = rest.join(':').trim();
-          if (val.startsWith('[')) {
-            try { val = JSON.parse(val); } catch(e) {}
-          }
-          meta[key.trim().toLowerCase()] = val;
-        }
+    (function () {
+      var container = document.getElementById('blogList');
+      var themeBar = document.getElementById('themeBar');
+      var mark = document.getElementById('sideMark');
+
+      // On blog.arjunsreedar.xyz the rewrite in vercel.json gives us clean
+      // /slug URLs; everywhere else fall back to the query-string form.
+      var onSubdomain = /^blog\./.test(location.hostname);
+
+      function hrefFor(slug) {
+        return onSubdomain
+          ? '/' + encodeURIComponent(slug)
+          : '/blog/post.html?slug=' + encodeURIComponent(slug);
+      }
+
+      // Month and year is enough on a list; the full date belongs on the post.
+      function shortDate(value) {
+        var d = new Date(value);
+        if (!value || isNaN(d)) return '';
+        return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+      }
+
+      // Side B is numbered the way a tape sleeve numbers it: B1, B2, ...
+      function entry(post, i) {
+        var meta = post.meta;
+        var num = side === 'b' ? 'B' + (i + 1) : String(i + 1).padStart(2, '0');
+
+        return '<a class="blog-entry" data-topic="' + Blog.escapeHtml(Blog.topicOf(meta)) + '" ' +
+          'href="' + hrefFor(post.slug) + '">' +
+          '<span class="entry-num">' + num + '</span>' +
+          '<span class="entry-text">' +
+          '<h2 class="blog-entry-title">' + Blog.escapeHtml(meta.title || post.slug) + '</h2>' +
+          (meta.description ? '<p class="blog-entry-desc">' + Blog.escapeHtml(meta.description) + '</p>' : '') +
+          '</span>' +
+          '<span class="entry-meta">' +
+          '<span class="label">' + Blog.escapeHtml(Blog.topicOf(meta)) + '</span>' +
+          '<span class="entry-date">' + Blog.escapeHtml(shortDate(meta.date)) + '</span>' +
+          '</span>' +
+          '</a>';
+      }
+
+      function buildThemeBar(themes) {
+        themeBar.innerHTML = '';
+        if (themes.length < 2) return; // one theme is not a choice
+        themeBar.innerHTML = ['all'].concat(themes).map(function (t) {
+          return '<button type="button" class="theme-chip" data-topic="' + Blog.escapeHtml(t) + '" ' +
+            'aria-pressed="' + (t === 'all') + '">' + Blog.escapeHtml(t) + '</button>';
+        }).join('');
+      }
+
+      themeBar.addEventListener('click', function (e) {
+        var chip = e.target.closest('.theme-chip');
+        if (!chip) return;
+        var pick = chip.getAttribute('data-topic');
+
+        Array.prototype.forEach.call(themeBar.querySelectorAll('.theme-chip'), function (c) {
+          c.setAttribute('aria-pressed', String(c === chip));
+        });
+        Array.prototype.forEach.call(container.querySelectorAll('.blog-entry'), function (el) {
+          el.style.display = (pick === 'all' || el.getAttribute('data-topic') === pick) ? '' : 'none';
+        });
       });
-      return { meta, content: match[2].trim() };
-    }
 
-    // Parse basic frontmatter from markdown (title line + metadata)
-    function parsePostMeta(md, filename) {
-      const lines = md.split('\n');
-      const meta = { slug: filename.replace('.md', '') };
-      
-      // Get title from first # heading
-      for (const line of lines) {
-        if (line.startsWith('# ')) {
-          meta.title = line.replace('# ', '').trim();
-          break;
+      /* --- The tape ---------------------------------------------------------
+         Every post is loaded; `side: b` in a post's frontmatter decides which
+         side it plays on. Side A is the listing. Side B is only reachable by
+         turning the tape over — double-clicking (or double-tapping) the little
+         A beside the title, the way you'd flip a cassette. #b keeps you there
+         across reloads and on the way back from a post. */
+
+      var all = [];
+      var side = location.hash === '#b' ? 'b' : 'a';
+
+      function render() {
+        var posts = all.filter(function (p) { return Blog.sideOf(p.meta) === side; });
+
+        document.body.classList.toggle('side-b', side === 'b');
+        document.documentElement.classList.toggle('side-b', side === 'b');
+        mark.textContent = side.toUpperCase();
+        Array.prototype.forEach.call(document.querySelectorAll('.blog-subtitle'), function (p) {
+          p.hidden = p.getAttribute('data-side') !== side;
+        });
+
+        if (!posts.length) {
+          themeBar.innerHTML = '';
+          container.innerHTML = side === 'b'
+            ? '<p class="blog-empty">Nothing on this side. Yet.</p>'
+            : '<p class="blog-empty">Nothing here yet.</p>';
+          return;
         }
+        container.innerHTML = posts.map(entry).join('');
+
+        var themes = [];
+        posts.forEach(function (p) {
+          var t = Blog.topicOf(p.meta);
+          if (themes.indexOf(t) === -1) themes.push(t);
+        });
+        buildThemeBar(themes);
       }
 
-      // Get metadata from **Key:** Value pattern
-      for (const line of lines) {
-        const dateMatch = line.match(/\*\*Date:\*\*\s*(.+)/);
-        const descMatch = line.match(/\*\*Description:\*\*\s*(.+)/);
-        const tagsMatch = line.match(/\*\*Tags:\*\*\s*(.+)/);
-        if (dateMatch) meta.date = dateMatch[1].trim();
-        if (descMatch) meta.description = descMatch[1].trim();
-        if (tagsMatch) meta.tags = tagsMatch[1].split(',').map(t => t.trim());
-      }
+      var reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var flipping = false;
 
-      return meta;
-    }
+      function flip() {
+        if (flipping) return;
+        side = side === 'a' ? 'b' : 'a';
+        history.replaceState(null, '', side === 'b' ? '#b' : location.pathname + location.search);
 
-    // Fetch blog index
-    async function loadBlogPosts() {
-      const container = document.getElementById('blogList');
-      
-      try {
-        // Fetch the manifest of posts
-        const response = await fetch('./content/content.json');
-        const content = await response.json();
-        const onSitePosts = content.writing.onSiteArticles || [];
-        
-        if (onSitePosts.length === 0) {
-          container.innerHTML = '<p class="blog-empty">No posts yet. Check back soon.</p>';
+        if (reduceMotion) return render();
+
+        // Where the browser can, the new side blooms out of the mark itself.
+        if (document.startViewTransition) {
+          var r = mark.getBoundingClientRect();
+          var x = r.left + r.width / 2;
+          var y = r.top + r.height / 2;
+          var root = document.documentElement.style;
+          root.setProperty('--bloom-x', x + 'px');
+          root.setProperty('--bloom-y', y + 'px');
+          root.setProperty('--bloom-r', Math.hypot(
+            Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 'px');
+
+          flipping = true;
+          document.startViewTransition(render).finished
+            .finally(function () { flipping = false; });
           return;
         }
 
-        // Fetch each post to get metadata
-        const posts = [];
-        for (const post of onSitePosts) {
-          try {
-            const mdResponse = await fetch(`./blog/posts/${post.file}`);
-            if (mdResponse.ok) {
-              const md = await mdResponse.text();
-              const meta = parsePostMeta(md, post.file);
-              posts.push({ ...post, ...meta });
-            }
-          } catch (e) {
-            console.warn(`Failed to load post: ${post.file}`, e);
-          }
-        }
-
-        // Sort by date descending
-        posts.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
-
-        container.innerHTML = posts.map(post => `
-          <a href="./blog/post.html?slug=${post.slug}" class="blog-card">
-            <div class="blog-card-content">
-              <time class="blog-card-date">${post.date || ''}</time>
-              <h2 class="blog-card-title">${post.title}</h2>
-              ${post.description ? `<p class="blog-card-desc">${post.description}</p>` : ''}
-              ${post.tags ? `<div class="blog-card-tags">${post.tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}</div>` : ''}
-            </div>
-            <span class="blog-card-arrow">→</span>
-          </a>
-        `).join('');
-
-      } catch (error) {
-        console.error('Failed to load blog posts:', error);
-        container.innerHTML = '<p class="blog-empty">Failed to load posts.</p>';
+        // Otherwise: turn the tape away, swap sides edge-on, turn it back.
+        flipping = true;
+        document.body.classList.add('tape-turning');
+        setTimeout(function () {
+          render();
+          document.body.classList.remove('tape-turning');
+          setTimeout(function () { flipping = false; }, 260);
+        }, 260);
       }
-    }
 
-    loadBlogPosts();
+      // dblclick is unreliable on touch screens, so two taps are timed by hand.
+      var lastTap = 0;
+      mark.addEventListener('pointerup', function () {
+        var now = Date.now();
+        if (now - lastTap < 400) {
+          lastTap = 0;
+          flip();
+        } else {
+          lastTap = now;
+        }
+      });
+
+      window.addEventListener('hashchange', function () {
+        var wanted = location.hash === '#b' ? 'b' : 'a';
+        if (wanted !== side) { side = wanted; render(); }
+      });
+
+      Blog.loadPosts('/blog/', '/content/content.json')
+        .then(function (posts) {
+          all = posts;
+          render();
+        })
+        .catch(function (e) {
+          console.error('Failed to load posts:', e);
+          container.innerHTML = '<p class="blog-empty">Couldn’t load posts.</p>';
+        });
+    })();
   </script>
 </body>
 

@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Arjhun Sreedar</title>
-  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <title>Arjun Sreedar</title>
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css?v=2026-09-28g">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -68,12 +68,15 @@
 
   <br><br><br><br>
 
+  <script src="./blog/marked.min.js"></script>
+  <script src="./blog/blog.js?v=2026-09-28g"></script>
+
   <script type="text/javascript">
     let siteContent = null;
 
     async function loadContent() {
       try {
-        const response = await fetch('./content/content.json');
+        const response = await fetch('./content/content.json', { cache: 'no-cache' });
         siteContent = await response.json();
         populateContent();
       } catch (error) {
@@ -107,46 +110,49 @@
           <div class="timespan">${entry.timespan}</div>
           <div class="ico">
             <div class="entry-dot"></div>
-            <img src="${entry.logo}" />
+            <img src="${entry.logo}" onerror="this.style.visibility='hidden'" />
           </div>
           <div class="desc">${entry.description}</div>
         </div>
       `).join('');
 
       const writingContainer = document.getElementById('writingContainer');
-      const onSiteArticles = siteContent.writing.onSiteArticles || [];
       const mediumArticles = siteContent.writing.articles || [];
-      
+
       writingContainer.innerHTML = `
         <div class="ctitle">${siteContent.writing.title}</div>
-        ${onSiteArticles.length > 0 ? `
-          <div style="margin-bottom: 30px;">
-            <h3 style="font-weight: 500; font-size: 18px; color: var(--text-primary); margin-bottom: 12px;">On this site</h3>
-            <ul class="nodot">
-              ${onSiteArticles.map(article => 
-                `<li>${article.date} <a href="./blog/post.html?slug=${article.file.replace('.md', '')}">${article.title}</a></li>`
-              ).join('')}
-            </ul>
-            <p style="margin-top: 10px; font-size: 14px;">
-              <a href="./blog.html" style="color: var(--accent-blue); text-decoration: none;">→ All blog posts</a>
-            </p>
-          </div>
-        ` : ''}
+        <div id="onSiteWriting" style="margin-bottom: 30px;"></div>
         <div>
           <h3 style="font-weight: 500; font-size: 18px; color: var(--text-primary); margin-bottom: 12px;">On Medium</h3>
           <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">${siteContent.writing.subtitle}</div>
           <ul class="nodot">
-            ${mediumArticles.map(article => 
+            ${mediumArticles.map(article =>
               `<li>${article.date} <a href="${article.url}">${article.title}</a></li>`
             ).join('')}
           </ul>
         </div>
-        <p style="margin-top: 20px; font-size: 14px;">
-          <a href="${siteContent.writing.contentLink.url}" style="color: var(--text-muted); text-decoration: none;">
-            ${siteContent.writing.contentLink.text}
-          </a>
-        </p>
       `;
+
+      // Post metadata lives in each post's frontmatter, so the three most recent
+      // are read from the files themselves rather than duplicated in content.json.
+      Blog.loadPosts('./blog/', './content/content.json')
+        .then(all => {
+          const posts = all.filter(post => Blog.sideOf(post.meta) === 'a');
+          const onSite = document.getElementById('onSiteWriting');
+          if (!onSite || !posts.length) return;
+          onSite.innerHTML = `
+            <h3 style="font-weight: 500; font-size: 18px; color: var(--text-primary); margin-bottom: 12px;">On this site</h3>
+            <ul class="nodot">
+              ${posts.slice(0, 3).map(post =>
+                `<li>${Blog.escapeHtml(Blog.formatDate(post.meta.date))} <a href="./blog/post.html?slug=${encodeURIComponent(post.slug)}">${Blog.escapeHtml(post.meta.title || post.slug)}</a></li>`
+              ).join('')}
+            </ul>
+            <p style="margin-top: 10px; font-size: 14px;">
+              <a href="./blog.html" style="color: var(--accent-blue); text-decoration: none;">→ All writing</a>
+            </p>
+          `;
+        })
+        .catch(e => console.warn('Could not load on-site posts:', e));
 
       const projectsContainer = document.getElementById('pet-projects');
       projectsContainer.innerHTML = `

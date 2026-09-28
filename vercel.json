@@ -1,4 +1,16 @@
 {
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "blog.arjunsreedar.xyz" }],
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/:slug([a-z0-9-]+)",
+      "has": [{ "type": "host", "value": "blog.arjunsreedar.xyz" }],
+      "destination": "/blog/post.html?slug=:slug"
+    }
+  ],
   "functions": {
     "api/contact.js": {
       "memory": 1024,
