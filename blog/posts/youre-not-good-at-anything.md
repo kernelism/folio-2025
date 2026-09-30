@@ -1,7 +1,6 @@
 ---
 title: "You're not good at anything!"
 date: 2026-02-23
-description: Philosophical advice on getting better at stuff
 theme: writing
 tags: [showerthoughts]
 ---
