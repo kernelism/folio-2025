@@ -13,7 +13,7 @@
     var API = '/__writer/api';
 
     /* Order matters: this is the order keys are written into frontmatter. */
-    var META_KEYS = ['title', 'date', 'description', 'theme', 'tags', 'film', 'year', 'director', 'music', 'side'];
+    var META_KEYS = ['title', 'date', 'description', 'theme', 'tags', 'film', 'year', 'director', 'music'];
 
     var CARET = '‸'; // marks where the cursor lands in a block template
 
@@ -196,7 +196,7 @@
         var meta = {};
 
         META_KEYS.forEach(function (key) {
-            if (key === 'tags' || key === 'side') return;
+            if (key === 'tags') return;
             var el = $('f-' + key);
             if (!el) return;
             var v = el.value.trim();
@@ -206,17 +206,11 @@
         var tags = $('f-tags').value.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
         if (tags.length) meta.tags = tags;
 
-        // Only ever written when it's on — a Side A post has no `side` key.
-        if ($('f-side').checked) meta.side = 'b';
-
         return meta;
     }
 
     function writeForm(meta) {
-        $('f-side').checked = Blog.sideOf(meta) === 'b';
-
         META_KEYS.forEach(function (key) {
-            if (key === 'side') return;
             var el = $('f-' + key);
             if (!el) return;
             var v = meta[key];
@@ -388,7 +382,6 @@
         else if (post.dirty) state = { cls: 'edited', label: 'edits not pushed' };
         else state = { cls: 'live', label: 'published' };
 
-        if (Blog.sideOf(metaOf(post)) === 'b') state.label += ' · side B';
         return state;
     }
 
@@ -543,11 +536,6 @@
             var body =
                 '<p>Adds this post to <code>content.json</code>, commits it with ' +
                 'any clips it uses, and pushes. Other drafts stay on your machine.</p>' +
-                (meta.side === 'b'
-                    ? '<p>It goes on <b>Side B</b>: off the listing and the home page until ' +
-                      'someone turns the tape over. The file itself is still public on ' +
-                      'GitHub and at its URL.</p>'
-                    : '') +
                 '<label class="stack">Commit message' +
                 '<input type="text" id="commitMsg" value="' +
                 escapeAttr('blog: ' + (meta.title || doc.slug)) + '"></label>';

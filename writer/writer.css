@@ -304,20 +304,6 @@ button {
     border-color: var(--ui-accent);
 }
 
-/* A checkbox, not a text box — it opts out of the .field input styling. */
-.side-field {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-}
-
-.side-field input[type="checkbox"] {
-    margin: 0;
-    padding: 0;
-    accent-color: var(--ui-accent);
-}
-
 .more { grid-column: 1 / -1; }
 
 .more summary {

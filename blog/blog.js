@@ -332,13 +332,6 @@
         return String((meta && meta.theme) || 'cinema').toLowerCase();
     }
 
-    /* Which side of the tape a post is on. Side A is the listing everyone
-       sees; `side: b` in the frontmatter keeps a post off it — and off the
-       home page — until someone turns the tape over. */
-    function sideOf(meta) {
-        return String((meta && meta.side) || 'a').trim().toLowerCase() === 'b' ? 'b' : 'a';
-    }
-
     /* Everything that isn't the writing goes in the rail: date, theme, film.
        Director and composer stay in the frontmatter and stay off the page. */
     function railHtml(meta) {
@@ -381,7 +374,6 @@
         renderMarkdown: renderMarkdown,
         renderPost: renderPost,
         topicOf: topicOf,
-        sideOf: sideOf,
         attachBehaviors: attachBehaviors,
         loadPosts: loadPosts,
         formatDate: formatDate,

@@ -48,8 +48,6 @@
         var scroll = window.scrollY;
 
         post.setAttribute('data-topic', Blog.topicOf(meta));
-        document.body.classList.toggle('side-b', Blog.sideOf(meta) === 'b');
-        document.documentElement.classList.toggle('side-b', Blog.sideOf(meta) === 'b');
 
         try {
           post.innerHTML = Blog.renderPost(meta, payload.body || '', payload.slug);

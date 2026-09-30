@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Playback — Arjun Sreedar</title>
   <meta name="description"
-    content="Cinema and music that got into me and stayed there. Tamil films, the songs that came with them, and what they sound like from a long way away.">
-  <link rel="stylesheet" type="text/css" href="/styles/styles.css?v=2026-09-28g">
-  <link rel="stylesheet" type="text/css" href="/styles/blog.css?v=2026-09-28g">
+    content="Notes on cinema and music.">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css?v=2026-09-28i">
+  <link rel="stylesheet" type="text/css" href="/styles/blog.css?v=2026-09-28i">
 </head>
 
 <body>
@@ -17,11 +17,8 @@
   </div>
 
   <header class="blog-header">
-    <h1 class="blog-title">Playback<span class="side-mark" id="sideMark" aria-hidden="true">A</span></h1>
-    <p class="blog-subtitle" data-side="a">Everything cinema and music that got into me and stayed there —
-      and what it all sounds like from eight thousand miles away.</p>
-    <p class="blog-subtitle" data-side="b" hidden>The other side of the tape. The things I think about
-      more than I say out loud.</p>
+    <h1 class="blog-title">Playback</h1>
+    <p class="blog-subtitle">Notes on cinema and music.</p>
   </header>
 
   <nav class="theme-bar" id="themeBar" aria-label="Filter by theme"></nav>
@@ -35,12 +32,11 @@
   </footer>
 
   <script src="/blog/marked.min.js"></script>
-  <script src="/blog/blog.js?v=2026-09-28g"></script>
+  <script src="/blog/blog.js?v=2026-09-28i"></script>
   <script>
     (function () {
       var container = document.getElementById('blogList');
       var themeBar = document.getElementById('themeBar');
-      var mark = document.getElementById('sideMark');
 
       // On blog.arjunsreedar.xyz the rewrite in vercel.json gives us clean
       // /slug URLs; everywhere else fall back to the query-string form.
@@ -59,10 +55,9 @@
         return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
       }
 
-      // Side B is numbered the way a tape sleeve numbers it: B1, B2, ...
       function entry(post, i) {
         var meta = post.meta;
-        var num = side === 'b' ? 'B' + (i + 1) : String(i + 1).padStart(2, '0');
+        var num = String(i + 1).padStart(2, '0');
 
         return '<a class="blog-entry" data-topic="' + Blog.escapeHtml(Blog.topicOf(meta)) + '" ' +
           'href="' + hrefFor(post.slug) + '">' +
@@ -100,31 +95,10 @@
         });
       });
 
-      /* --- The tape ---------------------------------------------------------
-         Every post is loaded; `side: b` in a post's frontmatter decides which
-         side it plays on. Side A is the listing. Side B is only reachable by
-         turning the tape over — double-clicking (or double-tapping) the little
-         A beside the title, the way you'd flip a cassette. #b keeps you there
-         across reloads and on the way back from a post. */
-
-      var all = [];
-      var side = location.hash === '#b' ? 'b' : 'a';
-
-      function render() {
-        var posts = all.filter(function (p) { return Blog.sideOf(p.meta) === side; });
-
-        document.body.classList.toggle('side-b', side === 'b');
-        document.documentElement.classList.toggle('side-b', side === 'b');
-        mark.textContent = side.toUpperCase();
-        Array.prototype.forEach.call(document.querySelectorAll('.blog-subtitle'), function (p) {
-          p.hidden = p.getAttribute('data-side') !== side;
-        });
-
+      function render(posts) {
         if (!posts.length) {
           themeBar.innerHTML = '';
-          container.innerHTML = side === 'b'
-            ? '<p class="blog-empty">Nothing on this side. Yet.</p>'
-            : '<p class="blog-empty">Nothing here yet.</p>';
+          container.innerHTML = '<p class="blog-empty">Nothing here yet.</p>';
           return;
         }
         container.innerHTML = posts.map(entry).join('');
@@ -137,66 +111,8 @@
         buildThemeBar(themes);
       }
 
-      var reduceMotion = window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var flipping = false;
-
-      function flip() {
-        if (flipping) return;
-        side = side === 'a' ? 'b' : 'a';
-        history.replaceState(null, '', side === 'b' ? '#b' : location.pathname + location.search);
-
-        if (reduceMotion) return render();
-
-        // Where the browser can, the new side blooms out of the mark itself.
-        if (document.startViewTransition) {
-          var r = mark.getBoundingClientRect();
-          var x = r.left + r.width / 2;
-          var y = r.top + r.height / 2;
-          var root = document.documentElement.style;
-          root.setProperty('--bloom-x', x + 'px');
-          root.setProperty('--bloom-y', y + 'px');
-          root.setProperty('--bloom-r', Math.hypot(
-            Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 'px');
-
-          flipping = true;
-          document.startViewTransition(render).finished
-            .finally(function () { flipping = false; });
-          return;
-        }
-
-        // Otherwise: turn the tape away, swap sides edge-on, turn it back.
-        flipping = true;
-        document.body.classList.add('tape-turning');
-        setTimeout(function () {
-          render();
-          document.body.classList.remove('tape-turning');
-          setTimeout(function () { flipping = false; }, 260);
-        }, 260);
-      }
-
-      // dblclick is unreliable on touch screens, so two taps are timed by hand.
-      var lastTap = 0;
-      mark.addEventListener('pointerup', function () {
-        var now = Date.now();
-        if (now - lastTap < 400) {
-          lastTap = 0;
-          flip();
-        } else {
-          lastTap = now;
-        }
-      });
-
-      window.addEventListener('hashchange', function () {
-        var wanted = location.hash === '#b' ? 'b' : 'a';
-        if (wanted !== side) { side = wanted; render(); }
-      });
-
       Blog.loadPosts('/blog/', '/content/content.json')
-        .then(function (posts) {
-          all = posts;
-          render();
-        })
+        .then(render)
         .catch(function (e) {
           console.error('Failed to load posts:', e);
           container.innerHTML = '<p class="blog-empty">Couldn’t load posts.</p>';

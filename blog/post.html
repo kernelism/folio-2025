@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Loading… — Arjun Sreedar</title>
-  <link rel="stylesheet" type="text/css" href="/styles/styles.css?v=2026-09-28g">
-  <link rel="stylesheet" type="text/css" href="/styles/blog.css?v=2026-09-28g">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css?v=2026-09-28i">
+  <link rel="stylesheet" type="text/css" href="/styles/blog.css?v=2026-09-28i">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
   </footer>
 
   <script src="/blog/marked.min.js"></script>
-  <script src="/blog/blog.js?v=2026-09-28g"></script>
+  <script src="/blog/blog.js?v=2026-09-28i"></script>
   <script>
     (function () {
       var container = document.getElementById('blogPost');
@@ -57,15 +57,6 @@
           container.setAttribute('data-topic', Blog.topicOf(meta));
 
           container.innerHTML = Blog.renderPost(meta, parsed.body, slug);
-
-          // A Side B post sends you back to Side B, not to the front of the tape.
-          if (Blog.sideOf(meta) === 'b') {
-            document.body.classList.add('side-b');
-            document.documentElement.classList.add('side-b');
-            document.querySelector('.blog-nav-back').href = '/blog.html#b';
-            document.querySelector('.blog-nav-back').textContent = '← Side B';
-            document.querySelector('.blog-footer a').href = '/blog.html#b';
-          }
 
           Blog.attachBehaviors(container);
         })

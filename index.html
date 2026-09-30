@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Arjun Sreedar</title>
-  <link rel="stylesheet" type="text/css" href="./styles/styles.css?v=2026-09-28g">
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css?v=2026-09-28i">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -69,7 +69,7 @@
   <br><br><br><br>
 
   <script src="./blog/marked.min.js"></script>
-  <script src="./blog/blog.js?v=2026-09-28g"></script>
+  <script src="./blog/blog.js?v=2026-09-28i"></script>
 
   <script type="text/javascript">
     let siteContent = null;
@@ -136,8 +136,7 @@
       // Post metadata lives in each post's frontmatter, so the three most recent
       // are read from the files themselves rather than duplicated in content.json.
       Blog.loadPosts('./blog/', './content/content.json')
-        .then(all => {
-          const posts = all.filter(post => Blog.sideOf(post.meta) === 'a');
+        .then(posts => {
           const onSite = document.getElementById('onSiteWriting');
           if (!onSite || !posts.length) return;
           onSite.innerHTML = `
