@@ -103,6 +103,9 @@
     "subtitle": "I occasionally write on medium.",
     "onSiteArticles": [
       {
+        "file": "the-pitfalls-of-convenience.md"
+      },
+      {
         "file": "youre-not-good-at-anything.md"
       }
     ],
