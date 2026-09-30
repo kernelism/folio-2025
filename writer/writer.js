@@ -1,4 +1,4 @@
-/* Playback Writer — the editor.
+/* Blog Writer — the editor.
 
    Talks to writer/server.js over /__writer/api, renders the preview by
    postMessaging the real blog.js inside an iframe, and knows how to turn a

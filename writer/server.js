@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Playback Writer — the local half of the blog editor.
+/* Blog Writer — the local half of the blog editor.
    Serves the real site out of the repo root, so the preview iframe loads the
    same CSS, the same blog.js and the same clips the published post will, and
    exposes a small JSON API under /__writer/ that reads and writes the files a
@@ -546,7 +546,7 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, HOST, () => {
     const url = `http://${HOST}:${PORT}/write`;
     console.log('');
-    console.log('  Playback Writer');
+    console.log('  Blog Writer');
     console.log('  ' + url);
     console.log('');
     console.log('  posts    ' + path.relative(ROOT, POSTS_DIR));
